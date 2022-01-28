@@ -18,7 +18,7 @@ CLIENTS(companies)
 	-client notes
         -information on timestamps
         -information on who made that note
-        -new notes should notify clients and team members
+        -new notes should notify team members
 
 CONTACTS
     -standard information of client contacts
@@ -30,7 +30,7 @@ CONTACTS
     -contact notes
         -information on timestamps
         -information on who made that note
-        -new notes should notify clients and team members
+        -new notes should notify team members
 
 PIPELINES
 	-name of pipeline
@@ -39,7 +39,7 @@ PIPELINES
 	-pipeline notes
 		-information on timestamps
         -information on who made that note
-        -new notes should notify clients and team members
+        -new notes should notify team members
 	-pipeline completion
 		-code with a value
             -NEW: 0.0%, 1/4 = 25.0%, 1/2 = 50.0%, DONE: 100.0%
@@ -53,7 +53,7 @@ PRODUCT
 	-product notes
 		-information on timestamps
         -information on who made that note
-        -new notes should notify clients and team members
+        -new notes should notify team members
 
 PIPELINE ITEM 
 	-name of item
@@ -69,7 +69,7 @@ PIPELINE ITEM
 	-item notes
 		-information on timestamps
         -information on who made that note
-        -new notes should notify clients and team members
+        -new notes should notify team members
 
 INVOICE
 	-invoice number
