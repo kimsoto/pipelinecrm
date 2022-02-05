@@ -123,6 +123,7 @@ CREATE TABLE `pipeline_crm`.`product` (
   `name` VARCHAR(64) NOT NULL,
   `price` DECIMAL(15,2) NOT NULL,
   PRIMARY KEY (`product_id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
   INDEX `pipeline_id_idx` (`pipeline_id` ASC) VISIBLE,
   CONSTRAINT `pipeline_id`
     FOREIGN KEY (`pipeline_id`)
