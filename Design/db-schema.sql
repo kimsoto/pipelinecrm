@@ -18,7 +18,7 @@ CREATE TABLE `pipeline_crm`.`member` (
     FOREIGN KEY (`team_id`)
     REFERENCES `pipeline_crm`.`team` (`team_id`)
     ON DELETE RESTRICT
-    ON UPDATE CASCADE,;
+    ON UPDATE CASCADE;
 
 CREATE TABLE `pipeline_crm`.`assigned` (
   `team_id` INT NOT NULL,
