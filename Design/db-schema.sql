@@ -169,19 +169,6 @@ CREATE TABLE `pipeline_crm`.`item` (
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-CREATE TABLE `pipeline_crm`.`invoice_item` (
-  `invoice_item_id` INT NOT NULL AUTO_INCREMENT,
-  `item_id` INT NOT NULL,
-  `amount` DECIMAL(15,2) NOT NULL,
-  `description` VARCHAR(1000) NOT NULL,
-  PRIMARY KEY (`invoice_item_id`),
-  INDEX `item_id_idx` (`item_id` ASC) VISIBLE,
-  CONSTRAINT `item_id`
-    FOREIGN KEY (`item_id`)
-    REFERENCES `pipeline_crm`.`item` (`item_id`)
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE);
-
 CREATE TABLE `pipeline_crm`.`invoice` (
   `invoice_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(1000) NOT NULL,
@@ -189,6 +176,26 @@ CREATE TABLE `pipeline_crm`.`invoice` (
   `bill_date` DATE NOT NULL,
   `due_date` DATE NOT NULL,
   PRIMARY KEY (`invoice_id`));
+
+CREATE TABLE `pipeline_crm`.`invoice_item` (
+  `invoice_item_id` INT NOT NULL AUTO_INCREMENT,
+  `invoice_id` INT NOT NULL,
+  `item_id` INT NOT NULL,
+  `amount` DECIMAL(15,2) NOT NULL,
+  `description` VARCHAR(1000) NOT NULL,
+  PRIMARY KEY (`invoice_item_id`),
+  INDEX `item_id_idx` (`item_id` ASC) VISIBLE,
+  INDEX `invoice_id_idx` (`invoice_id` ASC) VISIBLE,
+  CONSTRAINT `item_id`
+    FOREIGN KEY (`item_id`)
+    REFERENCES `pipeline_crm`.`item` (`item_id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE),
+  CONSTRAINT `invoice_id`
+    FOREIGN KEY (`invoice_id`)
+    REFERENCES `pipeline_crm`.`invoice` (`invoice_id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE);
 
 CREATE TABLE `pipeline_crm`.`receipt` (
   `receipt_id` INT NOT NULL AUTO_INCREMENT,
