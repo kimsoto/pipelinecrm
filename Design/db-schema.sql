@@ -1,209 +1,187 @@
-CREATE SCHEMA `pipeline_crm` ;
+CREATE SCHEMA pipeline_crm ;
 
-CREATE TABLE `pipeline_crm`.`team` (
-  `team_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(64) NULL,
-  PRIMARY KEY (`team_id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE);
+CREATE TABLE team (
+  team_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(64) NOT NULL,
+  CONSTRAINT name_unique UNIQUE (name));
 
-CREATE TABLE `pipeline_crm`.`member` (
-  `member_id` INT NOT NULL AUTO_INCREMENT,
-  `team_id` INT NOT NULL,
-  `name` VARCHAR(64) NOT NULL,
-  `email` VARCHAR(64) NOT NULL,
-  PRIMARY KEY (`member_id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
-  INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  CONSTRAINT `team_id`
-    FOREIGN KEY (`team_id`)
-    REFERENCES `pipeline_crm`.`team` (`team_id`)
+CREATE TABLE member (
+  member_id INT PRIMARY KEY AUTO_INCREMENT,
+  team_id INT NOT NULL,
+  name VARCHAR(64) NOT NULL,
+  email VARCHAR(64) NOT NULL,
+  CONSTRAINT email_unique UNIQUE (email),
+  CONSTRAINT team_id
+    FOREIGN KEY (team_id)
+    REFERENCES team (team_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-CREATE TABLE `pipeline_crm`.`assigned` (
-  `team_id` INT NOT NULL,
-  `member_id` INT NOT NULL,
-  PRIMARY KEY (`team_id`, `member_id`),
-  INDEX `member_id_idx` (`member_id` ASC) VISIBLE,
-  CONSTRAINT `team_id2`
-    FOREIGN KEY (`team_id`)
-    REFERENCES `pipeline_crm`.`team` (`team_id`)
+CREATE TABLE assigned (
+  team_id INT NOT NULL,
+  member_id INT NOT NULL,
+  PRIMARY KEY (team_id, member_id),
+  CONSTRAINT team_id2
+    FOREIGN KEY (team_id)
+    REFERENCES team (team_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-  CONSTRAINT `member_id2`
-    FOREIGN KEY (`member_id`)
-    REFERENCES `pipeline_crm`.`member` (`member_id`)
+  CONSTRAINT member_id2
+    FOREIGN KEY (member_id)
+    REFERENCES member (member_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-CREATE TABLE `pipeline_crm`.`status` (
-  `status_id` INT NOT NULL AUTO_INCREMENT,
-  `code` VARCHAR(64) NOT NULL,
-  PRIMARY KEY (`status_id`),
-  UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE);
+CREATE TABLE status (
+  status_id INT PRIMARY KEY AUTO_INCREMENT,
+  code VARCHAR(64) NOT NULL,
+  CONSTRAINT code_unique UNIQUE (code));
 
-CREATE TABLE `pipeline_crm`.`client_status` (
-  `status_id` INT NOT NULL AUTO_INCREMENT,
-  `code` VARCHAR(64) NOT NULL,
-  PRIMARY KEY (`status_id`));
+CREATE TABLE client_status (
+  status_id INT PRIMARY KEY AUTO_INCREMENT,
+  code VARCHAR(64) NOT NULL);
 
-CREATE TABLE `pipeline_crm`.`completion` (
-  `completion_id` INT NOT NULL AUTO_INCREMENT,
-  `code` VARCHAR(30) NOT NULL,
-  `value` DECIMAL(5,2) NOT NULL,
-  PRIMARY KEY (`completion_id`),
-  UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE);
+CREATE TABLE completion (
+  completion_id INT PRIMARY KEY AUTO_INCREMENT,
+  code VARCHAR(30) NOT NULL,
+  value DECIMAL(5,2) NOT NULL,
+  CONSTRAINT code_unique UNIQUE (code));
 
-CREATE TABLE `pipeline_crm`.`client` (
-  `client_id` INT NOT NULL AUTO_INCREMENT,
-  `status_id` INT NOT NULL,
-  `name` VARCHAR(64) NOT NULL,
-  PRIMARY KEY (`client_id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-  INDEX `status_id_idx` (`status_id` ASC) VISIBLE,
-  CONSTRAINT `status_id`
-    FOREIGN KEY (`status_id`)
-    REFERENCES `pipeline_crm`.`client_status` (`status_id`)
+CREATE TABLE client (
+  client_id INT PRIMARY KEY AUTO_INCREMENT,
+  status_id INT NOT NULL,
+  name VARCHAR(64) NOT NULL,
+  CONSTRAINT name_unique UNIQUE (name),
+  CONSTRAINT status_id
+    FOREIGN KEY (status_id)
+    REFERENCES client_status (status_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-CREATE TABLE `pipeline_crm`.`contact` (
-  `contact_id` INT NOT NULL AUTO_INCREMENT,
-  `client_id` INT NOT NULL,
-  `name` VARCHAR(64) NOT NULL,
-  `title` VARCHAR(64) NOT NULL,
-  `email` VARCHAR(64) NULL,
-  `phone` VARCHAR(13) NULL,
-  `address` VARCHAR(128) NULL,
-  PRIMARY KEY (`contact_id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
-  INDEX `client_id_idx` (`client_id` ASC) VISIBLE,
-  CONSTRAINT `client_id`
-    FOREIGN KEY (`client_id`)
-    REFERENCES `pipeline_crm`.`client` (`client_id`)
+CREATE TABLE contact (
+  contact_id INT PRIMARY KEY AUTO_INCREMENT,
+  client_id INT NOT NULL,
+  name VARCHAR(64) NOT NULL,
+  title VARCHAR(64) NOT NULL,
+  email VARCHAR(64) NULL,
+  phone VARCHAR(13) NULL,
+  address VARCHAR(128) NULL,
+  CONSTRAINT email_unique UNIQUE (email),
+  CONSTRAINT client_id
+    FOREIGN KEY (client_id)
+    REFERENCES client (client_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-CREATE TABLE `pipeline_crm`.`client_note` (
-  `note_id` INT NOT NULL AUTO_INCREMENT,
-  `client_id` INT NOT NULL,
-  `member_id` INT NOT NULL,
-  `created_on` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `value` VARCHAR(1000) NOT NULL,
-  PRIMARY KEY (`note_id`),
-  INDEX `member_id_idx` (`member_id` ASC) VISIBLE,
-  INDEX `client_id_idx` (`client_id` ASC) VISIBLE,
-  CONSTRAINT `client_id2`
-    FOREIGN KEY (`client_id`)
-    REFERENCES `pipeline_crm`.`client` (`client_id`)
+CREATE TABLE client_note (
+  note_id INT PRIMARY KEY AUTO_INCREMENT,
+  client_id INT NOT NULL,
+  member_id INT NOT NULL,
+  created_on DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  value VARCHAR(1000) NOT NULL,
+  CONSTRAINT client_id2
+    FOREIGN KEY (client_id)
+    REFERENCES client (client_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-  CONSTRAINT `member_id`
-    FOREIGN KEY (`member_id`)
-    REFERENCES `pipeline_crm`.`member` (`member_id`)
+  CONSTRAINT member_id
+    FOREIGN KEY (member_id)
+    REFERENCES member (member_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-CREATE TABLE `pipeline_crm`.`pipeline` (
-  `pipeline_id` INT NOT NULL AUTO_INCREMENT,
-  `team_id` INT NOT NULL,
-  `name` VARCHAR(64) NOT NULL,
-  PRIMARY KEY (`pipeline_id`),
-  INDEX `team_id_idx` (`team_id` ASC) VISIBLE,
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-  CONSTRAINT `team_id3`
-    FOREIGN KEY (`team_id`)
-    REFERENCES `pipeline_crm`.`team` (`team_id`)
+CREATE TABLE pipeline (
+  pipeline_id INT PRIMARY KEY AUTO_INCREMENT,
+  team_id INT NOT NULL,
+  name VARCHAR(64) NOT NULL,
+  CONSTRAINT name_unique UNIQUE (name),
+  CONSTRAINT team_id3
+    FOREIGN KEY (team_id)
+    REFERENCES team (team_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-CREATE TABLE `pipeline_crm`.`product` (
-  `product_id` INT NOT NULL AUTO_INCREMENT,
-  `pipeline_id` INT NOT NULL,
-  `name` VARCHAR(64) NOT NULL,
-  `price` DECIMAL(15,2) NOT NULL,
-  PRIMARY KEY (`product_id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-  INDEX `pipeline_id_idx` (`pipeline_id` ASC) VISIBLE,
-  CONSTRAINT `pipeline_id`
-    FOREIGN KEY (`pipeline_id`)
-    REFERENCES `pipeline_crm`.`pipeline` (`pipeline_id`)
+CREATE TABLE product (
+  product_id INT PRIMARY KEY AUTO_INCREMENT,
+  pipeline_id INT NOT NULL,
+  name VARCHAR(64) NOT NULL,
+  price DECIMAL(15,2) NOT NULL,
+  CONSTRAINT name_unique UNIQUE (name),
+  CONSTRAINT pipeline_id
+    FOREIGN KEY (pipeline_id)
+    REFERENCES pipeline (pipeline_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-CREATE TABLE `pipeline_crm`.`item` (
-  `item_id` INT NOT NULL AUTO_INCREMENT,
-  `completion_id` INT NOT NULL,
-  `status_id` INT NOT NULL,
-  `client_id` INT NOT NULL,
-  `product_id` INT NOT NULL,
-  `title` VARCHAR(64) NOT NULL,
-  `contracted_rev` DECIMAL(15,2) NOT NULL,
-  `planned_start` DATE NULL,
-  `planned_end` DATE NULL,
-  `actual_start` DATE NULL,
-  `actual_end` DATE NULL,
-  PRIMARY KEY (`item_id`),
-  INDEX `product_id_idx` (`product_id` ASC) VISIBLE,
-  INDEX `client_id_idx` (`client_id` ASC) VISIBLE,
-  INDEX `status_id_idx` (`status_id` ASC) VISIBLE,
-  INDEX `completion_id_idx` (`completion_id` ASC) VISIBLE,
-  CONSTRAINT `completion_id`
-    FOREIGN KEY (`completion_id`)
-    REFERENCES `pipeline_crm`.`completion` (`completion_id`)
+CREATE TABLE item (
+  item_id INT PRIMARY KEY AUTO_INCREMENT,
+  completion_id INT NOT NULL,
+  status_id INT NOT NULL,
+  client_id INT NOT NULL,
+  product_id INT NOT NULL,
+  title VARCHAR(64) NOT NULL,
+  contracted_rev DECIMAL(15,2) NOT NULL,
+  planned_start DATE NULL,
+  planned_end DATE NULL,
+  actual_start DATE NULL,
+  actual_end DATE NULL,
+  CONSTRAINT completion_id
+    FOREIGN KEY (completion_id)
+    REFERENCES completion (completion_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-  CONSTRAINT `status_id2`
-    FOREIGN KEY (`status_id`)
-    REFERENCES `pipeline_crm`.`status` (`status_id`)
+  CONSTRAINT status_id2
+    FOREIGN KEY (status_id)
+    REFERENCES status (status_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-  CONSTRAINT `client_id3`
-    FOREIGN KEY (`client_id`)
-    REFERENCES `pipeline_crm`.`client` (`client_id`)
+  CONSTRAINT client_id3
+    FOREIGN KEY (client_id)
+    REFERENCES client (client_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-  CONSTRAINT `product_id`
-    FOREIGN KEY (`product_id`)
-    REFERENCES `pipeline_crm`.`product` (`product_id`)
+  CONSTRAINT product_id
+    FOREIGN KEY (product_id)
+    REFERENCES product (product_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-CREATE TABLE `pipeline_crm`.`invoice_item` (
-  `invoice_item_id` INT NOT NULL AUTO_INCREMENT,
-  `item_id` INT NOT NULL,
-  `amount` DECIMAL(15,2) NOT NULL,
-  `description` VARCHAR(1000) NOT NULL,
-  PRIMARY KEY (`invoice_item_id`),
-  INDEX `item_id_idx` (`item_id` ASC) VISIBLE,
-  CONSTRAINT `item_id`
-    FOREIGN KEY (`item_id`)
-    REFERENCES `pipeline_crm`.`item` (`item_id`)
+CREATE TABLE invoice (
+  invoice_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(1000) NOT NULL,
+  invoice_num INT NOT NULL,
+  bill_date DATE NOT NULL,
+  due_date DATE NOT NULL);
+
+CREATE TABLE invoice_item (
+  invoice_item_id INT PRIMARY KEY AUTO_INCREMENT,
+  invoice_id INT NOT NULL,
+  item_id INT NOT NULL,
+  amount DECIMAL(15,2) NOT NULL,
+  description VARCHAR(1000) NOT NULL,
+  CONSTRAINT item_id
+    FOREIGN KEY (item_id)
+    REFERENCES item (item_id)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT invoice_id
+    FOREIGN KEY (invoice_id)
+    REFERENCES invoice (invoice_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-CREATE TABLE `pipeline_crm`.`invoice` (
-  `invoice_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(1000) NOT NULL,
-  `invoice_num` INT NOT NULL,
-  `bill_date` DATE NOT NULL,
-  `due_date` DATE NOT NULL,
-  PRIMARY KEY (`invoice_id`));
-
-CREATE TABLE `pipeline_crm`.`receipt` (
-  `receipt_id` INT NOT NULL AUTO_INCREMENT,
-  `invoice_id` INT NOT NULL,
-  `received_date` DATE NOT NULL,
-  `amount` DECIMAL(15,2) NOT NULL,
-  PRIMARY KEY (`receipt_id`),
-  INDEX `invoice_id_idx` (`invoice_id` ASC) VISIBLE,
-  CONSTRAINT `invoice_id2`
-    FOREIGN KEY (`invoice_id`)
-    REFERENCES `pipeline_crm`.`invoice` (`invoice_id`)
+CREATE TABLE receipt (
+  receipt_id INT PRIMARY KEY AUTO_INCREMENT,
+  invoice_id INT NOT NULL,
+  received_date DATE NOT NULL,
+  amount DECIMAL(15,2) NOT NULL,
+  CONSTRAINT invoice_id2
+    FOREIGN KEY (invoice_id)
+    REFERENCES invoice (invoice_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
 
-INSERT INTO `pipeline_crm`.`status`(`code`) 
+INSERT INTO status(code) 
 VALUES
   ("Backlog"),
   ("In Progress"),
@@ -212,13 +190,13 @@ VALUES
   ("Billed"),
   ("Complete");
 
-INSERT INTO `pipeline_crm`.`client_status`(`code`) 
+INSERT INTO client_status(code) 
 VALUES
   ("Active"),
   ("Dormant"),
   ("Potential");
 
-INSERT INTO `pipeline_crm`.`completion`(`code`, `value`) 
+INSERT INTO completion(code, value) 
 VALUES
   ("New", 0.0),
   ("1/4", 0.25),
