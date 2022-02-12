@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import SideMenu from '../../../../pipeline-crm/src/components/SideMenu.vue'
+import SideMenu from '../components/SideMenu.vue'
 
 export default {
-  name: 'Team',
+  name: 'Home',
   components: {
       SideMenu
   }
