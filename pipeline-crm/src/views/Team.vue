@@ -6,8 +6,15 @@
           <SideMenu></SideMenu>
         </div>
         <div class="col py-3">
-          <h1>Pipeline CRM</h1>
-          <h2>Teams</h2>
+          <div class="row">
+            <header>
+              <h1>Pipeline CRM</h1>
+              <h2>Teams</h2>
+            </header>
+          </div>
+          <div class="row">
+            <TeamAccordion></TeamAccordion>
+          </div>
         </div>
       </div>
     </div>
@@ -17,11 +24,18 @@
 
 <script>
 import SideMenu from '../components/SideMenu.vue'
+import TeamAccordion from '../components/TeamAccordion.vue'
 
 export default {
   name: 'Team',
   components: {
-      SideMenu
-  }
+      SideMenu,
+      TeamAccordion
+  },
+  
 }
 </script>
+
+<style scoped>
+
+</style>
