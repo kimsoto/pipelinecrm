@@ -1,39 +1,15 @@
 console.log('loading express server')
-const mysql = require('mysql')
-const sqlClient = mysql.createConnection({
-    host: 'localhost',
-    user: 'crm',
-    password: 'j011y01d5@!n7n!(#01@5',
-    database: 'pipeline-crm'
-})
 const express = require('express')
-const nocache = require('nocache')
-const path = require('path')
-const logger = require('morgan')
 const app = express()
-const PORT = 80
+const PORT = 3000
 
-app.use(logger('dev'))
-app.use(nocache())
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname+'/public/index.html'))
-// })
-
-// sends queries to mysql database
-function runQuery(query) {
-    sqlClient.connect(function(err) {
-        if (err) throw err
-
-        console.log('sql reply')
-        sqlClient.query(query, function (err, res) {
-            if (err) throw err
-            res.json(res)
-            sqlClient.end()
-        })
-    })
-}
+app.get('/', (req, res) => {
+    res.json({message: "api testing :>"})
+})
+require("./app/routes/team.routes.js")(app)
 
 app.get('/api/team/:teamid', (req, res) => {
     const teamid = req.params.teamid
