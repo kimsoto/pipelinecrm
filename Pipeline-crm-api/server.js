@@ -1,13 +1,20 @@
 console.log('loading express server')
 const express = require('express')
+const cors = require('cors')
+const path = __dirname + '/app/views/'
 const app = express()
-const PORT = 3000
+const PORT = 8080
+let corsOptions = {
+    origin: 'http://localhost:8081'
+}
 
+app.use(cors(corsOptions))
 app.use(express.json())
+app.use(express.static(path))
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-    res.json({message: "api testing :>"})
+    res.sendFile(path + 'index.html')
 })
 require("./app/routes/team.routes.js")(app)
 
