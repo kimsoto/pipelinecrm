@@ -3,9 +3,9 @@ const express = require('express')
 const cors = require('cors')
 const path = __dirname + '/app/views/'
 const app = express()
-const PORT = 8080
+const PORT = 3000
 let corsOptions = {
-    origin: 'http://localhost:8081'
+    origin: 'http://localhost:3001'
 }
 
 app.use(cors(corsOptions))
