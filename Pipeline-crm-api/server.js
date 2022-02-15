@@ -18,34 +18,6 @@ app.get('/', (req, res) => {
 })
 require("./app/routes/team.routes.js")(app)
 
-app.get('/api/team/:teamid', (req, res) => {
-    const teamid = req.params.teamid
-    runQuery(`select * from team where team_id = ${teamid};`)
-    res.status(204)
-})
-
-app.get('/api/team/', (req, res) => {
-    runQuery(`select * from team;`)
-    res.status(204)
-})
-
-app.post('/api/team/', (req, res) => {
-    runQuery(`insert into team (name) values ("insert name here");`)
-    res.status(204)
-})
-
-app.put('/api/team/:teamid', (req, res) => {
-    const teamid = req.params.teamid
-    runQuery(`update team set name = "something";`)
-    res.status(204)
-})
-
-app.delete('/api/team/:teamid', (req, res) => {
-    const teamid = req.params.teamid
-    runQuery(`delete from team where team_id = ${teamid};`)
-    res.status(204)
-})
-
 app.use(express.static('public'))
 
 app.get('*', (req, res) => {
