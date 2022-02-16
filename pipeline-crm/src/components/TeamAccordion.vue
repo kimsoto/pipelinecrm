@@ -1,5 +1,5 @@
-<template :key="team.name" v-for="team in teams">
-    <div class="col-xs-12 col-md-4">
+<template v-for="team in teams">
+    <div :key="team.name" class="col-xs-12 col-md-4">
         <div class="accordion-grid">
         <figure @click="toggle" class="accordion autoclose" aria-controls="accordion0content" role="button">
         <figcaption>

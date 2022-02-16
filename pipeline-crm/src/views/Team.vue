@@ -44,7 +44,7 @@ export default {
       .then(response => {
           let data = response.data
           this.teams = data
-          console.log(this.teams[0])
+          console.log(this.teams)
       })
   }
 }
