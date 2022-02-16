@@ -45,9 +45,10 @@ export default {
           let data = response.data
           this.teams = data
           for(let team in this.teams){
-            console.log(typeof(team))
+            console.log(team.name)
           }
-          console.log(this.teams)
+          console.log(data[0].name)
+          console.log(teams[0].name)
       })
   }
 }
