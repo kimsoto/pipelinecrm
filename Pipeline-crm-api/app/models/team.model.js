@@ -1,6 +1,6 @@
 const sql = require('./db.js')
 
-const Team = (team) => {
+const Team = function(team) {
     this.name = team.name
 }
 
@@ -11,8 +11,8 @@ Team.create = (newTeam, result) => {
           result(err, null)
           return
         }
-        console.log('created new team: ', { id: res.team_id, ...newTeam })
-        result(null, { id: res.team_id, ...newTeam })
+        console.log('created new team: ', { id: res.teamid, ...newTeam })
+        result(null, { id: res.teamid, ...newTeam })
     })
 }
 
@@ -47,7 +47,7 @@ Team.getAll = (result) => {
 
 Team.updateById = (teamid, team, result) => {
     sql.query(
-      "UPDATE team SET name = ? where team_id = ?",
+      "UPDATE team SET name = ? WHERE team_id = ?",
       [team.name, teamid],
       (err, res) => {
         if (err) {
