@@ -44,7 +44,7 @@ export default {
       .then(response => {
           let data = response.data
           this.teams = data
-          for(let team in this.teams){
+          for(team of this.teams){
             console.log(team.name)
           }
           console.log(data[0].name)
