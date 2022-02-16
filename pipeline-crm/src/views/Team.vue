@@ -47,8 +47,6 @@ export default {
           for(let team of this.teams){
             console.log(team.name)
           }
-          console.log(data[0].name)
-          console.log(this.teams[0].name)
       })
   }
 }
