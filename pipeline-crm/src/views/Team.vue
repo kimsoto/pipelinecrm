@@ -25,6 +25,7 @@
 <script>
 import SideMenu from '../components/SideMenu.vue'
 import TeamAccordion from '../components/TeamAccordion.vue'
+const axios = require('axios')
 
 export default {
   name: 'Team',
@@ -32,7 +33,19 @@ export default {
       SideMenu,
       TeamAccordion
   },
-  
+  data() {
+    return {
+      teams: {}
+    }
+  },
+  mounted() {
+    axios
+      .get('/api/team/')
+      .then(response => {
+          let data = response.data
+          teams.name = data.name
+      })
+  }
 }
 </script>
 
