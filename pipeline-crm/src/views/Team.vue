@@ -13,7 +13,7 @@
             </header>
           </div>
           <div class="row">
-            <TeamAccordion></TeamAccordion>
+            <TeamAccordion teams="teams"></TeamAccordion>
           </div>
         </div>
       </div>
