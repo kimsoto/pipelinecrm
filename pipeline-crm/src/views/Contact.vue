@@ -6,8 +6,12 @@
           <SideMenu></SideMenu>
         </div>
         <div class="col py-3">
-          <h1>Pipeline CRM</h1>
-          <h2>Contacts</h2>
+          <div class="row">
+            <header>
+              <h1>Pipeline CRM</h1>
+              <h2>Contacts</h2>
+            </header>
+          </div>
         </div>
       </div>
     </div>

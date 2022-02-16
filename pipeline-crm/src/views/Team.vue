@@ -6,8 +6,15 @@
           <SideMenu></SideMenu>
         </div>
         <div class="col py-3">
-          <h1>Pipeline CRM</h1>
-          <h2>Teams</h2>
+          <div class="row">
+            <header>
+              <h1>Pipeline CRM</h1>
+              <h2>Teams</h2>
+            </header>
+          </div>
+          <div class="row">
+            <TeamAccordion></TeamAccordion>
+          </div>
         </div>
       </div>
     </div>
@@ -17,11 +24,32 @@
 
 <script>
 import SideMenu from '../components/SideMenu.vue'
+import TeamAccordion from '../components/TeamAccordion.vue'
+const axios = require('axios')
 
 export default {
   name: 'Team',
   components: {
-      SideMenu
+      SideMenu,
+      TeamAccordion
+  },
+  data() {
+    return {
+      teams: []
+    }
+  },
+  mounted() {
+    axios
+      .get('/api/team/')
+      .then(response => {
+          let data = response.data
+          this.teams = data
+          console.log(this.teams)
+      })
   }
 }
 </script>
+
+<style scoped>
+
+</style>

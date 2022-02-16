@@ -24,4 +24,16 @@ export default {
 .nav-link:hover {
     color: #4d4e4d!important;
 }
+body {
+  background-color: #eeeeee;
+}
+header {
+  background-color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+}
+.py-3 {
+  padding-top: 0!important;
+}
 </style>
