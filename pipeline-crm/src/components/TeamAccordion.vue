@@ -46,7 +46,7 @@ export default {
             hideGrid: false
         }
     },
-    props: ['team'],
+    props: ["team"],
     methods: {
         toggle() {
             this.hideGrid = !this.hideGrid
