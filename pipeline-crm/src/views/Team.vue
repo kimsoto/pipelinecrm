@@ -43,8 +43,7 @@ export default {
       .get('/api/team/')
       .then(response => {
           let data = response.data
-          console.log(response)
-          this.teams.name = data.name
+          this.teams = data
       })
   }
 }
