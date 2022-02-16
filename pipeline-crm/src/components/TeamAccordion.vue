@@ -1,9 +1,9 @@
-<template :key="team.team_id" v-for="team of teams">
+<template :key="team.team_id" v-for="team in teams">
     <div class="col-xs-12 col-md-4">
         <div class="accordion-grid">
         <figure @click="toggle" class="accordion autoclose" aria-controls="accordion0content" role="button">
         <figcaption>
-            <p>{{ teams }}</p>
+            <p>{{ team }}</p>
         </figcaption>
         </figure>
         <div class="accordion-content padding-15 padding-top-0 border-radius-10 margin-top-15" role="region" v-show="hideGrid">
@@ -50,7 +50,6 @@ export default {
     methods: {
         toggle() {
             this.hideGrid = !this.hideGrid
-            console.log(this.props)
         }
     }
 }
