@@ -83,5 +83,30 @@ export default {
 </script>
 
 <style scoped>
-
+.accordion-grid figure {
+  padding: 50px 40px;
+  background-color: white;
+}
+.accordion-grid figure figcaption {
+  text-align: center;
+  font-size: 18px;
+}
+.accordion-grid .accordion-content {
+  padding: 25px;
+  background-color: white;
+}
+.accordion-grid .accordion-content div {
+  border: 1px solid #cccccc;
+  margin: 15px 0px;
+  padding: 15px;
+}
+.accordion-grid .accordion-content h3 {
+  font-size: 22px;
+}
+.accordion-grid .accordion-content h4 {
+  font-size: 18px;
+}
+ul li {
+  border-radius: 0!important;
+}
 </style>
