@@ -75,7 +75,7 @@ export default {
           }
         axios(config)
           .then(response => {
-              console.log(response)
+              Team.teams.push(response.data)
           })
         this.showEdit = false
       },
