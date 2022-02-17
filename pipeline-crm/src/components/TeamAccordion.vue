@@ -53,7 +53,8 @@ export default {
         return {
             hideGrid: false,
             showEdit: false,
-            name: ''
+            name: '',
+            team: this.teams
         }
     },
     props: ['teams'],
@@ -65,20 +66,20 @@ export default {
           this.showEdit = true
         },
         editTeam(teamid) {
-      let newTeamName = document.querySelector('#newname').value
-      let newTeam = { name: newTeamName }
-      let config = {
-          method: 'put',
-          url: `/api/team/${teamid}`,
-          data: newTeam
-        }
-      axios(config)
-        .then(response => {
-            console.log(response)
-        })
-      this.showEdit = false
-    }
-    }
+        let newTeamName = document.querySelector('#newname').value
+        let newTeam = { name: newTeamName }
+        let config = {
+            method: 'put',
+            url: `/api/team/${teamid}`,
+            data: newTeam
+          }
+        axios(config)
+          .then(response => {
+              console.log(response)
+          })
+        this.showEdit = false
+      }
+    },
 }
 </script>
 
