@@ -20,49 +20,7 @@
                 <input type="submit" :disabled="!name" @click="createTeam">
               </div>
             </form>
-            <div class="col-xs-12 col-md-4" :key="team" v-for="team of teams">
-              <div class="accordion-grid">
-              <figure @click="toggle" class="accordion autoclose" aria-controls="accordion0content" role="button">
-              <figcaption>
-                  <p>{{ team.name }}</p>
-              </figcaption>
-              </figure>
-              <div class="accordion-content padding-15 padding-top-0 border-radius-10 margin-top-15" role="region" v-show="hideGrid">
-                <button @click="addEdit">Edit Team</button>
-            <form v-show="showEdit">
-              <div class="form-group">
-                <input v-model="name" type="text" class="form-control" placeholder="New Team Name" id="newname">
-                <input type="submit" :disabled="!name" @click="editTeam(team.team_id)">
-              </div>
-            </form>
-                  <h3>Team information</h3>
-              <div class="clients">
-                  <h4>Clients</h4>
-              <ul class="list-group">
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">client 1</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">client 2</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">client 3</a></li>
-              </ul>
-              </div>
-              <div class="pipelines">
-                  <h4>Pipelines</h4>
-              <ul class="list-group">
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 1</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 2</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 3</a></li>
-              </ul>
-              </div>
-              <div class="members">
-                  <h4>Members</h4>
-              <ul class="list-group">
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">member name</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">member name</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">member name</a></li>
-              </ul>
-              </div>
-              </div>
-              </div>
-          </div>
+            <TeamAccordion :key="team" v-for="team of teams" />
           </div>
         </div>
       </div>
@@ -73,31 +31,25 @@
 
 <script>
 import SideMenu from '../components/SideMenu.vue'
+import TeamAccordion from '../components/TeamAccordion.vue'
 const axios = require('axios')
 
 export default {
   name: 'Team',
   components: {
-      SideMenu
+      SideMenu,
+      TeamAccordion
   },
   data() {
     return {
       teams: [],
-      hideGrid: false,
       showForm: false,
-      showEdit: false,
       name: ''
     }
   },
   methods: {
-    toggle() {
-      this.hideGrid = !this.hideGrid
-    },
     addForm() {
       this.showForm = true
-    },
-    addEdit() {
-      this.showEdit = true
     },
     createTeam() {
       let teamName = document.querySelector('#name').value
@@ -112,20 +64,6 @@ export default {
             console.log(response)
         })
       this.showForm = false
-    },
-    editTeam(teamid) {
-      let newTeamName = document.querySelector('#newname').value
-      let newTeam = { name: newTeamName }
-      let config = {
-          method: 'put',
-          url: `/api/team/${teamid}`,
-          data: newTeam
-        }
-      axios(config)
-        .then(response => {
-            console.log(response)
-        })
-      this.showEdit = false
     }
   },
   mounted() {
@@ -143,33 +81,5 @@ export default {
 </script>
 
 <style scoped>
-.accordion-grid figure {
-  padding: 50px 40px;
-  background-color: white;
-}
-.accordion-grid figure figcaption {
-  text-align: center;
-  font-size: 18px;
-}
-.accordion-grid .accordion-content {
-  padding: 25px;
-  background-color: white;
-}
-.accordion-grid .accordion-content div {
-  border: 1px solid #cccccc;
-  margin: 15px 0px;
-  padding: 15px;
-}
-.accordion-grid .accordion-content h3 {
-  font-size: 22px;
-}
-.accordion-grid .accordion-content h4 {
-  font-size: 18px;
-}
-ul li {
-  border-radius: 0!important;
-}
-.hide {
-  display: hidden;
-}
+
 </style>
