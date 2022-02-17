@@ -88,7 +88,7 @@ export default {
           }
         axios(config)
           .then(response => {
-              this.$forceUpdate()
+              location.reload()
               console.log(response)
           })
       }
