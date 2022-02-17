@@ -65,7 +65,9 @@ export default {
     methods: {
         toggle() {
             this.hideGrid = !this.hideGrid
-            console.log(this.teams)
+            for(let team of this.teams){
+              console.log(team)
+            }
         },
         addEdit() {
           this.showEdit = true
