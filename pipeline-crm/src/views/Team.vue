@@ -17,6 +17,7 @@
             <form v-show="showForm">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="New Team Name" id="name">
+                <input type="submit" @click="createTeam">
               </div>
             </form>
             <div class="col-xs-12 col-md-4" :key="team" v-for="team of teams">
@@ -98,6 +99,7 @@ export default {
         .then(response => {
             console.log(response)
         })
+      showForm: false
     }
   },
   mounted() {
