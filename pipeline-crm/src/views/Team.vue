@@ -20,7 +20,7 @@
                 <input type="submit" :disabled="!name" @click="createTeam">
               </div>
             </form>
-            <TeamAccordion :key="team" :team="team" v-for="team of teams" />
+            <TeamAccordion :teamsList="teams" :key="team" :team="team" v-for="team of teams" />
           </div>
         </div>
       </div>

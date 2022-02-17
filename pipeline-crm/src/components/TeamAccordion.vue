@@ -47,7 +47,6 @@
 
 <script>
 const axios = require('axios')
-import Team from '../views/Team.vue'
 
 export default {
     name: 'TeamAccordion',
@@ -57,10 +56,11 @@ export default {
             showEdit: false
         }
     },
-    props: ['team'],
+    props: ['team', 'teamsList'],
     methods: {
         toggle() {
             this.hideGrid = !this.hideGrid
+            console.log(this.teamsList)
         },
         addEdit() {
           this.showEdit = !this.showEdit
@@ -77,7 +77,6 @@ export default {
         axios(config)
           .then(response => {
               console.log(response.data)
-              console.log(Team.data.teams)
           })
         this.showEdit = false
       },
