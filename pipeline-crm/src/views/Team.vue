@@ -68,7 +68,13 @@ export default {
   },
   data() {
     return {
-      teams: []
+      teams: [],
+      hideGrid: false
+    }
+  },
+  methods: {
+    toggle() {
+      this.hideGrid = !this.hideGrid
     }
   },
   mounted() {
