@@ -13,7 +13,7 @@
             </header>
           </div>
           <div class="row">
-            <TeamAccordion teams="teams"></TeamAccordion>
+            <TeamAccordion v-bind:teams="teams"></TeamAccordion>
           </div>
         </div>
       </div>
