@@ -68,7 +68,9 @@ export default {
         },
         editTeam(teamid) {
         let newTeamName = document.querySelector('#newname').value
+        console.log(newTeamName)
         let newTeam = { name: newTeamName }
+        console.log(newTeam)
         let config = {
             method: 'put',
             url: `/api/team/${teamid}`,
