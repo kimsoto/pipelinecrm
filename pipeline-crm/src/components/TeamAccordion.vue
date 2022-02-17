@@ -76,7 +76,7 @@ export default {
           }
         axios(config)
           .then(response => {
-              this.teamsList.push(response.data)
+              this.team.name = newTeamName
               console.log(response.data)
           })
         this.showEdit = false
