@@ -76,7 +76,7 @@ export default {
           }
         axios(config)
           .then(response => {
-              this.team.name = newTeamName
+              // this.team.name = newTeamName
               location.reload()
               console.log(response.data)
           })
