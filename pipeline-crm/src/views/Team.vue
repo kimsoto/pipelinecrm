@@ -59,7 +59,6 @@
 
 <script>
 import SideMenu from '../components/SideMenu.vue'
-import TeamAccordion from '../components/TeamAccordion.vue'
 const axios = require('axios')
 
 export default {
