@@ -75,6 +75,14 @@ export default {
           this.teams = data
       })
   },
+  created() {
+    axios
+      .get('/api/team/')
+      .then(response => {
+          let data = response.data
+          this.teams = data
+      })
+  },
   computed: {
     
   }
