@@ -10,8 +10,8 @@
                 <button type="button" class="btn"  @click="addEdit">Edit Team</button>
             <form v-show="showEdit">
               <div class="form-group">
-                <input v-model="name" type="text" class="form-control" placeholder="New Team Name" :id="team.team_id">
-                <input type="submit" class="btn" :disabled="!name" @click="editTeam(team.team_id)">
+                <input type="text" class="form-control" placeholder="New Team Name" :id="team.team_id">
+                <input type="submit" class="btn"  @click="editTeam(team.team_id)">
               </div>
             </form>
                   <h3>Team information</h3>
@@ -54,8 +54,7 @@ export default {
     data() {
         return {
             hideGrid: false,
-            showEdit: false,
-            name: ''
+            showEdit: false
         }
     },
     props: ['team'],
