@@ -50,7 +50,9 @@ export default {
     methods: {
         toggle() {
             this.hideGrid = !this.hideGrid
-            console.log(this.teams.name)
+            for(let team of this.teams){
+              console.log(team)
+            }
         }
     }
 }
