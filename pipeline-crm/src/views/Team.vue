@@ -17,7 +17,7 @@
             <form v-show="showForm">
               <div class="form-group">
                 <input v-model="name" type="text" class="form-control" placeholder="New Team Name" id="name">
-                <input type="submit" @click="createTeam">
+                <input type="submit" :disabled="!name" @click="createTeam">
               </div>
             </form>
             <div class="col-xs-12 col-md-4" :key="team" v-for="team of teams">
@@ -25,10 +25,16 @@
               <figure @click="toggle" class="accordion autoclose" aria-controls="accordion0content" role="button">
               <figcaption>
                   <p>{{ team.name }}</p>
-                  <p>{{ team.team_id }}</p>
               </figcaption>
               </figure>
               <div class="accordion-content padding-15 padding-top-0 border-radius-10 margin-top-15" role="region" v-show="hideGrid">
+                <button @click="addEdit">Edit Team</button>
+            <form v-show="showEdit">
+              <div class="form-group">
+                <input v-model="name" type="text" class="form-control" placeholder="New Team Name" id="newname">
+                <input type="submit" :disabled="!name" @click="editTeam(team.team_id)">
+              </div>
+            </form>
                   <h3>Team information</h3>
               <div class="clients">
                   <h4>Clients</h4>
@@ -79,6 +85,7 @@ export default {
       teams: [],
       hideGrid: false,
       showForm: false,
+      showEdit: false,
       name: ''
     }
   },
@@ -88,6 +95,9 @@ export default {
     },
     addForm() {
       this.showForm = true
+    },
+    addEdit() {
+      this.showEdit = true
     },
     createTeam() {
       let teamName = document.querySelector('#name').value
@@ -102,6 +112,20 @@ export default {
             console.log(response)
         })
       this.showForm = false
+    },
+    editTeam(teamid) {
+      let newTeamName = document.querySelector('#newname').value
+      let newTeam = { name: newTeamName }
+      let config = {
+          method: 'put',
+          url: `/api/team/${teamid}`,
+          data: newTeam
+        }
+      axios(config)
+        .then(response => {
+            console.log(response)
+        })
+      this.showEdit = false
     }
   },
   mounted() {
