@@ -1,4 +1,4 @@
-<template :teams="teams.name" v-for="team of this.teams">
+<template :teams="teams.name" v-for="team in this.teams">
     <div class="col-xs-12 col-md-4">
         <div class="accordion-grid">
         <figure @click="toggle" class="accordion autoclose" aria-controls="accordion0content" role="button">
