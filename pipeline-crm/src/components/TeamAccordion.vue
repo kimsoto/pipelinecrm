@@ -88,6 +88,7 @@ export default {
           }
         axios(config)
           .then(response => {
+              this.$forceUpdate()
               console.log(response)
           })
       }
