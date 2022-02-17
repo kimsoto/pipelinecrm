@@ -13,6 +13,12 @@
             </header>
           </div>
           <div class="row">
+            <button @click="addForm">Add</button>
+            <form v-show="showForm">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="New Team Name" id="name">
+              </div>
+            </form>
             <div class="col-xs-12 col-md-4" :key="team" v-for="team of teams">
               <div class="accordion-grid">
               <figure @click="toggle" class="accordion autoclose" aria-controls="accordion0content" role="button">
@@ -69,12 +75,37 @@ export default {
   data() {
     return {
       teams: [],
-      hideGrid: false
+      hideGrid: false,
+      showForm: false
     }
   },
   methods: {
     toggle() {
       this.hideGrid = !this.hideGrid
+    },
+    addForm() {
+      this.showForm = true
+    },
+    createTeam() {
+      let teamName = document.querySelector('#name').value
+      let newTeam = { name: teamName }
+      let config = {
+          method: 'post',
+          url: '/api/team/',
+          data: newTeam
+        }
+      axios(config)
+        .then(response => {
+            console.log(response)
+            resolve(response.data)
+          })
+          .catch((error) => {
+            if (!error.status) {
+              console.log('Error if', error)
+            } else {
+              reject(error)
+            }
+          })
     }
   },
   mounted() {
@@ -114,5 +145,8 @@ export default {
 }
 ul li {
   border-radius: 0!important;
+}
+.hide {
+  display: hidden;
 }
 </style>
