@@ -1,4 +1,4 @@
-<template :key="team" v-for="team of teams">
+<template>
 <div class="col-xs-12 col-md-4">
     <div class="accordion-grid">
               <figure @click="toggle" class="accordion autoclose" aria-controls="accordion0content" role="button">
@@ -54,7 +54,9 @@ export default {
             hideGrid: false,
             showEdit: false,
             name: '',
-            team: this.teams
+            team:{
+              name: ''
+            }
         }
     },
     props: ['teams'],
