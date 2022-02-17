@@ -44,9 +44,9 @@ export default {
       .then(response => {
           let data = response.data
           this.teams = data
-          for(let team of this.teams){
-            console.log(team.name)
-          }
+          // for(let team of this.teams){
+          //   console.log(team.name)
+          // }
       })
   }
 }

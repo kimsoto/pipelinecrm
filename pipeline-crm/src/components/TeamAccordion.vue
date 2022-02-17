@@ -3,7 +3,7 @@
         <div class="accordion-grid">
         <figure @click="toggle" class="accordion autoclose" aria-controls="accordion0content" role="button">
         <figcaption>
-            <p>{{ this.teams.name }}</p>
+            <p>{{ this.teams[0].name }}</p>
         </figcaption>
         </figure>
         <div class="accordion-content padding-15 padding-top-0 border-radius-10 margin-top-15" role="region" v-show="hideGrid">
