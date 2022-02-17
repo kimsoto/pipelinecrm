@@ -47,6 +47,7 @@
 
 <script>
 const axios = require('axios')
+import Team from '../views/Team.vue'
 
 export default {
     name: 'TeamAccordion',
