@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     addForm() {
-      this.showForm = true
+      this.showForm = !this.showForm
     },
     createTeam() {
       let teamName = document.querySelector('#name').value
@@ -62,6 +62,7 @@ export default {
       axios(config)
         .then(response => {
             console.log(response)
+            this.teams.push(response.data)
         })
       this.showForm = false
     }

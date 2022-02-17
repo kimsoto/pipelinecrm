@@ -61,12 +61,9 @@ export default {
     methods: {
         toggle() {
             this.hideGrid = !this.hideGrid
-            // for(let team of this.teams){
-            //   console.log(team)
-            // }
         },
         addEdit() {
-          this.showEdit = true
+          this.showEdit = !this.showEdit
         },
         editTeam(teamid) {
         let newTeamName = document.querySelector('#newname').value
