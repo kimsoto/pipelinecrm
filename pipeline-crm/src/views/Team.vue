@@ -13,11 +13,11 @@
             </header>
           </div>
           <div class="row">
-            <button @click="addForm">Add</button>
+            <button type="button" class="btn"  @click="addForm">Add</button>
             <form v-show="showForm">
               <div class="form-group">
                 <input v-model="name" type="text" class="form-control" placeholder="New Team Name" id="name">
-                <input type="submit" :disabled="!name" @click="createTeam">
+                <button type="button" class="btn" :disabled="!name" @click="createTeam">Enter</button>
               </div>
             </form>
             <TeamAccordion :key="team" :team="team" v-for="team of teams" />

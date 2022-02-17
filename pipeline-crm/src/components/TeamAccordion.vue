@@ -7,11 +7,11 @@
               </figcaption>
               </figure>
               <div class="accordion-content padding-15 padding-top-0 border-radius-10 margin-top-15" role="region" v-show="hideGrid">
-                <button @click="addEdit">Edit Team</button>
+                <button type="button" class="btn"  @click="addEdit">Edit Team</button>
             <form v-show="showEdit">
               <div class="form-group">
                 <input v-model="newname" type="text" class="form-control" placeholder="New Team Name" id="newname">
-                <button :disabled="!newname" @click="editTeam(team.team_id)"></button>
+                <button type="button" class="btn" :disabled="!newname" @click="editTeam(team.team_id)">Change</button>
               </div>
             </form>
                   <h3>Team information</h3>
@@ -47,7 +47,7 @@
 
 <script>
 const axios = require('axios')
-// import Team from '../views/Team.vue'
+import Team from '../views/Team.vue'
 
 export default {
     name: 'TeamAccordion',
@@ -79,6 +79,7 @@ export default {
         axios(config)
           .then(response => {
               console.log(response.data)
+              console.log(Team.teams)
           })
         this.showEdit = false
       },
