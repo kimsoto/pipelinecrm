@@ -67,7 +67,7 @@ export default {
           this.showEdit = !this.showEdit
         },
         editTeam(teamid) {
-        let newTeamName = document.querySelector(teamid).value
+        let newTeamName = document.querySelector(`#${teamid}`).value
         console.log(newTeamName)
         let newTeam = { name: newTeamName }
         let config = {
