@@ -66,7 +66,7 @@ export default {
           this.showEdit = !this.showEdit
         },
         editTeam(teamid) {
-        let newTeamName = document.getElementById(`#${teamid}`).value
+        let newTeamName = document.getElementById(`${teamid}`).value
         console.log(newTeamName)
         let newTeam = { name: newTeamName }
         let config = {
