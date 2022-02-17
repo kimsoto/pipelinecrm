@@ -11,7 +11,7 @@
             <form v-show="showEdit">
               <div class="form-group">
                 <input v-model="newname" type="text" class="form-control" placeholder="New Team Name" id="newname">
-                <input type="submit" :disabled="!newname" @click="editTeam(team.team_id)">
+                <button :disabled="!newname" @click="editTeam(team.team_id)"></button>
               </div>
             </form>
                   <h3>Team information</h3>
