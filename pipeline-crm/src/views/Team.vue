@@ -97,15 +97,7 @@ export default {
       axios(config)
         .then(response => {
             console.log(response)
-            resolve(response.data)
-          })
-          .catch((error) => {
-            if (!error.status) {
-              console.log('Error if', error)
-            } else {
-              reject(error)
-            }
-          })
+        })
     }
   },
   mounted() {
