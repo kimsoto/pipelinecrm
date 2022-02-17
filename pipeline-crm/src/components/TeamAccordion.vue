@@ -10,7 +10,7 @@
                 <button type="button" class="btn"  @click="addEdit">Edit Team</button>
             <form v-show="showEdit">
               <div class="form-group">
-                <input v-model="name" type="text" class="form-control" placeholder="New Team Name" id="newname">
+                <input v-model="name" type="text" class="form-control" placeholder="New Team Name" :id="team.team_id">
                 <input type="submit" class="btn" :disabled="!name" @click="editTeam(team.team_id)">
               </div>
             </form>
@@ -47,6 +47,7 @@
 
 <script>
 const axios = require('axios')
+import Team from '../views/Team.vue'
 
 export default {
     name: 'TeamAccordion',
@@ -66,10 +67,9 @@ export default {
           this.showEdit = !this.showEdit
         },
         editTeam(teamid) {
-        let newTeamName = document.querySelector('#newname').value
+        let newTeamName = document.querySelector(teamid).value
         console.log(newTeamName)
         let newTeam = { name: newTeamName }
-        console.log(newTeam)
         let config = {
             method: 'put',
             url: `/api/team/${teamid}`,
@@ -78,6 +78,7 @@ export default {
         axios(config)
           .then(response => {
               console.log(response.data)
+              console.log(Team.teams)
           })
         this.showEdit = false
       },
