@@ -57,9 +57,6 @@ export default {
         }
     },
     props: ['team', 'teamsList'],
-    created() {
-      this.fetchTasks()
-    },
     methods: {
         toggle() {
             this.hideGrid = !this.hideGrid
