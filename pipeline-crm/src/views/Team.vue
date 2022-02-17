@@ -25,6 +25,7 @@
               <figure @click="toggle" class="accordion autoclose" aria-controls="accordion0content" role="button">
               <figcaption>
                   <p>{{ team.name }}</p>
+                  <p>{{ team.team_id }}</p>
               </figcaption>
               </figure>
               <div class="accordion-content padding-15 padding-top-0 border-radius-10 margin-top-15" role="region" v-show="hideGrid">
@@ -77,7 +78,8 @@ export default {
     return {
       teams: [],
       hideGrid: false,
-      showForm: false
+      showForm: false,
+      name: ''
     }
   },
   methods: {
