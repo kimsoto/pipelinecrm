@@ -54,7 +54,7 @@ export default {
         return {
             hideGrid: false,
             showEdit: false,
-            newname: ''
+            name: ''
         }
     },
     props: ['team'],
