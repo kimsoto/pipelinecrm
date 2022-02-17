@@ -99,7 +99,7 @@ export default {
         .then(response => {
             console.log(response)
         })
-      showForm: false
+      this.showForm: false
     }
   },
   mounted() {
