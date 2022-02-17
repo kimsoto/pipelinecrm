@@ -55,7 +55,7 @@ export default {
             showEdit: false,
             name: '',
             team:{
-              name: ''
+              name: null
             }
         }
     },
@@ -82,6 +82,12 @@ export default {
         this.showEdit = false
       }
     },
+    mounted(){
+        this.team= {
+          team_id: this.value.team_id,
+          name: this.value.name
+        } 
+}
 }
 </script>
 
