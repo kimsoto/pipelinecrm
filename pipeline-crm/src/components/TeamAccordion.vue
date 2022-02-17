@@ -54,20 +54,16 @@ export default {
         return {
             hideGrid: false,
             showEdit: false,
-            name: '',
-            team: {
-              team_id: null,
-              name: null
-            }
+            name: ''
         }
     },
-    props: ['teams'],
+    props: ['team'],
     methods: {
         toggle() {
             this.hideGrid = !this.hideGrid
-            for(let team of this.teams){
-              console.log(team)
-            }
+            // for(let team of this.teams){
+            //   console.log(team)
+            // }
         },
         addEdit() {
           this.showEdit = true
