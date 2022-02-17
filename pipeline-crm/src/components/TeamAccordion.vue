@@ -52,10 +52,7 @@ export default {
             this.hideGrid = !this.hideGrid
             console.log(this.teams)
             for(let team of this.teams){
-              console.log(team)
-            }
-            for(let team in this.teams){
-              console.log(team)
+              console.log(team.name)
             }
         }
     }
