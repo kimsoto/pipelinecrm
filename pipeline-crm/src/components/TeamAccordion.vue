@@ -55,10 +55,10 @@ export default {
             hideGrid: false,
             showEdit: false,
             name: '',
-            team: {
-              team_id: null,
-              name: null
-            }
+            // team: {
+            //   team_id: null,
+            //   name: null
+            // }
         }
     },
     props: ['teams'],
