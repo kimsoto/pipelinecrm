@@ -16,8 +16,8 @@
             <button @click="addForm">Add</button>
             <form v-show="showForm">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="New Team Name" id="name">
-                <input type="submit" @click="createTeam">
+                <input v-model="name" type="text" class="form-control" placeholder="New Team Name" id="name">
+                <input type="submit" :disabled="!name" @click="createTeam">
               </div>
             </form>
             <div class="col-xs-12 col-md-4" :key="team" v-for="team of teams">
@@ -109,6 +109,9 @@ export default {
           let data = response.data
           this.teams = data
       })
+  },
+  computed: {
+    
   }
 }
 </script>
