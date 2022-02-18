@@ -63,7 +63,7 @@ export default {
         .then(response => {
             console.log(response)
             this.teams.push(response.data)
-            // location.reload()
+            location.reload()
         })
       this.showForm = false
     }
