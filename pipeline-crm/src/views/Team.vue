@@ -62,7 +62,7 @@ export default {
       axios(config)
         .then(response => {
             console.log(response)
-            // this.teams.push(response.data)
+            this.teams.push(response.data)
             location.reload()
         })
       this.showForm = false

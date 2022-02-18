@@ -39,7 +39,7 @@
               <li class="list-group-item list-group-item-action mb-1"><a href="#">member name</a></li>
               </ul>
               </div>
-              <button @click="deleteTeam(team.team_id)">Delete Team</button>
+              <!-- <button @click="deleteTeam(team.team_id)">Delete Team</button> -->
               </div>
               </div>
 </div>
@@ -76,23 +76,23 @@ export default {
           }
         axios(config)
           .then(response => {
-              // this.team.name = newTeamName
+              this.team.name = newTeamName
               location.reload()
               console.log(response.data)
           })
         this.showEdit = false
       },
-      deleteTeam(teamid) {
-        let config = {
-            method: 'delete',
-            url: `/api/team/${teamid}`
-          }
-        axios(config)
-          .then(response => {
-              location.reload()
-              console.log(response)
-          })
-      }
+      // deleteTeam(teamid) {
+      //   let config = {
+      //       method: 'delete',
+      //       url: `/api/team/${teamid}`
+      //     }
+      //   axios(config)
+      //     .then(response => {
+      //         location.reload()
+      //         console.log(response)
+      //     })
+      // }
     }
 }
 </script>
