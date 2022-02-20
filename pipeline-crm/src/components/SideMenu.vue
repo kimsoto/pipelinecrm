@@ -27,23 +27,8 @@
                           </router-link>
                       </li>
                       <li>
-                          <router-link to="/Product" class="nav-link align-middle px-0">
-                              <i class="fs-4 fa-solid fa-briefcase"></i> <span class="ms-1 d-none d-sm-inline">Products</span>
-                          </router-link>
-                      </li>
-                      <li>
                         <router-link to="/Item" class="nav-link align-middle px-0">
                             <i class="fs-4 fa-solid fa-book"></i> <span class="ms-1 d-none d-sm-inline">Items</span>
-                        </router-link>
-                      </li>
-                      <li>
-                        <router-link to="/Invoice" class="nav-link align-middle px-0">
-                            <i class="fs-4 fa-solid fa-file-invoice-dollar"></i> <span class="ms-1 d-none d-sm-inline">Invoices</span>
-                        </router-link>
-                      </li>
-                      <li>
-                        <router-link to="/Receipt" class="nav-link align-middle px-0">
-                            <i class="fs-4 fa-solid fa-receipt"></i> <span class="ms-1 d-none d-sm-inline">Receipts</span>
                         </router-link>
                       </li>
                   </ul>

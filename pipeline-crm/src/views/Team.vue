@@ -20,7 +20,7 @@
                 <input type="submit" :disabled="!name" @click="createTeam">
               </div>
             </form>
-            <TeamAccordion :teamsList="teams" :key="team" :team="team" v-for="team of teams" />
+            <TeamAccordion :key="team" :team="team" v-for="team of teams" />
           </div>
         </div>
       </div>
@@ -62,21 +62,13 @@ export default {
       axios(config)
         .then(response => {
             console.log(response)
-            // this.teams.push(response.data)
-            location.reload()
+            this.teams.push(response.data)
+            // location.reload()
         })
       this.showForm = false
     }
   },
   mounted() {
-    axios
-      .get('/api/team/')
-      .then(response => {
-          let data = response.data
-          this.teams = data
-      })
-  },
-  created() {
     axios
       .get('/api/team/')
       .then(response => {

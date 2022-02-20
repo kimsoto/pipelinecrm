@@ -7,13 +7,6 @@
               </figcaption>
               </figure>
               <div class="accordion-content padding-15 padding-top-0 border-radius-10 margin-top-15" role="region" v-show="hideGrid">
-                <button type="button" class="btn"  @click="addEdit">Edit Team</button>
-            <form v-show="showEdit">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="New Team Name" :id="team.team_id">
-                <input type="submit" class="btn"  @click="editTeam(team.team_id)">
-              </div>
-            </form>
                   <h3>Team information</h3>
               <div class="clients">
                   <h4>Clients</h4>
@@ -39,14 +32,12 @@
               <li class="list-group-item list-group-item-action mb-1"><a href="#">member name</a></li>
               </ul>
               </div>
-              <button @click="deleteTeam(team.team_id)">Delete Team</button>
               </div>
               </div>
 </div>
 </template>
 
 <script>
-const axios = require('axios')
 
 export default {
     name: 'TeamAccordion',
@@ -56,43 +47,11 @@ export default {
             showEdit: false
         }
     },
-    props: ['team', 'teamsList'],
+    props: ['team'],
     methods: {
         toggle() {
             this.hideGrid = !this.hideGrid
-            console.log(this.teamsList)
-        },
-        addEdit() {
-          this.showEdit = !this.showEdit
-        },
-        editTeam(teamid) {
-        let newTeamName = document.getElementById(`${teamid}`).value
-        console.log(newTeamName)
-        let newTeam = { name: newTeamName }
-        let config = {
-            method: 'put',
-            url: `/api/team/${teamid}`,
-            data: newTeam
-          }
-        axios(config)
-          .then(response => {
-              // this.team.name = newTeamName
-              location.reload()
-              console.log(response.data)
-          })
-        this.showEdit = false
-      },
-      deleteTeam(teamid) {
-        let config = {
-            method: 'delete',
-            url: `/api/team/${teamid}`
-          }
-        axios(config)
-          .then(response => {
-              location.reload()
-              console.log(response)
-          })
-      }
+        }
     }
 }
 </script>
