@@ -13,7 +13,14 @@
             </header>
           </div>
           <div class="row">
-            <TeamAccordion></TeamAccordion>
+            <button @click="addForm">Add</button>
+            <form v-show="showForm">
+              <div class="form-group">
+                <input v-model="name" type="text" class="form-control" placeholder="New Team Name" id="name">
+                <input type="submit" :disabled="!name" @click="createTeam">
+              </div>
+            </form>
+            <TeamAccordion :key="team" :team="team" v-for="team of teams" />
           </div>
         </div>
       </div>
@@ -35,7 +42,30 @@ export default {
   },
   data() {
     return {
-      teams: []
+      teams: [],
+      showForm: false,
+      name: ''
+    }
+  },
+  methods: {
+    addForm() {
+      this.showForm = !this.showForm
+    },
+    createTeam() {
+      let teamName = document.querySelector('#name').value
+      let newTeam = { name: teamName }
+      let config = {
+          method: 'post',
+          url: '/api/team/',
+          data: newTeam
+        }
+      axios(config)
+        .then(response => {
+            console.log(response)
+            this.teams.push(response.data)
+            // location.reload()
+        })
+      this.showForm = false
     }
   },
   mounted() {
@@ -44,8 +74,10 @@ export default {
       .then(response => {
           let data = response.data
           this.teams = data
-          console.log(this.teams)
       })
+  },
+  computed: {
+    
   }
 }
 </script>
