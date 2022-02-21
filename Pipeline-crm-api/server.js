@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
     res.sendFile(path + 'index.html')
 })
 require("./app/routes/team.routes.js")(app)
+require("./app/routes/member.routes.js")(app)
 
 app.use(express.static('public'))
 
