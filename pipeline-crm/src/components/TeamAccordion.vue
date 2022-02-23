@@ -57,7 +57,7 @@ export default {
     },
     mounted() {
       axios
-      .get(`/api/member/${team.team_id}`)
+      .get(`/api/member/${this.team.team_id}`)
       .then(response => {
           let data = response.data
           this.members = data
