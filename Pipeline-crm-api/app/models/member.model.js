@@ -47,5 +47,17 @@ Member.getAll = (result) => {
     })
 }
 
+Member.getTeamMembers = (teamid, result) => {
+  sql.query(`SELECT * FROM member WHERE team_id = ${teamid}`, (err, res) => {
+    if (err) {
+      console.log('error: ', err)
+      result(null, err)
+      return;
+    }
+    console.log('all members of team: ', res);
+    result(null, res)
+  })
+}
+
 
 module.exports = Member

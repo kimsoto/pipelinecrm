@@ -47,3 +47,19 @@ exports.findOne = (req, res) => {
         } else res.send(data)
     })
 }
+
+exports.findTeamMembers = (req, res) => {
+  Member.getTeamMembers(req.params.teamid, (err, data) => {
+      if (err) {
+        if (err.kind === 'not_found') {
+          res.status(404).send({
+            message: `Could not find Members on team ${req.params.teamid}.`
+          })
+        } else {
+          res.status(500).send({
+            message: `Wahh! There was an error retrieving Members on team ${req.params.teamid}`
+          })
+        }
+      } else res.send(data)
+  })
+}
