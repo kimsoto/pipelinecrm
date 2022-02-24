@@ -6,27 +6,27 @@
                             <i class="fs-4 fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                           </router-link>
                       </li>
-                      <li>
+                      <li class="nav-item">
                           <router-link to="/Team" class="nav-link align-middle px-0">
                             <i class="fs-4 fa-solid fa-users"></i> <span class="ms-1 d-none d-sm-inline">Teams</span>
                           </router-link>
                       </li>
-                      <li>
+                      <li class="nav-item">
                           <router-link to="/Client" class="nav-link align-middle px-0">
                               <i class="fs-4 fa-solid fa-handshake"></i> <span class="ms-1 d-none d-sm-inline">Clients</span>
                           </router-link>
                       </li>
-                      <li>
+                      <li class="nav-item">
                           <router-link to="/Contact" class="nav-link align-middle px-0">
                               <i class="fs-4 fa-solid fa-address-card"></i> <span class="ms-1 d-none d-sm-inline">Contacts</span>
                           </router-link>
                       </li>
-                      <li>
+                      <li class="nav-item">
                           <router-link to="/Pipeline" class="nav-link align-middle px-0">
                               <i class="fs-4 fa-solid fa-chart-column"></i> <span class="ms-1 d-none d-sm-inline">Pipelines</span>
                           </router-link>
                       </li>
-                      <li>
+                      <li class="nav-item">
                         <router-link to="/Item" class="nav-link align-middle px-0">
                             <i class="fs-4 fa-solid fa-book"></i> <span class="ms-1 d-none d-sm-inline">Items</span>
                         </router-link>
@@ -43,8 +43,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.nav, .nav-item {
+    width: 100%;
+}
 .bg-grey {
     background-color: #cccccc;
+}
+.nav-item:hover {
+    border-bottom: 1px solid#eeeeee;
 }
 .nav-link {
     color: #6e706e!important;
