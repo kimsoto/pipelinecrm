@@ -12,7 +12,9 @@
               <h2>Teams</h2>
             </header>
           </div>
-          <div class="row">
+          <div class="container">
+          <div class="accordion" id="teamAccordion">
+            <div class="row panel">
             <!-- <button @click="addForm">Add</button>
             <form v-show="showForm">
               <div class="form-group">
@@ -21,7 +23,9 @@
               </div>
             </form> -->
             <TeamAccordion :key="team" :team="team" v-for="team of teams" />
-          </div>
+</div>
+</div>
+</div>
         </div>
       </div>
     </div>
@@ -71,6 +75,7 @@ export default {
   mounted() {
     axios
       .get('/api/team/')
+      // .get('http://localhost:3000/api/team/')
       .then(response => {
           let data = response.data
           this.teams = data

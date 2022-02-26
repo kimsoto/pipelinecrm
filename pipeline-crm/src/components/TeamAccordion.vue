@@ -1,40 +1,37 @@
 <template>
-<div class="col-xs-12 col-md-4">
-    <div class="accordion-grid">
-              <figure @click="toggle" class="accordion autoclose" aria-controls="accordion0content" role="button">
-              <figcaption>
-                  <p>{{ team.name }}</p>
-              </figcaption>
-              </figure>
-              <div class="accordion-content padding-15 padding-top-0 border-radius-10 margin-top-15" role="region" v-show="hideGrid">
-                  <h3>Team information</h3>
-              <div class="clients">
-                  <h4>Clients</h4>
-              <ul class="list-group">
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">client 1</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">client 2</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">client 3</a></li>
-              </ul>
-              </div>
-              <div class="pipelines">
-                  <h4>Pipelines</h4>
-              <ul class="list-group">
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 1</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 2</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 3</a></li>
-              </ul>
-              </div>
-              <div class="members">
-                  <h4>Members</h4>
-              <ul class="list-group" :key="member" v-for="member of members">
-                <li class="list-group-item list-group-item-action mb-1">
-                  <p>{{ member.name }}</p>
-                  <p>{{ member.email }}</p>
-                </li>
-              </ul>
-              </div>
-              </div>
-              </div>
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="accordion-grid">
+      <figure>
+      <a :href="'#toggle' + team.team_id"  data-bs-toggle="collapse" aria-expanded="false" :aria-controls="'toggle' + team.team_id">{{ team.name }}</a>
+      </figure>
+      </div>
+    <div class="accordion-content collapse overlay in col-xs-12" role="region" data-bs-parent="#teamAccordion" :id="'toggle' + team.team_id">
+        <h3>Team information</h3>
+        <div class="clients">
+          <h4>Clients</h4>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action mb-1"><a href="#">client 1</a></li>
+            <li class="list-group-item list-group-item-action mb-1"><a href="#">client 2</a></li>
+            <li class="list-group-item list-group-item-action mb-1"><a href="#">client 3</a></li>
+          </ul>
+        </div>
+        <div class="pipelines">
+          <h4>Pipelines</h4>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 1</a></li>
+            <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 2</a></li>
+            <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 3</a></li>
+          </ul>
+        </div>
+        <div class="members">
+          <h4>Members</h4>
+          <ul class="list-group" :key="member" v-for="member of members">
+            <li class="list-group-item list-group-item-action mb-1">
+              <p>{{ member.name }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
 </div>
 </template>
 
@@ -58,6 +55,7 @@ export default {
     mounted() {
       axios
       .get(`/api/member/${this.team.team_id}`)
+      // .get(`http://localhost:3000/api/member/${this.team.team_id}`)
       .then(response => {
           let data = response.data
           this.members = data
@@ -68,30 +66,45 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 .accordion-grid figure {
-  padding: 50px 40px;
   background-color: white;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.accordion-grid figure figcaption {
+
+.accordion-grid a{
+  color: #000;
+  text-decoration: none;
   text-align: center;
-  font-size: 18px;
+  font-size: 24px;
 }
-.accordion-grid .accordion-content {
+
+.accordion-content {
   padding: 25px;
   background-color: white;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
 }
-.accordion-grid .accordion-content div {
+.accordion-content div {
   border: 1px solid #cccccc;
   margin: 15px 0px;
   padding: 15px;
 }
-.accordion-grid .accordion-content h3 {
+.accordion-content h3 {
   font-size: 22px;
 }
-.accordion-grid .accordion-content h4 {
+.accordion-content h4 {
   font-size: 18px;
 }
 ul li {
   border-radius: 0!important;
+}
+
+.list-group-item p {
+  margin: 0!important;
 }
 </style>
