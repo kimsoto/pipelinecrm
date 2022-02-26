@@ -59,5 +59,4 @@ Member.getTeamMembers = (teamid, result) => {
   })
 }
 
-
 module.exports = Member
