@@ -26,10 +26,11 @@
               </div>
               <div class="members">
                   <h4>Members</h4>
-              <ul class="list-group">
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">member name</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">member name</a></li>
-              <li class="list-group-item list-group-item-action mb-1"><a href="#">member name</a></li>
+              <ul class="list-group" :key="member" v-for="member of members">
+                <li class="list-group-item list-group-item-action mb-1">
+                  <p>{{ member.name }}</p>
+                  <p>{{ member.email }}</p>
+                </li>
               </ul>
               </div>
               </div>
@@ -38,13 +39,14 @@
 </template>
 
 <script>
+const axios = require('axios')
 
 export default {
     name: 'TeamAccordion',
     data() {
         return {
             hideGrid: false,
-            showEdit: false
+            members: []
         }
     },
     props: ['team'],
@@ -52,7 +54,15 @@ export default {
         toggle() {
             this.hideGrid = !this.hideGrid
         }
-    }
+    },
+    mounted() {
+      axios
+      .get(`/api/member/${this.team.team_id}`)
+      .then(response => {
+          let data = response.data
+          this.members = data
+      })
+  }
 }
 </script>
 

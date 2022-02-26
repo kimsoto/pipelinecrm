@@ -13,13 +13,13 @@
             </header>
           </div>
           <div class="row">
-            <button @click="addForm">Add</button>
+            <!-- <button @click="addForm">Add</button>
             <form v-show="showForm">
               <div class="form-group">
                 <input v-model="name" type="text" class="form-control" placeholder="New Team Name" id="name">
                 <input type="submit" :disabled="!name" @click="createTeam">
               </div>
-            </form>
+            </form> -->
             <TeamAccordion :key="team" :team="team" v-for="team of teams" />
           </div>
         </div>
@@ -43,14 +43,14 @@ export default {
   data() {
     return {
       teams: [],
-      showForm: false,
-      name: ''
+      // showForm: false,
+      // name: ''
     }
   },
   methods: {
-    addForm() {
-      this.showForm = !this.showForm
-    },
+    // addForm() {
+    //   this.showForm = !this.showForm
+    // },
     createTeam() {
       let teamName = document.querySelector('#name').value
       let newTeam = { name: teamName }
@@ -65,7 +65,7 @@ export default {
             this.teams.push(response.data)
             // location.reload()
         })
-      this.showForm = false
+      // this.showForm = false
     }
   },
   mounted() {
