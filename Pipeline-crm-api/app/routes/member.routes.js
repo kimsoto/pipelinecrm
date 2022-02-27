@@ -6,7 +6,7 @@ module.exports = app => {
     // Retrieves all Members
     router.get('/', members.findAll)
     // Retrieves all Members of a given Team
-    router.get('/:teamid', members.findTeamMembers)
+    router.get('/:teamid/All', members.findTeamMembers)
     // Retrieves a single Members with a memberid
     router.get('/:memberid', members.findOne)
     app.use('/api/member', router)
