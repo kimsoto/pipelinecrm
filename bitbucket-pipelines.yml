@@ -1,8 +1,7 @@
 image: atlassian/default-image:2
 
 pipelines:
-  custom:
-    run-manual:
+  default:
       - step:
           name: Deploy to Production
           deployment: production
