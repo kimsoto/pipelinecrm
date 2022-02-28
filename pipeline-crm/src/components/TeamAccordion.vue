@@ -54,10 +54,15 @@ export default {
         }
     },
     mounted() {
-      Promise.all(axios.get(`/api/member/${this.team.team_id}/All`), axios.get(`/api/pipeline/${this.team.team_id}/All`))
+      let getMembers = `/api/member/${this.team.team_id}/All`
+      let getPipelines = `/api/pipeline/${this.team.team_id}/All`
+      const promiseMembers = axios.get(getMembers)
+      const promisePipelines = axios.get(getPipelines)
+
+      Promise.all([promiseMembers, promisePipelines])
       .then(results => {
-          // this.members = results[0].data
-          // this.pipelines = results[1].data
+          this.members = results[0].data
+          this.pipelines = results[1].data
           console.log(results)
       })
   }
