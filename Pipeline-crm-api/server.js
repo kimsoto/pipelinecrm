@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 // })
 require("./app/routes/team.routes.js")(app)
 require("./app/routes/member.routes.js")(app)
+require("./app/routes/pipeline.routes.js")(app)
 
 app.use(express.static('public'))
 
