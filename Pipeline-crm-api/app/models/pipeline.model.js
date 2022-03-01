@@ -47,7 +47,7 @@ Pipeline.getAll = (result) => {
 }
 
 Pipeline.getTeamPipelines = (teamid, result) => {
-  sql.query(`SELECT * FROM pipeline WHERE team_id = ${teamid}`, (err, res) => {
+  sql.query(`SELECT pipeline.*, team.name AS team_name FROM pipeline LEFT JOIN team ON pipeline.team_id = team.team_id WHERE pipeline.team_id = ${teamid}`, (err, res) => {
     if (err) {
       console.log('error: ', err)
       result(null, err)
