@@ -11,6 +11,7 @@
               <h1>Pipeline CRM</h1>
               <h2>Pipelines</h2>
             </header>
+            <p>{{this.pipelines}}</p>
           </div>
         </div>
       </div>
@@ -21,11 +22,27 @@
 
 <script>
 import SideMenu from '../components/SideMenu.vue'
+const axios = require('axios')
 
 export default {
   name: 'Pipeline',
   components: {
       SideMenu
-  }
+  },
+  data() {
+    return {
+      pipelines: [],
+    }
+  },
+  methods: {
+
+  },
+  mounted() {
+    axios
+      .get('/api/pipeline/')
+      .then(response => {
+          this.pipelines = response.data.name
+      })
+  },
 }
 </script>
