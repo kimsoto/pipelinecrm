@@ -11,8 +11,7 @@
               <h1>Pipeline CRM</h1>
               <h2>Teams</h2>
             </header>
-          </div>
-          <div class="container">
+            <div class="container">
           <div class="accordion" id="teamAccordion">
             <div class="row panel">
             <!-- <button @click="addForm">Add</button>
@@ -26,6 +25,7 @@
 </div>
 </div>
 </div>
+          </div>
         </div>
       </div>
     </div>
