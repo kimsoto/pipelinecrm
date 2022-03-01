@@ -11,7 +11,7 @@
               <h1>Pipeline CRM</h1>
               <h2>Pipelines</h2>
             </header>
-            <p>{{this.pipelines}}</p>
+            <p>{{pipelines}}</p>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default {
     axios
       .get('/api/pipeline/')
       .then(response => {
-          this.pipelines = response.data.name
+          this.pipelines = response.data.data.name
       })
   },
 }
