@@ -20,7 +20,7 @@
                 <p>{{pipeline.team_name}}</p>
               </figure>
             </div>
-            <div :key="pipeline" :pipelineAcc="pipeline.pipeline_id" v-for="pipeline in pipelines" class="col-lg-12 overlay collapse in" :id="pipeline.pipeline_id">
+            <div :key="pipeline" :pipelineAcc="pipeline.pipeline_id" v-for="pipeline in pipelines" class="col-lg-12 overlay collapse in" :id="'toggle' + pipeline.pipeline_id">
               <p>I am a hidden div ready for pipeline content :3</p>
             </div>
         </div>
