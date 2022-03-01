@@ -41,7 +41,7 @@ export default {
     axios
       .get('/api/pipeline/')
       .then(response => {
-          this.pipelines = response.data.data.name
+          this.pipelines = response.data
       })
   },
 }
