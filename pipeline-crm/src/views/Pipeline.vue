@@ -78,4 +78,12 @@ export default {
   text-align: center;
   font-size: 24px;
 }
+.row {
+  position: relative !important;
+}
+.overlay {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+}
 </style>
