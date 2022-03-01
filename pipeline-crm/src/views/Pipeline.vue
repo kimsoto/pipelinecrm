@@ -14,9 +14,11 @@
 <div class="container">
     <div id="acc">
         <div class="row panel">
-            <div class="col-md-4" :key="pipeline" :pipeline="pipeline" v-for="pipeline of pipelines">
-                <a href="#one" data-toggle="collapse" data-parent="#acc">{{pipeline.name}}</a>
+            <div class="col-md-4 accordion-grid" :key="pipeline" :pipeline="pipeline" v-for="pipeline of pipelines">
+              <figure>
+                <a :href="'#toggle' + pipeline.pipeline_id" data-bs-toggle="collapse" aria-expanded="false" data-bs-parent="#acc">{{pipeline.name}}</a>
                 <p>{{pipeline.team_name}}</p>
+              </figure>
             </div>
             <div class="col-lg-12 text-center overlay collapse in" id="one">
             </div>
@@ -54,6 +56,24 @@ export default {
       .then(response => {
           this.pipelines = response.data
       })
-  },
+  }
 }
 </script>
+
+<style scoped>
+.accordion-grid figure {
+  background-color: white;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.accordion-grid a{
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  font-size: 24px;
+}
+</style>
