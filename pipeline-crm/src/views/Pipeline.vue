@@ -15,8 +15,8 @@
     <div id="acc">
         <div class="row panel">
             <div class="col-md-4" :key="pipeline" :pipeline="pipeline" v-for="pipeline of pipelines">
-                <a href="#one" data-toggle="collapse" data-parent="#acc">pipeline.name</a>
-                <p>pipeline.team_name</p>
+                <a href="#one" data-toggle="collapse" data-parent="#acc">{{pipeline.name}}</a>
+                <p>{{pipeline.team_name}}</p>
             </div>
             <div class="col-lg-12 text-center overlay collapse in" id="one">
             </div>
