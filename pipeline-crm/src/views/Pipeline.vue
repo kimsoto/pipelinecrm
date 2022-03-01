@@ -11,7 +11,18 @@
               <h1>Pipeline CRM</h1>
               <h2>Pipelines</h2>
             </header>
-            <p>{{pipelines}}</p>
+<div class="container">
+    <div id="acc">
+        <div class="row panel">
+            <div class="col-md-4" :key="pipeline" :pipeline="pipeline" v-for="pipeline of pipelines">
+                <a href="#one" data-toggle="collapse" data-parent="#acc">pipeline.name</a>
+                <p>pipeline.team_name</p>
+            </div>
+            <div class="col-lg-12 text-center overlay collapse in" id="one">
+            </div>
+        </div>
+    </div>
+</div>
           </div>
         </div>
       </div>
