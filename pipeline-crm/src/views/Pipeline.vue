@@ -81,9 +81,9 @@ export default {
 .row {
   position: relative !important;
 }
-.overlay {
+/* .overlay {
   position: absolute;
   z-index: 1;
   bottom: 0;
-}
+} */
 </style>
