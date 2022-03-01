@@ -20,7 +20,8 @@
                 <p>{{pipeline.team_name}}</p>
               </figure>
             </div>
-            <div class="col-lg-12 text-center overlay collapse in" id="one">
+            <div :key="pipeline" :pipelineAcc="pipeline.pipeline_id" v-for="pipeline in pipelines" class="col-lg-12 overlay collapse in" :id="pipeline.pipeline_id">
+              <p>I am a hidden div ready for pipeline content :3</p>
             </div>
         </div>
     </div>
@@ -66,6 +67,7 @@ export default {
   box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
   height: 180px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
