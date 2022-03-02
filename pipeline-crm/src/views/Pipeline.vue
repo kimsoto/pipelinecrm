@@ -70,5 +70,10 @@ export default {
 </script>
 
 <style scoped>
+.accordion-grid figure {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 </style>
