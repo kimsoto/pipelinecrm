@@ -16,12 +16,20 @@
         <div class="row panel">
             <div class="col-md-4 accordion-grid" :key="pipeline.pipeline_id" :pipeline="pipeline.pipeline_id" v-for="pipeline of pipelines">
               <figure>
-                <a :href="'#toggle' + pipeline.pipeline_id" data-bs-toggle="collapse" aria-expanded="false" data-bs-parent="#acc">{{pipeline.name}}</a>
+                <a :href="'#toggle' + pipeline.pipeline_id" data-bs-toggle="collapse" aria-expanded="false">{{pipeline.name}}</a>
                 <p>{{pipeline.team_name}}</p>
               </figure>
             </div>
-            <div :key="pipeline" :pipelineAcc="pipeline.pipeline_id" v-for="pipeline in pipelines" class="col-lg-12 overlay collapse in" :id="'toggle' + pipeline.pipeline_id">
-              <p>I am a hidden div ready for pipeline content :3</p>
+            <div :key="pipeline" :pipelineAcc="pipeline.pipeline_id" data-bs-parent="#acc" v-for="pipeline in pipelines" class="col-lg-12 overlay collapse in accordion-content" :id="'toggle' + pipeline.pipeline_id">
+              <h3>Pipeline information</h3>
+              <div class="items">
+                <h4>Products</h4>
+                <ul class="list-group">
+                <li class="list-group-item list-group-item-action mb-1"><a href="#">Product 1</a></li>
+                <li class="list-group-item list-group-item-action mb-1"><a href="#">Product 2</a></li>
+                <li class="list-group-item list-group-item-action mb-1"><a href="#">Product 3</a></li>
+          </ul>
+        </div>
             </div>
         </div>
     </div>
@@ -62,28 +70,5 @@ export default {
 </script>
 
 <style scoped>
-.accordion-grid figure {
-  background-color: white;
-  box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
-  height: 180px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
-.accordion-grid a{
-  color: #000;
-  text-decoration: none;
-  text-align: center;
-  font-size: 24px;
-}
-.row {
-  position: relative !important;
-}
-/* .overlay {
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-} */
 </style>
