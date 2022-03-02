@@ -17,7 +17,7 @@
         </div>
         <div class="pipelines">
           <h4>Pipelines</h4>
-          <ul class="list-group" :key="pipeline" v-for="pipeline of pipelines">
+          <ul class="list-group" :key="pipeline.pipeline_id" v-for="pipeline of pipelines">
             <li class="list-group-item list-group-item-action mb-1">
               <p>{{ pipeline.name }}</p>
             </li>
@@ -25,7 +25,7 @@
         </div>
         <div class="members">
           <h4>Members</h4>
-          <ul class="list-group" :key="member" v-for="member of members">
+          <ul class="list-group" :key="member.member_id" v-for="member of members">
             <li class="list-group-item list-group-item-action mb-1">
               <p>{{ member.name }}</p>
             </li>

@@ -14,7 +14,7 @@
 <div class="container">
     <div id="acc">
         <div class="row panel">
-            <div class="col-md-4 accordion-grid" :key="pipeline" :pipeline="pipeline.pipeline_id" v-for="pipeline of pipelines">
+            <div class="col-md-4 accordion-grid" :key="pipeline.pipeline_id" :pipeline="pipeline.pipeline_id" v-for="pipeline of pipelines">
               <figure>
                 <a :href="'#toggle' + pipeline.pipeline_id" data-bs-toggle="collapse" aria-expanded="false" data-bs-parent="#acc">{{pipeline.name}}</a>
                 <p>{{pipeline.team_name}}</p>
