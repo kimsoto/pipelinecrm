@@ -1,5 +1,5 @@
 <template>
-<div data-bs-parent="#pipelineAccordion" class="col-lg-12 overlay collapse in accordion-content" :id="'toggle' + pipeline.pipeline_id">
+<div data-bs-parent="#pipelineAccordion" class="col-lg-12 overlay collapse in accordion-content" :id="'toggle' + team.team_id">
     <h3>Team information</h3>
         <div class="clients">
             <h4>Clients</h4>
