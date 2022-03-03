@@ -12,27 +12,12 @@
               <h2>Pipelines</h2>
             </header>
 <div class="container">
-    <div id="pipelineAccordion">
-        <div class="row panel" :key="rowIndex" v-for="rowIndex in Math.ceil(pipelines.length / 3)">
-            <div class="col-lg-4 col-sm-6 col-12 accordion-grid" :key="pipeline.pipeline_id" :pipeline="pipeline.pipeline_id" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)">
-              <figure>
-                <a :href="'#toggle' + pipeline.pipeline_id" data-bs-toggle="collapse" aria-expanded="false">{{pipeline.name}}</a>
-                <p>{{pipeline.team_name}}</p>
-              </figure>
-            </div>
-            <div :key="pipeline.pipeline_id" :pipelineAcc="pipeline.pipeline_id" data-bs-parent="#pipelineAccordion" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" class="col-lg-12 overlay collapse in accordion-content" :id="'toggle' + pipeline.pipeline_id">
-              <h3>Pipeline information</h3>
-              <div class="items">
-                <h4>Products</h4>
-                <ul class="list-group">
-                <li class="list-group-item list-group-item-action mb-1"><a href="#">Product 1</a></li>
-                <li class="list-group-item list-group-item-action mb-1"><a href="#">Product 2</a></li>
-                <li class="list-group-item list-group-item-action mb-1"><a href="#">Product 3</a></li>
-                </ul>
-            </div>
-            </div>
-        </div>
+  <div id="pipelineAccordion">
+    <div class="row panel" :key="rowIndex" v-for="rowIndex in Math.ceil(pipelines.length / 3)">
+      <PipelineFigure :key="pipeline.pipeline_id" :pipeline="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
+      <PipelineAccordion :key="pipeline.pipeline_id" :pipelineAcc="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
     </div>
+  </div>
 </div>
           </div>
         </div>
@@ -44,12 +29,16 @@
 
 <script>
 import SideMenu from '../components/SideMenu.vue'
+import PipelineFigure from '../components/PipelineFigure.vue'
+import PipelineAccordion from '../components/PipelineAccordion.vue'
 const axios = require('axios')
 
 export default {
   name: 'Pipeline',
   components: {
-      SideMenu
+      SideMenu,
+      PipelineFigure,
+      PipelineAccordion
   },
   data() {
     return {
@@ -57,23 +46,16 @@ export default {
     }
   },
   methods: {
-
   },
   mounted() {
     axios
       .get('/api/pipeline/')
       .then(response => {
-          this.pipelines = response.data
+        this.pipelines = response.data
       })
   }
 }
 </script>
 
 <style scoped>
-.accordion-grid figure {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 </style>

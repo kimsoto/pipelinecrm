@@ -67,12 +67,8 @@ export default {
       .get('/api/team/')
       // .get('http://localhost:3000/api/team/')
       .then(response => {
-        let data = response.data
-        this.teams = data
+        this.teams = response.data
       })
-  },
-  computed: {
-    
   }
 }
 </script>
