@@ -14,7 +14,7 @@
 <div class="container">
     <div id="pipelineAccordion">
         <div class="row panel" :key="rowIndex" v-for="rowIndex in Math.ceil(pipelines.length / 3)">
-            <div class="col-md-4 accordion-grid" :key="pipeline.pipeline_id" :pipeline="pipeline.pipeline_id" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)">
+            <div class="col-lg-4 col-sm-6 col-12 accordion-grid" :key="pipeline.pipeline_id" :pipeline="pipeline.pipeline_id" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)">
               <figure>
                 <a :href="'#toggle' + pipeline.pipeline_id" data-bs-toggle="collapse" aria-expanded="false">{{pipeline.name}}</a>
                 <p>{{pipeline.team_name}}</p>
