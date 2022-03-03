@@ -13,8 +13,8 @@
             </header>
 <div class="container">
     <div id="acc">
-        <div class="row panel">
-            <div class="col-md-4 accordion-grid" :key="pipeline.pipeline_id" :pipeline="pipeline.pipeline_id" v-for="pipeline of pipelines">
+        <div class="row panel" :key="rowIdx" v-for="rowIdx in Math.ceil(pipelines.length / 3)">
+            <div class="col-md-4 accordion-grid" :key="pipeline.pipeline_id" :pipeline="pipeline.pipeline_id" v-for="pipeline of pipelines.slice(3 * (rowIdx - 1), 3 * rowIdx)">
               <figure>
                 <a :href="'#toggle' + pipeline.pipeline_id" data-bs-toggle="collapse" aria-expanded="false">{{pipeline.name}}</a>
                 <p>{{pipeline.team_name}}</p>
