@@ -15,7 +15,7 @@
   <div id="pipelineAccordion">
     <div class="row panel" :key="rowIndex" v-for="rowIndex in Math.ceil(pipelines.length / 3)">
       <PipelineFigure :key="pipeline.pipeline_id" :pipeline="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
-      <PipelineAccordion :key="pipeline.pipeline_id" :pipelineAcc="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
+      <PipelineAccordion :key="pipeline.pipeline_id" :pipeline="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
     </div>
   </div>
 </div>
