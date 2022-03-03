@@ -77,15 +77,4 @@ ul li {
   margin: 0!important;
 }
 
-@media (max-width:992px) {
-    .row {
-        position:relative;
-        padding-bottom: 30px;
-    }
-    .overlay {
-      position: absolute;
-      z-index: 1;
-      bottom: 0;
-    }
-}
 </style>
