@@ -30,5 +30,12 @@ export default {
 }
 .accordion-grid figure p {
     text-align: center;
+    font-size: 14px;
+}
+
+@media only screen and (min-width: 768px) {
+.accordion-grid figure p {
+    font-size: 16px;
+}
 }
 </style>
