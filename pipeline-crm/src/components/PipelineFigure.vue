@@ -28,4 +28,7 @@ export default {
     justify-content: center;
     align-items: center;
 }
+.accordion-grid figure p {
+    text-align: center;
+}
 </style>
