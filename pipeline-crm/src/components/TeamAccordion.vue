@@ -3,7 +3,7 @@
 <div class="accordion-content">
     <div class="row">
     <h3>Team information</h3>
-        <div class="col-12 col-sm-4">
+        <div class="col-12 col-sm-6 col-md-4">
             <div class="client">
                 <h4>Clients</h4>
                 <ul class="list-group">
@@ -13,7 +13,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-4">
+        <div class="col-12 col-sm-6 col-md-4">
             <div class="pipelines">
                 <h4>Pipelines</h4>
                 <ul class="list-group" :key="pipeline.pipeline_id" v-for="pipeline of pipelines">
@@ -23,7 +23,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-4">
+        <div class="col-12 col-sm-6 col-md-4">
             <div class="members">
                 <h4>Members</h4>
                 <ul class="list-group" :key="member.member_id" v-for="member of members">
