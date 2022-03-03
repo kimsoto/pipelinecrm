@@ -77,7 +77,7 @@ ul li {
   margin: 0!important;
 }
 
-@media (min-width:992px) {
+@media (max-width:992px) {
     .row {
         position:relative;
         padding-bottom: 30px;
