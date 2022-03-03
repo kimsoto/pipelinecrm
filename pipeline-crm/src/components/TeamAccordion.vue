@@ -1,37 +1,30 @@
 <template>
-<div class="col-lg-4 col-md-6 col-sm-12">
-  <div class="accordion-grid">
-      <figure>
-      <a :href="'#toggle' + team.team_id"  data-bs-toggle="collapse" aria-expanded="false" :aria-controls="'toggle' + team.team_id">{{ team.name }}</a>
-      </figure>
-      </div>
-    <div class="accordion-content collapse overlay in col-xs-12" role="region" data-bs-parent="#teamAccordion" :id="'toggle' + team.team_id">
-        <h3>Team information</h3>
+<div data-bs-parent="#pipelineAccordion" class="col-lg-12 overlay collapse in accordion-content" :id="'toggle' + pipeline.pipeline_id">
+    <h3>Team information</h3>
         <div class="clients">
-          <h4>Clients</h4>
-          <ul class="list-group">
+            <h4>Clients</h4>
+            <ul class="list-group">
             <li class="list-group-item list-group-item-action mb-1"><a href="#">client 1</a></li>
             <li class="list-group-item list-group-item-action mb-1"><a href="#">client 2</a></li>
             <li class="list-group-item list-group-item-action mb-1"><a href="#">client 3</a></li>
-          </ul>
+            </ul>
         </div>
         <div class="pipelines">
-          <h4>Pipelines</h4>
-          <ul class="list-group" :key="pipeline.pipeline_id" v-for="pipeline of pipelines">
+            <h4>Pipelines</h4>
+            <ul class="list-group" :key="pipeline.pipeline_id" v-for="pipeline of pipelines">
             <li class="list-group-item list-group-item-action mb-1">
-              <p>{{ pipeline.name }}</p>
+                <p>{{ pipeline.name }}</p>
             </li>
-          </ul>
+            </ul>
         </div>
         <div class="members">
-          <h4>Members</h4>
-          <ul class="list-group" :key="member.member_id" v-for="member of members">
+            <h4>Members</h4>
+            <ul class="list-group" :key="member.member_id" v-for="member of members">
             <li class="list-group-item list-group-item-action mb-1">
-              <p>{{ member.name }}</p>
+                <p>{{ member.name }}</p>
             </li>
-          </ul>
+            </ul>
         </div>
-      </div>
 </div>
 </template>
 
@@ -49,27 +42,22 @@ export default {
     },
     props: ['team'],
     methods: {
-        toggle() {
-            this.hideGrid = !this.hideGrid
-        }
     },
     mounted() {
-      let getMembers = `/api/member/${this.team.team_id}/All`
-      let getPipelines = `/api/pipeline/${this.team.team_id}/All`
-      const promiseMembers = axios.get(getMembers)
-      const promisePipelines = axios.get(getPipelines)
+        let getMembers = `/api/member/${this.team.team_id}/All`
+        let getPipelines = `/api/pipeline/${this.team.team_id}/All`
+        const promiseMembers = axios.get(getMembers)
+        const promisePipelines = axios.get(getPipelines)
 
-      Promise.all([promiseMembers, promisePipelines])
-      .then(results => {
-          this.members = results[0].data
-          this.pipelines = results[1].data
-          console.log(results)
-      })
-  }
+        Promise.all([promiseMembers, promisePipelines])
+        .then(results => {
+            this.members = results[0].data
+            this.pipelines = results[1].data
+
+        })
+    }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>
