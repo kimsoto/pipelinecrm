@@ -1,5 +1,6 @@
 <template>
-<div data-bs-parent="#teamAccordion" class="col-lg-12 overlay collapse in accordion-content" :id="'toggle' + team.team_id">
+<div data-bs-parent="#teamAccordion" class="col-lg-12 overlay collapse in" :id="'toggle' + team.team_id">
+<div class="accordion-content">
     <h3>Team information</h3>
         <div class="clients">
             <h4>Clients</h4>
@@ -25,6 +26,7 @@
             </li>
             </ul>
         </div>
+</div>
 </div>
 </template>
 
