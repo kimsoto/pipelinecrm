@@ -39,7 +39,7 @@ header {
 .accordion-grid figure {
   background-color: white;
   box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
-  height: 180px;
+  /* height: 180px; */
   display: flex;
   justify-content: center;
   align-items: center;
