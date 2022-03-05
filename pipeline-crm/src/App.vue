@@ -36,4 +36,44 @@ header {
 .py-3 {
   padding-top: 0!important;
 }
+.accordion-grid figure {
+  background-color: white;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.accordion-grid a{
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  font-size: 24px;
+}
+
+.accordion-content {
+  padding: 25px;
+  background-color: white;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+}
+.accordion-content div {
+  border: 1px solid #cccccc;
+  margin: 15px 0px;
+  padding: 15px;
+}
+.accordion-content h3 {
+  font-size: 22px;
+}
+.accordion-content h4 {
+  font-size: 18px;
+}
+ul li {
+  border-radius: 0!important;
+}
+
+.list-group-item p {
+  margin: 0!important;
+}
 </style>
