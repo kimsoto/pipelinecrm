@@ -6,11 +6,11 @@
     <div class="col-12 col-sm-6">
         <div class="product">
             <h4>Products</h4>
-            <ul class="list-group">
-            <li class="list-group-item list-group-item-action mb-1"><a href="#">Product 1</a></li>
-            <li class="list-group-item list-group-item-action mb-1"><a href="#">Product 2</a></li>
-            <li class="list-group-item list-group-item-action mb-1"><a href="#">Product 3</a></li>
-            </ul>
+            <ul class="list-group" :key="product.product_id" v-for="product of products">
+                <li class="list-group-item list-group-item-action mb-1">
+                    <p>{{ product.name }}</p>
+                </li>
+                </ul>
         </div>
     </div>  
     </div>
@@ -19,20 +19,24 @@
 </template>
 
 <script>
-// const axios = require('axios')
+const axios = require('axios')
 
 export default {
     name: 'PipelineAccordion',
     data() {
         return {
-            
+            products: []
         }
     },
     props: ['pipeline'],
     methods: {
     },
     mounted() {
-
+        axios
+        .get(`/api/product/${this.pipeline.pipeline_id}/All`)
+        .then(response => {
+            this.products = response.data
+        })
     }
 }
 </script>
