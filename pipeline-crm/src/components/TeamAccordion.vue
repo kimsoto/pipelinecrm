@@ -17,10 +17,10 @@
         </div>
         <div class="pipelines">
           <h4>Pipelines</h4>
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 1</a></li>
-            <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 2</a></li>
-            <li class="list-group-item list-group-item-action mb-1"><a href="#">pipeline 3</a></li>
+          <ul class="list-group" :key="pipeline" v-for="pipeline of pipelines">
+            <li class="list-group-item list-group-item-action mb-1">
+              <p>{{ pipeline.name }}</p>
+            </li>
           </ul>
         </div>
         <div class="members">
@@ -43,7 +43,8 @@ export default {
     data() {
         return {
             hideGrid: false,
-            members: []
+            members: [],
+            pipelines: []
         }
     },
     props: ['team'],
@@ -53,12 +54,16 @@ export default {
         }
     },
     mounted() {
-      axios
-      .get(`/api/member/${this.team.team_id}`)
-      // .get(`http://localhost:3000/api/member/${this.team.team_id}`)
-      .then(response => {
-          let data = response.data
-          this.members = data
+      let getMembers = `/api/member/${this.team.team_id}/All`
+      let getPipelines = `/api/pipeline/${this.team.team_id}/All`
+      const promiseMembers = axios.get(getMembers)
+      const promisePipelines = axios.get(getPipelines)
+
+      Promise.all([promiseMembers, promisePipelines])
+      .then(results => {
+          this.members = results[0].data
+          this.pipelines = results[1].data
+          console.log(results)
       })
   }
 }
