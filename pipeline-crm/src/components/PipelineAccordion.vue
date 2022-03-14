@@ -33,6 +33,7 @@ export default {
     },
     mounted() {
         axios
+        // .get(`http://localhost:3000/api/product/${this.pipeline.pipeline_id}/All`)
         .get(`/api/product/${this.pipeline.pipeline_id}/All`)
         .then(response => {
             this.products = response.data
