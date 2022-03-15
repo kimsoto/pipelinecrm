@@ -5,10 +5,9 @@
     <h3>Client information</h3>
     <div class="col-12 col-sm-6">
         <div class="client">
-            <h4>Status</h4>
             <ul class="list-group">
                 <li class="list-group-item list-group-item-action mb-1">
-                    <p>{{ client.status_id }}</p>
+                    <p>Status: <span :class="statusColor">{{ client.code }}</span></p>
                 </li>
             </ul>
         </div>
@@ -46,6 +45,15 @@ export default {
     methods: {
     },
     mounted() {
+    },
+    computed: {
+        statusColor() {
+            return {
+                'text-success': this.client.status_id === 1,
+                'text-danger': this.client.status_id === 2,
+                'text-warning': this.client.status_id === 3
+            }
+        }
     }
 }
 </script>
