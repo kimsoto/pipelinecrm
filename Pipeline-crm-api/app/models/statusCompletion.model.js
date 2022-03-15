@@ -3,7 +3,7 @@ const sql = require('./db.js')
 const statusCompletion = function() {}
 
 statusCompletion.getAllClientStatus = (result) => {
-    sql.query('SELECT * FROM client_status', (err, res) => {
+    sql.query('SELECT * FROM pipeline_crm.client_status', (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(null, err)
