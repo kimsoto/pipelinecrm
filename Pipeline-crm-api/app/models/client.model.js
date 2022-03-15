@@ -35,7 +35,7 @@ Client.findById = (clientid, result) => {
 }
 
 Client.getAll = (result) => {
-    sql.query('SELECT * FROM client', (err, res) => {
+    sql.query('SELECT client.*, client_status.code FROM client LEFT JOIN client_status ON client.status_id = client_status.status_id', (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(null, err)
