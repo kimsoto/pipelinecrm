@@ -6,7 +6,7 @@ const Client = function(client) {
 }
 
 Client.create = (newClient, result) => {
-    sql.query('INSERT INTO client SET ?', newClient, (err, res) => {
+    sql.query('INSERT INTO pipeline_crm.client SET ?', newClient, (err, res) => {
         if (err) {
           console.log('error: ', err)
           result(err, null)
@@ -18,7 +18,7 @@ Client.create = (newClient, result) => {
 }
 
 Client.findById = (clientid, result) => {
-    sql.query(`SELECT * FROM client WHERE client_id = ${clientid}`, (err, res) => {
+    sql.query(`SELECT * FROM pipeline_crm.client WHERE client_id = ${clientid}`, (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(err, null)
@@ -35,7 +35,7 @@ Client.findById = (clientid, result) => {
 }
 
 Client.getAll = (result) => {
-    sql.query('SELECT client.*, client_status.code FROM client LEFT JOIN client_status ON client.status_id = client_status.status_id', (err, res) => {
+    sql.query('SELECT client.*, client_status.code FROM pipeline_crm.client LEFT JOIN pipeline_crm.client_status ON client.status_id = client_status.status_id', (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(null, err)
