@@ -20,7 +20,7 @@
                 <select v-model="statusSelect" name="statusSelect" id="statusSelect" class="form-select">
                   <option :value="status.status_id" :key="'status' + status.status_id" v-for="status in clientStatus" >{{ status.code }}</option>
                 </select>
-                <input type="submit" :disabled="!name" @click="createClient">
+                <input type="submit" :disabled="!name">
                 <p v-show="dupeClient">Please enter a unique client name!</p>
               </div>
             </form>
@@ -73,8 +73,8 @@ export default {
       let newClient = { status_id: this.statusSelect, name: this.name }
       let config = {
         method: 'post',
-        url: 'http://localhost:3000/api/client/',
-        // url: '/api/client/',
+        // url: 'http://localhost:3000/api/client/',
+        url: '/api/client/',
         data: newClient
       }
       axios(config)
@@ -82,6 +82,7 @@ export default {
           console.log(response)
           this.clients.push(response.data)
           this.showForm = false
+          location.reload()
       })
       .catch((error) => {
           if(error.response){
@@ -91,10 +92,10 @@ export default {
     }
   },
   mounted() {
-    // let getClients = '/api/client/'
-    // let getClientStatus = '/api/statusCompletion/clientStatus'
-    let getClients = 'http://localhost:3000/api/client/'
-    let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
+    let getClients = '/api/client/'
+    let getClientStatus = '/api/statusCompletion/clientStatus'
+    // let getClients = 'http://localhost:3000/api/client/'
+    // let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
     const promiseClients = axios.get(getClients)
     const promiseClientStatus = axios.get(getClientStatus)
 
@@ -103,6 +104,9 @@ export default {
         this.clients = results[0].data
         this.clientStatus = results[1].data
     })
+  },
+  computed: {
+
   }
 }
 </script>

@@ -8,6 +8,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'ClientFigure',
     data() {
@@ -18,6 +19,7 @@ export default {
     methods: {
     },
     mounted() {
+
     },
     computed: {
         iconClass() {
