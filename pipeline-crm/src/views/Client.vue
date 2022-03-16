@@ -67,6 +67,14 @@ export default {
     addForm() {
       this.showForm = !this.showForm
     },
+    getClient() {
+      axios
+      .get('/api/client/')
+      // .get('http://localhost:3000/api/client/')
+      .then(response => {
+        this.clients = response.data
+      })
+    },
     createClient() {
       this.name = document.getElementById('name').value
       this.statusSelect = document.getElementById('statusSelect').value
@@ -82,7 +90,8 @@ export default {
           console.log(response)
           this.clients.push(response.data)
           this.showForm = false
-          location.reload()
+          this.getClient()
+          // location.reload()
       })
       .catch((error) => {
           if(error.response){
