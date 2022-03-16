@@ -91,6 +91,7 @@ export default {
           this.clients.push(response.data)
           this.showForm = false
           this.getClient()
+          document.getElementById('name').value = ''
           // location.reload()
       })
       .catch((error) => {
