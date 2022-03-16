@@ -11,19 +11,24 @@
               <h1>Pipeline CRM</h1>
               <h2>Clients</h2>
             </header>
-            <button @click="addForm">Add</button>
-            <form @submit.prevent="createClient" v-show="showForm">
-              <div class="form-group">
+            <div class="container mb-4 mt-0">
+            <button type="button" class="btn btn-dark" @click="addForm">Add Client <i class="fa-solid fa-square-plus"></i></button>
+            <form class="create-form mt-4 p-3" @submit.prevent="createClient" v-show="showForm">
+                <h3 class="fs-4 mb-2">New Client</h3>
+                <div class="form-group mb-3">
                 <label for="name">Client Name:</label>
                 <input v-model="name" type="text" class="form-control" placeholder="Client Name" id="name">
+                </div>
+                <div class="form-group mb-3">
                 <label for="status">Client Status:</label>
                 <select v-model="statusSelect" name="statusSelect" id="statusSelect" class="form-select">
                   <option :value="status.status_id" :key="'status' + status.status_id" v-for="status in clientStatus" >{{ status.code }}</option>
                 </select>
-                <input type="submit" :disabled="!name">
-                <p v-show="dupeClient">Please enter a unique client name!</p>
-              </div>
+                </div>
+                <input class="btn btn-dark mt-3" type="submit" :disabled="!name">
+                <p class="text-danger fs-5 mt-3" v-show="dupeClient">Please enter a unique client name!</p>
             </form>
+            </div>
 <div class="container">
   <div class="accordion" id="clientAccordion">
     <div class="row panel" :key="rowIndex" v-for="rowIndex in Math.ceil(clients.length / 3)">
@@ -69,8 +74,8 @@ export default {
     },
     getClient() {
       axios
-      .get('/api/client/')
-      // .get('http://localhost:3000/api/client/')
+      // .get('/api/client/')
+      .get('http://localhost:3000/api/client/')
       .then(response => {
         this.clients = response.data
       })
@@ -81,8 +86,8 @@ export default {
       let newClient = { status_id: this.statusSelect, name: this.name }
       let config = {
         method: 'post',
-        // url: 'http://localhost:3000/api/client/',
-        url: '/api/client/',
+        url: 'http://localhost:3000/api/client/',
+        // url: '/api/client/',
         data: newClient
       }
       axios(config)
@@ -90,6 +95,7 @@ export default {
           console.log(response)
           this.clients.push(response.data)
           this.showForm = false
+          this.dupeClient = false
           this.getClient()
           this.name = ''
       })
@@ -101,10 +107,10 @@ export default {
     }
   },
   mounted() {
-    let getClients = '/api/client/'
-    let getClientStatus = '/api/statusCompletion/clientStatus'
-    // let getClients = 'http://localhost:3000/api/client/'
-    // let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
+    // let getClients = '/api/client/'
+    // let getClientStatus = '/api/statusCompletion/clientStatus'
+    let getClients = 'http://localhost:3000/api/client/'
+    let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
     const promiseClients = axios.get(getClients)
     const promiseClientStatus = axios.get(getClientStatus)
 
@@ -119,3 +125,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.create-form {
+  background-color: #fff;
+}
+</style>
