@@ -82,7 +82,7 @@ export default {
           console.log(response)
           this.clients.push(response.data)
           this.showForm = false
-          // location.reload()
+          location.reload()
       })
       .catch((error) => {
           if(error.response){
