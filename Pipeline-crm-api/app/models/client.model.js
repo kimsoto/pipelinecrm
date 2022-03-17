@@ -35,15 +35,15 @@ Client.findById = (clientid, result) => {
 }
 
 Client.getAll = (result) => {
-  sql.query('SELECT client.*, client_status.code FROM pipeline_crm.client LEFT JOIN pipeline_crm.client_status ON client.status_id = client_status.status_id', (err, res) => {
-    if (err) {
-      console.log('error: ', err)
-      result(null, err)
-      return;
-    }
-    console.log('all clients: ', res);
-    result(null, res)
-  })
+    sql.query('SELECT client.*, client_status.code FROM pipeline_crm.client LEFT JOIN pipeline_crm.client_status ON client.status_id = client_status.status_id', (err, res) => {
+      if (err) {
+        console.log('error: ', err)
+        result(null, err)
+        return;
+      }
+      console.log('all clients: ', res);
+      result(null, res)
+    })
 }
 
 module.exports = Client
