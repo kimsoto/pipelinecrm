@@ -14,8 +14,8 @@
 <div class="container">
   <div class="accordion" id="teamAccordion">
     <div class="row panel" :key="rowIndex" v-for="rowIndex in Math.ceil(teams.length / 3)">
-      <TeamFigure :key="team.team_id" :team="team" v-for="team of teams.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
-      <TeamAccordion :key="team.team_id" :team="team" v-for="team of teams.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
+      <TeamFigure :key="'teamFig' + team.team_id" :team="team" v-for="team of teams.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
+      <TeamAccordion :key="'teamAcc' + team.team_id" :team="team" v-for="team of teams.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
     </div>
   </div>
 </div>

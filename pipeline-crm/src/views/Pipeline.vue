@@ -14,8 +14,8 @@
 <div class="container">
   <div id="pipelineAccordion">
     <div class="row panel" :key="rowIndex" v-for="rowIndex in Math.ceil(pipelines.length / 3)">
-      <PipelineFigure :key="pipeline.pipeline_id" :pipeline="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
-      <PipelineAccordion :key="pipeline.pipeline_id" :pipeline="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
+      <PipelineFigure :key="'pipelineFig' + pipeline.pipeline_id" :pipeline="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
+      <PipelineAccordion :key="'pipelineAcc' + pipeline.pipeline_id" :pipeline="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
     </div>
   </div>
 </div>
@@ -49,8 +49,8 @@ export default {
   },
   mounted() {
     axios
-      .get('/api/pipeline/')
-      // .get('http://localhost:3000/api/pipeline/')
+      // .get('/api/pipeline/')
+      .get('http://localhost:3000/api/pipeline/')
       .then(response => {
         this.pipelines = response.data
       })
