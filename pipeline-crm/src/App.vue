@@ -31,7 +31,7 @@ header {
   background-color: white;
   padding-top: 15px;
   padding-bottom: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .py-3 {
   padding-top: 0!important;
