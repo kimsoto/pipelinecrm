@@ -81,8 +81,8 @@ export default {
       })
     },
     createClient() {
-      this.name = document.getElementById('name').value
-      this.statusSelect = document.getElementById('statusSelect').value
+      // this.name = document.getElementById('name').value
+      // this.statusSelect = document.getElementById('statusSelect').value
       let newClient = { status_id: this.statusSelect, name: this.name }
       let config = {
         method: 'post',
@@ -127,7 +127,5 @@ export default {
 </script>
 
 <style scoped>
-.create-form {
-  background-color: #fff;
-}
+
 </style>

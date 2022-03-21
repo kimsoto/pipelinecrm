@@ -77,6 +77,10 @@ ul li {
   margin: 0!important;
 }
 
+.create-form {
+  background-color: #fff;
+}
+
 /*
 *Tablet and above
 */
