@@ -26,7 +26,13 @@ Item.create = (newItem, result) => {
 }
 
 Item.findById = (itemid, result) => {
-    sql.query(`SELECT * FROM pipeline_crm.item WHERE item_id = ${itemid}`, (err, res) => {
+    sql.query(`SELECT item.*, status.code AS status_code, completion.code as completion_code, client.name as client_name, product.name as product_name
+    FROM pipeline_crm.item
+    INNER JOIN pipeline_crm.status on status.status_id = item.status_id
+    INNER JOIN pipeline_crm.completion on completion.completion_id = item.completion_id
+    INNER JOIN pipeline_crm.client on client.client_id = item.client_id
+    INNER JOIN pipeline_crm.product on product.product_id = item.product_id
+    WHERE item_id = ${itemid}`, (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(err, null)
@@ -43,7 +49,12 @@ Item.findById = (itemid, result) => {
 }
 
 Item.getAll = (result) => {
-    sql.query('SELECT * FROM pipeline_crm.item', (err, res) => {
+    sql.query(`SELECT item.*, status.code AS status_code, completion.code as completion_code, client.name as client_name, product.name as product_name
+    FROM pipeline_crm.item
+    INNER JOIN pipeline_crm.status on status.status_id = item.status_id
+    INNER JOIN pipeline_crm.completion on completion.completion_id = item.completion_id
+    INNER JOIN pipeline_crm.client on client.client_id = item.client_id
+    INNER JOIN pipeline_crm.product on product.product_id = item.product_id`, (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(null, err)
