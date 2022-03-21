@@ -112,10 +112,10 @@ export default {
       plannedEnd: null,
       actualStart: null,
       actualEnd: null,
-      statusSelect: 1,
-      completionSelect: 1,
-      clientSelect: 1,
-      productSelect: 1
+      statusSelect: '',
+      completionSelect: '',
+      clientSelect: '',
+      productSelect: ''
     }
   },
   methods: {
@@ -177,6 +177,12 @@ export default {
         this.products = results[2].data
         this.statuses = results[3].data
         this.completions = results[4].data
+        
+        // used to grab the first id of each result to use as the default select value
+        this.statusSelect = this.statuses[0].status_id
+        this.completionSelect = this.completions[0].completion_id
+        this.clientSelect = this.clients[0].client_id
+        this.productSelect = this.products[0].product_id
     })
   },
   computed: {

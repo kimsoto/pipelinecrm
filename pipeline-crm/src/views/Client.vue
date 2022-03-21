@@ -74,20 +74,18 @@ export default {
     },
     getClient() {
       axios
-      .get('/api/client/')
-      // .get('http://localhost:3000/api/client/')
+      // .get('/api/client/')
+      .get('http://localhost:3000/api/client/')
       .then(response => {
         this.clients = response.data
       })
     },
     createClient() {
-      // this.name = document.getElementById('name').value
-      // this.statusSelect = document.getElementById('statusSelect').value
       let newClient = { status_id: this.statusSelect, name: this.name }
       let config = {
         method: 'post',
-        // url: 'http://localhost:3000/api/client/',
-        url: '/api/client/',
+        url: 'http://localhost:3000/api/client/',
+        // url: '/api/client/',
         data: newClient
       }
       axios(config)
@@ -107,10 +105,10 @@ export default {
     }
   },
   mounted() {
-    let getClients = '/api/client/'
-    let getClientStatus = '/api/statusCompletion/clientStatus'
-    // let getClients = 'http://localhost:3000/api/client/'
-    // let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
+    // let getClients = '/api/client/'
+    // let getClientStatus = '/api/statusCompletion/clientStatus'
+    let getClients = 'http://localhost:3000/api/client/'
+    let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
     const promiseClients = axios.get(getClients)
     const promiseClientStatus = axios.get(getClientStatus)
 
