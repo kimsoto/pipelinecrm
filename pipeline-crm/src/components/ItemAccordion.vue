@@ -27,10 +27,10 @@
         <div class="item-info">
             <ul class="list-group">
                 <li class="list-group-item list-group-item-action mb-1">
-                    <p>Client: {{ item.client_id }}</p>
+                    <p>Client: {{ item.client_name }}</p>
                 </li>
                 <li class="list-group-item list-group-item-action mb-1">
-                    <p>Product: {{ item.product_id }}</p>
+                    <p>Product: {{ item.product_name }}</p>
                 </li>
                 <li class="list-group-item list-group-item-action mb-1">
                     <p>Contracted Revenue: {{ item.contracted_rev }}</p>

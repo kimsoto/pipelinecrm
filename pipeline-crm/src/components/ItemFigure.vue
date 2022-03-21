@@ -2,8 +2,8 @@
 <div class="col-4 accordion-grid">
     <figure>
         <a :href="'#toggle' + item.item_id"  data-bs-toggle="collapse" aria-expanded="false" :aria-controls="'toggle' + item.item_id">{{ item.title }}</a>
-        <p>{{ item.status_id }}</p>
-        <p>{{ item.completion_id }}</p>
+        <p>{{ item.status_code }}</p>
+        <p>{{ item.completion_code }}</p>
     </figure>
 </div>
 </template>
