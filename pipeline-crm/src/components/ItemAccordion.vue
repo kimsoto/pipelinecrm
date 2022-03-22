@@ -2,6 +2,49 @@
 <div data-bs-parent="#itemAccordion" class="col-lg-12 overlay collapse in" :id="'toggle' + item.item_id">
 <div class="accordion-content">
     <div class="row">
+    <div class="container mb-4 mt-0">
+        <button type="button" class="btn btn-dark" @click="editForm">Edit Item</button>
+        <form class="create-form mt-4 p-3" @submit.prevent="editItem" v-show="showForm">
+            <h3 class="fs-4 mb-2">Edit {{ item.title }}</h3>
+                <div class="form-group mb-3">
+                <label for="title">Item Title:</label>
+                <input v-model="title" type="text" class="form-control" placeholder="Item Name" id="title">
+                </div>
+                <div class="form-group mb-3">
+                <label for="contractedRev">Contracted Revenue:</label>
+                <input v-model="contractedRev" type="text" class="form-control" placeholder="Revenue" id="contractedRev">
+                </div>
+                <div class="form-group mb-3">
+                <label for="statusSelect">Status:</label>
+                <select v-model="statusSelect" name="statusSelect" id="statusSelect" class="form-select">
+                <option :value="status.status_id" :key="'status' + status.status_id" v-for="status in statuses" >{{ status.code }}</option>
+                </select>
+                </div>
+                <div class="form-group mb-3">
+                <label for="completionSelect">Completion:</label>
+                <select v-model="completionSelect" name="completionSelect" id="completionSelect" class="form-select">
+                  <option :value="completion.completion_id" :key="'completion' + completion.completion_id" v-for="completion in completions" >{{ completion.code }}</option>
+                </select>
+                </div>
+                <div class="form-group mb-3">
+                <label for="plannedStart">Planned Start:</label>
+                <DatePicker v-model="plannedStart" id="plannedStart" valueType="format"/>
+                </div>
+                <div class="form-group mb-3">
+                <label for="plannedEnd">Planned End:</label>
+                <DatePicker v-model="plannedEnd" id="plannedEnd" valueType="format"/>
+                </div>
+                <div class="form-group mb-3">
+                <label for="actualStart">Actual Start:</label>
+                <DatePicker v-model="actualStart" id="actualStart" valueType="format"/>
+                </div>
+                <div class="form-group mb-3">
+                <label for="actualEnd">Actual End:</label>
+                <DatePicker v-model="actualEnd" id="actualEnd" valueType="format"/>
+                </div>
+                <input class="btn btn-dark mt-3" type="submit" :disabled="!title || !contractedRev">
+        </form>
+    </div>
     <h3>Item information</h3>
     <div class="col-12 col-sm-6">
         <div class="item-dates row">
@@ -44,20 +87,54 @@
 </template>
 
 <script>
+const axios = require('axios')
+import DatePicker from 'vue2-datepicker'
+import 'vue2-datepicker/index.css'
 
 export default {
     name: 'ItemAccordion',
+    components: {
+        DatePicker
+    },
     data() {
         return {
+            title: this.item.title,
+            contractedRev:  this.item.contracted_rev,
+            plannedStart: null,
+            plannedEnd: null,
+            actualStart: null,
+            actualEnd: null,
+            statusSelect: 1,
+            completionSelect: 1,
+            showForm: false
         }
     },
-    props: ['item'],
+    props: ['item', 'completions', 'statuses'],
     methods: {
+        editForm() {
+            this.showForm = !this.showForm
+        },
+        editItem() {
+        let newItemTitle = this.title
+        let itemEdit = { completion_id: this.completionSelect, status_id: this.statusSelect, title: newItemTitle, contracted_rev: this.contractedRev, planned_start: this.plannedStart, planned_end: this.plannedEnd, actual_start: this.actualStart, actual_end: this.actualEnd }
+        let config = {
+            method: 'put',
+            // url: `/api/item/${this.item.item_id}`,
+            url: `http://localhost:3000/api/item/${this.item.item_id}`,
+            data: itemEdit
+        }
+        axios(config)
+        .then(response => {
+            console.log(response)
+            this.$parent.getItems()
+            this.showForm = false
+        })
+        
+    }
     },
     mounted() {
     },
     computed: {
-
     }
 }
 </script>
@@ -73,5 +150,20 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.accordion-content .row .form-group, .accordion-content .row .form-group .mx-datepicker{
+    border: none !important;
+    padding: 0px;
+    margin-top: 0px;
+}
+.mx-input-wrapper {
+    border: none !important;
+    padding: 0px;
+    margin-top: 0px;
+}
+
+.mx-datepicker {
+    display: block;
+    width: 100%;
 }
 </style>

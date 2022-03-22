@@ -70,7 +70,7 @@
   <div class="accordion" id="itemAccordion">
     <div class="row panel" :key="rowIndex" v-for="rowIndex in Math.ceil(items.length / 3)">
       <ItemFigure :key="'itemFig' + item.item_id" :item="item" v-for="item of items.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
-      <ItemAccordion :key="'itemAcc' + item.item_id" :item="item" v-for="item of items.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
+      <ItemAccordion :key="'itemAcc' + item.item_id" :completions="completions" :statuses="statuses" :item="item" v-for="item of items.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
     </div>
   </div>
 </div>
@@ -112,8 +112,8 @@ export default {
       plannedEnd: null,
       actualStart: null,
       actualEnd: null,
-      statusSelect: '',
-      completionSelect: '',
+      statusSelect: 1,
+      completionSelect: 1,
       clientSelect: '',
       productSelect: ''
     }
@@ -141,10 +141,10 @@ export default {
       axios(config)
         .then(response => {
           console.log(response)
-          this.items.push(response.data)
           this.showForm = false
           this.getItems()
           this.title = ''
+          this.contractedRev = ''
       })
       .catch((error) => {
           if(error.response){
@@ -179,8 +179,6 @@ export default {
         this.completions = results[4].data
         
         // used to grab the first id of each result to use as the default select value
-        this.statusSelect = this.statuses[0].status_id
-        this.completionSelect = this.completions[0].completion_id
         this.clientSelect = this.clients[0].client_id
         this.productSelect = this.products[0].product_id
     })

@@ -81,6 +81,12 @@ ul li {
   background-color: #fff;
 }
 
+.mx-input-wrapper {
+    border: none !important;
+    padding: 0px !important;
+    margin-top: 0px !important;
+}
+
 /*
 *Tablet and above
 */
