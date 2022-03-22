@@ -78,7 +78,7 @@ exports.update = (req, res) => {
         })
     }
     console.log(req.body)
-    Item.updateById(req.params.itemid, new Item(req.body), (err, data) => {
+    Item.updateById(req.params.itemid, req.body, (err, data) => {
         if (err) {
             if (err.kind === 'not_found') {
                 res.status(404).send({

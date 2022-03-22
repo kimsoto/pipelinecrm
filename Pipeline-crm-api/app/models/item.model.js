@@ -79,19 +79,9 @@ Item.getClientItems = (clientid, result) => {
 
 Item.updateById = (itemid, item, result) => {
     sql.query(
-      `UPDATE pipeline_crm.item SET
-        completion_id = ?,
-        status_id = ?,
-        client_id = ?,
-        product_id = ?,
-        title = ?,
-        contracted_rev = ?,
-        planned_start = ?,
-        planned_end = ?,
-        actual_start = ?,
-        actual_end = ?
+      `UPDATE pipeline_crm.item SET ${Object.keys(item).map(key => `${key} = ?`).join(", ")}
         WHERE item_id = ?`,
-      [item.completion_id, item.status_id, item.client_id, item.product_id, item.title, item.contracted_rev, item.planned_start, item.planned_end, item.actual_start, item.actual_end, itemid],
+        [...Object.values(item), itemid],
       (err, res) => {
         if (err) {
           console.log('error: ', err)
