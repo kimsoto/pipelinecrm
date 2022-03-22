@@ -7,7 +7,7 @@ const Member = function(member) {
 }
 
 Member.create = (newMember, result) => {
-    sql.query('INSERT INTO member SET ?', newMember, (err, res) => {
+    sql.query('INSERT INTO pipeline_crm.member SET ?', newMember, (err, res) => {
         if (err) {
           console.log('error: ', err)
           result(err, null)
@@ -19,7 +19,7 @@ Member.create = (newMember, result) => {
 }
 
 Member.findById = (memberid, result) => {
-    sql.query(`SELECT * FROM member WHERE member_id = ${memberid}`, (err, res) => {
+    sql.query(`SELECT * FROM pipeline_crm.member WHERE member_id = ${memberid}`, (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(err, null)
@@ -36,7 +36,7 @@ Member.findById = (memberid, result) => {
 }
 
 Member.getAll = (result) => {
-    sql.query('SELECT * FROM member', (err, res) => {
+    sql.query('SELECT * FROM pipeline_crm.member', (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(null, err)
@@ -48,7 +48,7 @@ Member.getAll = (result) => {
 }
 
 Member.getTeamMembers = (teamid, result) => {
-  sql.query(`SELECT * FROM member WHERE team_id = ${teamid}`, (err, res) => {
+  sql.query(`SELECT * FROM pipeline_crm.member WHERE team_id = ${teamid}`, (err, res) => {
     if (err) {
       console.log('error: ', err)
       result(null, err)

@@ -5,7 +5,7 @@ const Team = function(team) {
 }
 
 Team.create = (newTeam, result) => {
-    sql.query('INSERT INTO team SET ?', newTeam, (err, res) => {
+    sql.query('INSERT INTO pipeline_crm.team SET ?', newTeam, (err, res) => {
         if (err) {
           console.log('error: ', err)
           result(err, null)
@@ -17,7 +17,7 @@ Team.create = (newTeam, result) => {
 }
 
 Team.findById = (teamid, result) => {
-    sql.query(`SELECT * FROM team WHERE team_id = ${teamid}`, (err, res) => {
+    sql.query(`SELECT * FROM pipeline_crm.team WHERE team_id = ${teamid}`, (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(err, null)
@@ -34,7 +34,7 @@ Team.findById = (teamid, result) => {
 }
 
 Team.getAll = (result) => {
-    sql.query('SELECT * FROM team', (err, res) => {
+    sql.query('SELECT * FROM pipeline_crm.team', (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(null, err)
@@ -47,7 +47,7 @@ Team.getAll = (result) => {
 
 Team.updateById = (teamid, team, result) => {
     sql.query(
-      "UPDATE team SET name = ? WHERE team_id = ?",
+      "UPDATE pipeline_crm.team SET name = ? WHERE team_id = ?",
       [team.name, teamid],
       (err, res) => {
         if (err) {
@@ -67,7 +67,7 @@ Team.updateById = (teamid, team, result) => {
 }
 
 Team.remove = (teamid, result) => {
-    sql.query('DELETE FROM team WHERE team_id = ?', teamid, (err, res) => {
+    sql.query('DELETE FROM pipeline_crm.team WHERE team_id = ?', teamid, (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(null, err)

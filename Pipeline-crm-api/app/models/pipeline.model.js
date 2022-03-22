@@ -6,7 +6,7 @@ const Pipeline = function(pipeline) {
 }
 
 Pipeline.create = (newPipeline, result) => {
-    sql.query('INSERT INTO pipeline SET ?', newPipeline, (err, res) => {
+    sql.query('INSERT INTO pipeline_crm.pipeline SET ?', newPipeline, (err, res) => {
         if (err) {
           console.log('error: ', err)
           result(err, null)
@@ -18,7 +18,7 @@ Pipeline.create = (newPipeline, result) => {
 }
 
 Pipeline.findById = (pipelineid, result) => {
-    sql.query(`SELECT * FROM pipeline WHERE pipeline_id = ${pipelineid}`, (err, res) => {
+    sql.query(`SELECT * FROM pipeline_crm.pipeline WHERE pipeline_id = ${pipelineid}`, (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(err, null)
@@ -35,7 +35,7 @@ Pipeline.findById = (pipelineid, result) => {
 }
 
 Pipeline.getAll = (result) => {
-    sql.query('SELECT pipeline.*, team.name AS team_name FROM pipeline LEFT JOIN team ON pipeline.team_id = team.team_id', (err, res) => {
+    sql.query('SELECT pipeline.*, team.name AS team_name FROM pipeline_crm.pipeline LEFT JOIN pipeline_crm.team ON pipeline.team_id = team.team_id', (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(null, err)
@@ -47,7 +47,7 @@ Pipeline.getAll = (result) => {
 }
 
 Pipeline.getTeamPipelines = (teamid, result) => {
-  sql.query(`SELECT * FROM pipeline WHERE team_id = ${teamid}`, (err, res) => {
+  sql.query(`SELECT * FROM pipeline_crm.pipeline WHERE team_id = ${teamid}`, (err, res) => {
     if (err) {
       console.log('error: ', err)
       result(null, err)
