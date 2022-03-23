@@ -26,7 +26,7 @@ Item.create = (newItem, result) => {
 }
 
 Item.findById = (itemid, result) => {
-    sql.query(`SELECT item.*, status.code AS status_code, completion.code as completion_code, client.name as client_name, product.name as product_name
+    sql.query(`SELECT item.*, status.code AS status_code, completion.code as completion_code,  completion.value as completion_value, client.name as client_name, product.name as product_name
     FROM pipeline_crm.item
     INNER JOIN pipeline_crm.status on status.status_id = item.status_id
     INNER JOIN pipeline_crm.completion on completion.completion_id = item.completion_id
@@ -49,7 +49,7 @@ Item.findById = (itemid, result) => {
 }
 
 Item.getAll = (result) => {
-    sql.query(`SELECT item.*, status.code AS status_code, completion.code as completion_code, client.name as client_name, product.name as product_name
+    sql.query(`SELECT item.*, status.code AS status_code, completion.code as completion_code, completion.value as completion_value, client.name as client_name, product.name as product_name
     FROM pipeline_crm.item
     INNER JOIN pipeline_crm.status on status.status_id = item.status_id
     INNER JOIN pipeline_crm.completion on completion.completion_id = item.completion_id
