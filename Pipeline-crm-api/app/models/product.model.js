@@ -7,7 +7,7 @@ const Product = function(product) {
 }
 
 Product.findById = (productid, result) => {
-    sql.query(`SELECT * FROM product WHERE product_id = ${productid}`, (err, res) => {
+    sql.query(`SELECT * FROM pipeline_crm.product WHERE product_id = ${productid}`, (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(err, null)
@@ -24,7 +24,7 @@ Product.findById = (productid, result) => {
 }
 
 Product.getAll = (result) => {
-    sql.query('SELECT * from product', (err, res) => {
+    sql.query('SELECT * from pipeline_crm.product', (err, res) => {
       if (err) {
         console.log('error: ', err)
         result(null, err)
@@ -36,7 +36,7 @@ Product.getAll = (result) => {
 }
 
 Product.getPipelineProducts = (pipelineid, result) => {
-  sql.query(`SELECT * FROM product WHERE pipeline_id = ${pipelineid}`, (err, res) => {
+  sql.query(`SELECT * FROM pipeline_crm.product WHERE pipeline_id = ${pipelineid}`, (err, res) => {
     if (err) {
       console.log('error: ', err)
       result(null, err)

@@ -14,4 +14,28 @@ statusCompletion.getAllClientStatus = (result) => {
     })
 }
 
+statusCompletion.getAllStatus = (result) => {
+  sql.query('SELECT * FROM pipeline_crm.status', (err, res) => {
+    if (err) {
+      console.log('error: ', err)
+      result(null, err)
+      return;
+    }
+    console.log('all status: ', res);
+    result(null, res)
+  })
+}
+
+statusCompletion.getAllCompletion = (result) => {
+  sql.query('SELECT * FROM pipeline_crm.completion', (err, res) => {
+    if (err) {
+      console.log('error: ', err)
+      result(null, err)
+      return;
+    }
+    console.log('all completion: ', res);
+    result(null, res)
+  })
+}
+
 module.exports = statusCompletion

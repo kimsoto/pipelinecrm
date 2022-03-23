@@ -25,6 +25,7 @@ require("./app/routes/member.routes.js")(app)
 require("./app/routes/pipeline.routes.js")(app)
 require("./app/routes/product.routes.js")(app)
 require("./app/routes/client.routes.js")(app)
+require("./app/routes/item.routes.js")(app)
 require("./app/routes/statusCompletion.routes.js")(app)
 
 app.use(express.static('public'))
