@@ -64,8 +64,8 @@ export default {
   },
   mounted() {
     axios
-      .get('/api/team/')
-      // .get('http://localhost:3000/api/team/')
+      // .get('/api/team/')
+      .get('http://localhost:3000/api/team/')
       .then(response => {
         this.teams = response.data
       })

@@ -3,7 +3,7 @@
 <div class="accordion-content">
     <div class="row">
     <h3>Team information</h3>
-        <div class="col-12 col-sm-4">
+        <div class="col-12 col-md-6">
             <div class="pipelines" v-if="pipelines.length > 0">
                 <h4>Pipelines</h4>
                 <ul class="list-group" :key="pipeline.pipeline_id" v-for="pipeline of pipelines">
@@ -21,7 +21,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-4">
+        <div class="col-12 col-md-6">
             <div class="members" v-if="members.length > 0">
                 <h4>Members</h4>
                 <ul class="list-group" :key="member.member_id" v-for="member of members">
@@ -59,10 +59,10 @@ export default {
     methods: {
     },
     mounted() {
-        let getMembers = `/api/member/${this.team.team_id}/All`
-        let getPipelines = `/api/pipeline/${this.team.team_id}/All`
-        // let getMembers = `http://localhost:3000/api/member/${this.team.team_id}/All`
-        // let getPipelines = `http://localhost:3000/api/pipeline/${this.team.team_id}/All`
+        // let getMembers = `/api/member/${this.team.team_id}/All`
+        // let getPipelines = `/api/pipeline/${this.team.team_id}/All`
+        let getMembers = `http://localhost:3000/api/member/${this.team.team_id}/All`
+        let getPipelines = `http://localhost:3000/api/pipeline/${this.team.team_id}/All`
         const promiseMembers = axios.get(getMembers)
         const promisePipelines = axios.get(getPipelines)
 
