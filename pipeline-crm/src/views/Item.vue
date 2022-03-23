@@ -124,8 +124,8 @@ export default {
     },
     getItems() {
       axios
-      // .get('/api/item/')
-      .get('http://localhost:3000/api/item/')
+      .get('/api/item/')
+      // .get('http://localhost:3000/api/item/')
       .then(response => {
         this.items = response.data
       })
@@ -134,8 +134,8 @@ export default {
       let newItem = { completion_id: this.completionSelect, status_id: this.statusSelect, client_id: this.clientSelect, product_id: this.productSelect, title: this.title, contracted_rev: this.contractedRev, planned_start: this.plannedStart, planned_end: this.plannedEnd, actual_start: this.actualStart, actual_end: this.actualEnd }
       let config = {
         method: 'post',
-        url: 'http://localhost:3000/api/item/',
-        // url: '/api/item/',
+        // url: 'http://localhost:3000/api/item/',
+        url: '/api/item/',
         data: newItem
       }
       axios(config)
@@ -162,16 +162,16 @@ export default {
     }
   },
   mounted() {
-    // let getItems = '/api/item/'
-    // let getClients = '/api/client/'
-    // let getProducts = '/api/product/'
-    // let getStatus = '/api/statusCompletion/status'
-    // let getCompletion = '/api/statusCompletion/completion'
-    let getItems = 'http://localhost:3000/api/item/'
-    let getClients = 'http://localhost:3000/api/client/'
-    let getProducts = 'http://localhost:3000/api/product/'
-    let getStatus = 'http://localhost:3000/api/statusCompletion/status'
-    let getCompletion = 'http://localhost:3000/api/statusCompletion/completion'
+    let getItems = '/api/item/'
+    let getClients = '/api/client/'
+    let getProducts = '/api/product/'
+    let getStatus = '/api/statusCompletion/status'
+    let getCompletion = '/api/statusCompletion/completion'
+    // let getItems = 'http://localhost:3000/api/item/'
+    // let getClients = 'http://localhost:3000/api/client/'
+    // let getProducts = 'http://localhost:3000/api/product/'
+    // let getStatus = 'http://localhost:3000/api/statusCompletion/status'
+    // let getCompletion = 'http://localhost:3000/api/statusCompletion/completion'
     const promiseItems = axios.get(getItems)
     const promiseClients = axios.get(getClients)
     const promiseProducts = axios.get(getProducts)

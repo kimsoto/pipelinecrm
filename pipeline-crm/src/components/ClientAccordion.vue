@@ -66,8 +66,8 @@ export default {
     },
     mounted() {
         axios
-        .get(`http://localhost:3000/api/item/${this.client.client_id}/All`)
-        // .get(`/api/item/${this.client.client_id}/All`)
+        // .get(`http://localhost:3000/api/item/${this.client.client_id}/All`)
+        .get(`/api/item/${this.client.client_id}/All`)
         .then(response => {
             this.items = response.data
         })
