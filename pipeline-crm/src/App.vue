@@ -77,6 +77,16 @@ ul li {
   margin: 0!important;
 }
 
+.create-form {
+  background-color: #fff;
+}
+
+.mx-input-wrapper {
+    border: none !important;
+    padding: 0px !important;
+    margin-top: 0px !important;
+}
+
 /*
 *Tablet and above
 */

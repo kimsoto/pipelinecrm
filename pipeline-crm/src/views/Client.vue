@@ -17,7 +17,7 @@
                 <h3 class="fs-4 mb-2">New Client</h3>
                 <div class="form-group mb-3">
                 <label for="name">Client Name:</label>
-                <input v-model="name" type="text" class="form-control" placeholder="Client Name" id="name">
+                <input maxlength="64" v-model="name" type="text" class="form-control" placeholder="Client Name" id="name">
                 </div>
                 <div class="form-group mb-3">
                 <label for="status">Client Status:</label>
@@ -81,8 +81,6 @@ export default {
       })
     },
     createClient() {
-      this.name = document.getElementById('name').value
-      this.statusSelect = document.getElementById('statusSelect').value
       let newClient = { status_id: this.statusSelect, name: this.name }
       let config = {
         method: 'post',
@@ -127,7 +125,5 @@ export default {
 </script>
 
 <style scoped>
-.create-form {
-  background-color: #fff;
-}
+
 </style>

@@ -4,7 +4,7 @@
     <div class="row">
     <h3>Team information</h3>
         <div class="col-12 col-sm-4">
-            <div class="pipelines">
+            <div class="pipelines" v-if="pipelines.length > 0">
                 <h4>Pipelines</h4>
                 <ul class="list-group" :key="pipeline.pipeline_id" v-for="pipeline of pipelines">
                 <li class="list-group-item list-group-item-action mb-1">
@@ -12,13 +12,29 @@
                 </li>
                 </ul>
             </div>
+            <div class="pipelines" v-else>
+                <h4>Pipelines</h4>
+                <ul class="list-group">
+                <li class="list-group-item list-group-item-action mb-1">
+                    <p>No pipelines have been assigned to this team.</p>
+                </li>
+                </ul>
+            </div>
         </div>
         <div class="col-12 col-sm-4">
-            <div class="members">
+            <div class="members" v-if="members.length > 0">
                 <h4>Members</h4>
                 <ul class="list-group" :key="member.member_id" v-for="member of members">
                 <li class="list-group-item list-group-item-action mb-1">
                     <p>{{ member.name }}</p>
+                </li>
+                </ul>
+            </div>
+            <div class="members" v-else>
+                <h4>Members</h4>
+                <ul class="list-group">
+                <li class="list-group-item list-group-item-action mb-1">
+                    <p>No members have been assigned to this team.</p>
                 </li>
                 </ul>
             </div>
