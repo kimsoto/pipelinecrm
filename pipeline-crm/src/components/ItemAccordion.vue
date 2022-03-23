@@ -3,16 +3,16 @@
 <div class="accordion-content">
     <div class="row">
     <div class="container mb-4 mt-0">
-        <button type="button" class="btn btn-dark" @click="editForm">Edit Item</button>
+        <button type="button" class="btn btn-dark" @click="editForm">Edit Item <i class="fa-solid" :class="iconClass"></i></button>
         <form class="create-form mt-4 p-3" @submit.prevent="editItem" v-show="showForm">
             <h3 class="fs-4 mb-2">Edit {{ item.title }}</h3>
                 <div class="form-group mb-3">
                 <label for="title">Item Title:</label>
-                <input v-model="title" type="text" class="form-control" placeholder="Item Name" id="title">
+                <input maxlength="64" :class="{'border border-danger': title === ''}" required v-model="title" type="text" class="form-control" placeholder="Item Name" id="title">
                 </div>
                 <div class="form-group mb-3">
                 <label for="contractedRev">Contracted Revenue:</label>
-                <input v-model="contractedRev" type="text" class="form-control" placeholder="Revenue" id="contractedRev">
+                <input maxlength="15" :class="{'border border-danger': contractedRev === ''}" type="text" pattern="\d{1,10}(?:\.\d{1,2})?$" v-model="contractedRev" class="form-control" placeholder="1000.00" id="contractedRev">
                 </div>
                 <div class="form-group mb-3">
                 <label for="statusSelect">Status:</label>
@@ -23,7 +23,7 @@
                 <div class="form-group mb-3">
                 <label for="completionSelect">Completion:</label>
                 <select v-model="completionSelect" name="completionSelect" id="completionSelect" class="form-select">
-                  <option :value="completion.completion_id" :key="'completion' + completion.completion_id" v-for="completion in completions" >{{ completion.code }}</option>
+                <option :value="completion.completion_id" :key="'completion' + completion.completion_id" v-for="completion in completions" >{{ completion.code }}</option>
                 </select>
                 </div>
                 <div class="form-group mb-3">
@@ -50,19 +50,23 @@
         <div class="item-dates row">
             <div class="p-start col-6">
                 <h4>Planned Start:</h4>
-                <p>{{ item.planned_start || "NULL" }}</p>
+                <p v-if="item.planned_start == null">{{ "NULL" }}</p>
+                <p v-else-if="item.planned_start != null">{{ new Date(item.planned_start).toISOString().split('T')[0] }}</p>
             </div>
             <div class="p-end col-6">
                 <h4>Planned End:</h4>
-                <p>{{ item.planned_end || "NULL" }}</p>
+                <p v-if="item.planned_end == null">{{ "NULL" }}</p>
+                <p v-else-if="item.planned_end != null">{{ new Date(item.planned_end).toISOString().split('T')[0] }}</p>
             </div>
             <div class="a-start col-6">
                 <h4>Actual Start:</h4>
-                <p>{{ item.actual_start || "NULL" }}</p>
+                <p v-if="item.actual_start == null">{{ "NULL" }}</p>
+                <p v-else-if="item.actual_start != null">{{ new Date(item.actual_start).toISOString().split('T')[0] }}</p>
             </div>
             <div class="a-end col-6">
                 <h4>Actual End:</h4>
-                <p>{{ item.actual_end || "NULL" }}</p>
+                <p v-if="item.actual_end == null">{{ "NULL" }}</p>
+                <p v-else-if="item.actual_end != null">{{  new Date(item.actual_end).toISOString().split('T')[0] }}</p>
             </div>
         </div>
     </div>  
@@ -100,10 +104,10 @@ export default {
         return {
             title: this.item.title,
             contractedRev:  this.item.contracted_rev,
-            plannedStart: null,
-            plannedEnd: null,
-            actualStart: null,
-            actualEnd: null,
+            plannedStart: this.item.planned_start,
+            plannedEnd: this.item.planned_end,
+            actualStart: this.item.actual_start,
+            actualEnd: this.item.actual_end,
             statusSelect: 1,
             completionSelect: 1,
             showForm: false
@@ -114,9 +118,15 @@ export default {
         editForm() {
             this.showForm = !this.showForm
         },
+        formatDate(date) {
+            if(new Date(date).toISOString().split('T')[0] != '1970-01-01') {
+                return new Date(date).toISOString().split('T')[0]
+            }
+            else return null
+        },
         editItem() {
         let newItemTitle = this.title
-        let itemEdit = { completion_id: this.completionSelect, status_id: this.statusSelect, title: newItemTitle, contracted_rev: this.contractedRev, planned_start: this.plannedStart, planned_end: this.plannedEnd, actual_start: this.actualStart, actual_end: this.actualEnd }
+        let itemEdit = { completion_id: this.completionSelect, status_id: this.statusSelect, title: newItemTitle, contracted_rev: this.contractedRev, planned_start: this.formatDate(this.plannedStart), planned_end: this.formatDate(this.plannedEnd), actual_start: this.formatDate(this.actualStart), actual_end: this.formatDate(this.actualEnd) }
         let config = {
             method: 'put',
             // url: `/api/item/${this.item.item_id}`,
@@ -129,12 +139,17 @@ export default {
             this.$parent.getItems()
             this.showForm = false
         })
-        
     }
     },
     mounted() {
     },
     computed: {
+        iconClass() {
+            return {
+                'fa-square-plus': this.showForm === false,
+                'fa-square-minus': this.showForm === true
+            }
+        }
     }
 }
 </script>

@@ -12,12 +12,12 @@
               <h2>Items</h2>
             </header>
             <div class="container mb-4 mt-0">
-            <button type="button" class="btn btn-dark" @click="addForm">Add Item <i class="fa-solid fa-square-plus"></i></button>
+            <button type="button" class="btn btn-dark" @click="addForm">Add Item <i class="fa-solid" :class="iconClass"></i></button>
             <form class="create-form mt-4 p-3" @submit.prevent="createItem" v-show="showForm">
                 <h3 class="fs-4 mb-2">New Item</h3>
                 <div class="form-group mb-3">
                 <label for="title">Item Title:</label>
-                <input v-model="title" type="text" class="form-control" placeholder="Item Name" id="title">
+                <input maxlength="64" required v-model="title" type="text" class="form-control" placeholder="Item Name" id="title">
                 </div>
                 <div class="form-group mb-3">
                 <label for="statusSelect">Status:</label>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group mb-3">
                 <label for="contractedRev">Contracted Revenue:</label>
-                <input v-model="contractedRev" type="text" class="form-control" placeholder="Revenue" id="contractedRev">
+                <input maxlength="15" required type="text" pattern="\d{1,10}(?:\.\d{1,2})?$" v-model="contractedRev" class="form-control" placeholder="100.00" id="contractedRev">
                 </div>
                 <div class="form-group mb-3">
                 <label for="plannedStart">Planned Start:</label>
@@ -145,6 +145,14 @@ export default {
           this.getItems()
           this.title = ''
           this.contractedRev = ''
+          this.statusSelect = 1
+          this.completionSelect = 1
+          this.clientSelect = this.clients[0].client_id
+          this.productSelect = this.products[0].product_id
+          this.plannedStart = null
+          this.plannedEnd = null
+          this.actualStart = null
+          this.actualEnd = null
       })
       .catch((error) => {
           if(error.response){
@@ -184,6 +192,12 @@ export default {
     })
   },
   computed: {
+    iconClass() {
+        return {
+          'fa-square-plus': this.showForm === false,
+          'fa-square-minus': this.showForm === true
+      }
+    }
   }
 }
 </script>

@@ -17,7 +17,7 @@
                 <h3 class="fs-4 mb-2">New Client</h3>
                 <div class="form-group mb-3">
                 <label for="name">Client Name:</label>
-                <input v-model="name" type="text" class="form-control" placeholder="Client Name" id="name">
+                <input maxlength="64" v-model="name" type="text" class="form-control" placeholder="Client Name" id="name">
                 </div>
                 <div class="form-group mb-3">
                 <label for="status">Client Status:</label>
