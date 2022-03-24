@@ -46,26 +46,11 @@ export default {
     }
   },
   methods: {
-    createTeam() {
-      let teamName = document.querySelector('#name').value
-      let newTeam = { name: teamName }
-      let config = {
-          method: 'post',
-          url: '/api/team/',
-          data: newTeam
-        }
-      axios(config)
-        .then(response => {
-            console.log(response)
-            this.teams.push(response.data)
-            // location.reload()
-        })
-    }
   },
   mounted() {
     axios
-      // .get('/api/team/')
-      .get('http://localhost:3000/api/team/')
+      .get('/api/team/')
+      // .get('http://localhost:3000/api/team/')
       .then(response => {
         this.teams = response.data
       })
