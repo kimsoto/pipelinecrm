@@ -4,7 +4,7 @@
     <div class="row">
     <div class="container mb-4 mt-0">
         <button type="button" class="btn btn-dark" @click="editForm">Edit Item <i class="fa-solid" :class="iconClass"></i></button>
-        <form class="create-form mt-4 p-3" @submit.prevent="editItem" v-show="showForm">
+        <form class="create-form p-3" @submit.prevent="editItem" v-show="showForm">
             <h3 class="fs-4 mb-2">Edit {{ item.title }}</h3>
                 <div class="form-group mb-3">
                 <label for="title">Item Title:</label>
@@ -45,44 +45,46 @@
                 <input class="btn btn-dark mt-3" type="submit" :disabled="!title || !contractedRev">
         </form>
     </div>
-    <h3>Item information</h3>
-    <div class="col-12 col-sm-6">
+    <h3 class="mb-0">Item information</h3>
+    <div class="col-12 col-lg-6">
         <div class="item-dates row">
-            <div class="p-start col-6">
+            <div class="col-12 col-lg-6">
+                <div class="p-start">
                 <h4>Planned Start:</h4>
                 <p v-if="item.planned_start == null">{{ "NULL" }}</p>
                 <p v-else-if="item.planned_start != null">{{ new Date(item.planned_start).toISOString().split('T')[0] }}</p>
+                </div>
             </div>
-            <div class="p-end col-6">
+            <div class="col-12 col-lg-6">
+                <div class="p-end">
                 <h4>Planned End:</h4>
                 <p v-if="item.planned_end == null">{{ "NULL" }}</p>
                 <p v-else-if="item.planned_end != null">{{ new Date(item.planned_end).toISOString().split('T')[0] }}</p>
+                </div>
             </div>
-            <div class="a-start col-6">
+            <div class="col-12 col-lg-6">
+                <div class="a-start">
                 <h4>Actual Start:</h4>
                 <p v-if="item.actual_start == null">{{ "NULL" }}</p>
                 <p v-else-if="item.actual_start != null">{{ new Date(item.actual_start).toISOString().split('T')[0] }}</p>
+                </div>
             </div>
-            <div class="a-end col-6">
+            <div class="col-12 col-lg-6">
+                <div class="a-end">
                 <h4>Actual End:</h4>
                 <p v-if="item.actual_end == null">{{ "NULL" }}</p>
                 <p v-else-if="item.actual_end != null">{{  new Date(item.actual_end).toISOString().split('T')[0] }}</p>
+                </div>
             </div>
         </div>
     </div>  
-    <div class="col-12 col-sm-6">
-        <div class="item-info">
-            <ul class="list-group">
-                <li class="list-group-item list-group-item-action mb-1">
-                    <p>Client: {{ item.client_name }}</p>
-                </li>
-                <li class="list-group-item list-group-item-action mb-1">
-                    <p>Product: {{ item.product_name }}</p>
-                </li>
-                <li class="list-group-item list-group-item-action mb-1">
-                    <p>Contracted Revenue: {{ item.contracted_rev }}</p>
-                </li>
-            </ul>
+    <div class="col-12 col-lg-6">
+        <div class="item-info row">
+            <div>
+                <h4 class="mb-4">Client: <span class="ms-2">{{ item.client_name }}</span></h4>
+                <h4 class="mb-4">Product: <span class="ms-2">{{ item.product_name }}</span></h4>
+                <h4 class="mb-4">Contracted Revenue: <span class="ms-2">${{ item.contracted_rev }}</span></h4>
+            </div>
         </div>
     </div>
     </div>
@@ -158,6 +160,7 @@ export default {
 .item-dates {
     border: none !important;
     padding: 0 !important;
+    margin-top: 0 !important;
 }
 .item-dates div {
     height: 200px !important;
@@ -165,7 +168,27 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: none !important;
+    margin-top: 0 !important;
 }
+.item-dates div div {
+    border: 1px solid #cccccc !important;
+    height: 100% !important;
+    width: 100%;
+}
+.item-info {
+    border: none !important;
+    margin-top: 0 !important;
+}
+.item-info div {
+    margin-top: 0 !important;
+    border: 1px solid #cccccc !important;
+}
+h4 span {
+    font-size: 16px;
+    font-weight: normal;
+}
+
 .accordion-content .row .form-group, .accordion-content .row .form-group .mx-datepicker{
     border: none !important;
     padding: 0px;

@@ -74,8 +74,8 @@ export default {
     },
     getClient() {
       axios
-      .get('/api/client/')
-      // .get('http://localhost:3000/api/client/')
+      // .get('/api/client/')
+      .get('http://localhost:3000/api/client/')
       .then(response => {
         this.clients = response.data
       })
@@ -84,8 +84,8 @@ export default {
       let newClient = { status_id: this.statusSelect, name: this.name }
       let config = {
         method: 'post',
-        // url: 'http://localhost:3000/api/client/',
-        url: '/api/client/',
+        url: 'http://localhost:3000/api/client/',
+        // url: '/api/client/',
         data: newClient
       }
       axios(config)

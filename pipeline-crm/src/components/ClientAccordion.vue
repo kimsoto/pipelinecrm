@@ -3,16 +3,14 @@
 <div class="accordion-content">
     <div class="row">
     <h3>Client information</h3>
-    <div class="col-12 col-sm-6 col-md-4">
+    <div class="col-12 col-md-4">
         <div class="client">
-            <ul class="list-group">
-                <li class="list-group-item list-group-item-action mb-1">
-                    <p>Status: <span :class="statusColor">{{ client.code }}</span></p>
-                </li>
-            </ul>
+            <div>
+                <h4 class="mb-4">Status: <span class="ms-2" :class="statusColor">{{ client.code }}</span></h4>
+            </div>
         </div>
     </div>  
-    <div class="col-12 col-sm-6 col-md-4">
+    <div class="col-12 col-md-4">
         <div class="items" v-if="items.length > 0">
             <h4>Items</h4>
             <ul class="list-group" :key="item.item_id" v-for="item of items">
@@ -30,7 +28,7 @@
             </ul>
         </div>
     </div> 
-    <div class="col-12 col-sm-6 col-md-4">
+    <div class="col-12 col-md-4">
         <div class="contacts">
             <h4>Contacts</h4>
             <ul class="list-group">
@@ -85,4 +83,12 @@ export default {
 </script>
 
 <style scoped>
+.client div {
+    border: none !important;
+    padding: 0 !important;
+}
+h4 span {
+    font-size: 16px;
+    font-weight: normal;
+}
 </style>

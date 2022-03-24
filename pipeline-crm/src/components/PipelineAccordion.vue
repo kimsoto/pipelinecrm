@@ -3,14 +3,14 @@
 <div class="accordion-content">
     <div class="row">
     <h3>Pipeline information</h3>
-    <div class="col-12 col-sm-6">
+    <div class="col-12 col-md-6">
         <div class="product" v-if="products.length > 0">
             <h4>Products</h4>
             <ul class="list-group" :key="product.product_id" v-for="product of products">
                 <li class="list-group-item list-group-item-action mb-1">
                     <p>{{ product.name }}</p>
                 </li>
-                </ul>
+            </ul>
         </div>
         <div class="product" v-else>
             <h4>Products</h4>
@@ -21,6 +21,11 @@
             </ul>
         </div>
     </div>  
+    <div class="col-12 col-md-6" v-if="products.length > 0">
+        <div class="product-prices">
+            <h4>Product Prices Total: <span class="ms-2">${{ productPrices.reduce((total, i) => total + i, 0) }}</span></h4>
+        </div>
+    </div>
     </div>
 </div>
 </div>
@@ -33,7 +38,8 @@ export default {
     name: 'PipelineAccordion',
     data() {
         return {
-            products: []
+            products: [],
+            productPrices: []
         }
     },
     props: ['pipeline'],
@@ -45,10 +51,17 @@ export default {
         .get(`/api/product/${this.pipeline.pipeline_id}/All`)
         .then(response => {
             this.products = response.data
+            for(let product of this.products){
+                this.productPrices.push(product.price)
+            }
         })
     }
 }
 </script>
 
 <style scoped>
+h4 span {
+    font-size: 16px;
+    font-weight: normal;
+}
 </style>
