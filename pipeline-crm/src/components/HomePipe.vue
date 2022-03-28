@@ -1,10 +1,12 @@
 <template>
-<div class="pipe">
+<div>
+    <div class="pipe">
     <a class="text-center" :href="'/Pipeline/#toggle' + pipeline.pipeline_id"><h4 class="mb-5">{{pipeline.name}}</h4></a>
     <!-- <div class="row justify-content-around"> -->
     <div class="revenue">
         <p class="fw-bold">Contracted Revenue:</p>
         <p>${{ productPrices.reduce((total, i) => total + i, 0) }}</p>
+    </div>
     </div>
     <!-- </div> -->
 </div>
