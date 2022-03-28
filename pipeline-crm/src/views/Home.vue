@@ -10,6 +10,11 @@
             <header>
               <h1>Pipeline CRM</h1>
             </header>
+            <div class="container">
+            <div class="row" :key="rowIndex" v-for="rowIndex in Math.ceil(pipelines.length / 3)">
+              <HomePipe class="col-4" :key="'homePipeline' + pipeline.pipeline_id" :pipeline="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
+            </div>
+            </div>
           </div>
         </div>
       </div>
@@ -20,11 +25,32 @@
 
 <script>
 import SideMenu from '../components/SideMenu.vue'
+import HomePipe from '../components/HomePipe.vue'
+const axios = require('axios')
 
 export default {
   name: 'Home',
   components: {
-      SideMenu
+    SideMenu,
+    HomePipe
+  },
+  data() {
+    return {
+      pipelines: []
+    }
+  },
+  mounted() {
+    axios
+      .get('/api/pipeline/')
+      // .get('http://localhost:3000/api/pipeline/')
+      .then(response => {
+        console.log(response.data)
+        this.pipelines = response.data
+      })
   }
 }
 </script>
+
+<style scoped>
+
+</style>

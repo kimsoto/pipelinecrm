@@ -1,5 +1,5 @@
 <template>
-<div data-bs-parent="#clientAccordion" class="col-lg-12 overlay collapse in" :id="'toggle' + client.client_id">
+<div data-bs-parent="#clientAccordion" :class="{'show': showAccordion == 'toggle' + client.client_id }" class="col-lg-12 overlay collapse in" :id="'toggle' + client.client_id">
 <div class="accordion-content">
     <div class="row">
     <h3>Client information</h3>
@@ -15,7 +15,7 @@
             <h4>Items</h4>
             <ul class="list-group" :key="item.item_id" v-for="item of items">
                 <li class="list-group-item list-group-item-action mb-1">
-                    <p>{{ item.title }}</p>
+                    <a :href="'/Item/#toggle' + item.item_id"><p>{{ item.title }}</p></a>
                 </li>
             </ul>
         </div>
@@ -77,6 +77,9 @@ export default {
                 'text-danger': this.client.status_id === 2,
                 'text-warning': this.client.status_id === 3
             }
+        },
+        showAccordion() {
+            return window.location.href.split('#').pop()
         }
     }
 }

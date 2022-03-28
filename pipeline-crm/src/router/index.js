@@ -16,27 +16,27 @@ const routes = [
     component: Home
   },
   {
-    path: '/Client',
+    path: '/Client/:id?',
     name: 'Client',
     component: Client
   },
   {
-    path: '/Contact',
+    path: '/Contact/:id?',
     name: 'Contact',
     component: Contact
   },
   {
-    path: '/Item',
+    path: '/Item/:id?',
     name: 'Item',
     component: Item
   },
   {
-    path: '/Pipeline',
+    path: '/Pipeline/:id?',
     name: 'Pipeline',
     component: Pipeline
   },
   {
-    path: '/Team',
+    path: '/Team/:id?',
     name: 'Team',
     component: Team
   },
