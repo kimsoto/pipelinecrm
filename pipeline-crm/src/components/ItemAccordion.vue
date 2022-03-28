@@ -81,7 +81,7 @@
     <div class="col-12 col-lg-6">
         <div class="item-info row">
             <div>
-                <h4 class="mb-4">Client: <a :href="'/Client/#toggle' + item.client_id"><span class="ms-2">{{ item.client_name }}</span></a></h4>
+                <h4 class="mb-4">Client: <a :href="'#/Client/#toggle' + item.client_id"><span class="ms-2">{{ item.client_name }}</span></a></h4>
                 <h4 class="mb-4">Product: <span class="ms-2">{{ item.product_name }}</span></h4>
                 <h4 class="mb-4">Contracted Revenue: <span class="ms-2">${{ item.contracted_rev }}</span></h4>
             </div>

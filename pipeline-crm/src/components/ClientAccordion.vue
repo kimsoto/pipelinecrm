@@ -15,7 +15,7 @@
             <h4>Items</h4>
             <ul class="list-group" :key="item.item_id" v-for="item of items">
                 <li class="list-group-item list-group-item-action mb-1">
-                    <a :href="'/Item/#toggle' + item.item_id"><p>{{ item.title }}</p></a>
+                    <a :href="'#/Item/#toggle' + item.item_id"><p>{{ item.title }}</p></a>
                 </li>
             </ul>
         </div>
