@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+// import Vue from 'vue'
+// import VueRouter from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Client from '../views/Client.vue'
@@ -8,7 +8,7 @@ import Item from '../views/Item.vue'
 import Pipeline from '../views/Pipeline.vue'
 import Team from '../views/Team.vue'
 
-Vue.use(VueRouter)
+// Vue.use(VueRouter)
 
 const routes = [
   {
