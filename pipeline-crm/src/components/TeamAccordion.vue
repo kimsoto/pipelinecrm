@@ -8,7 +8,7 @@
                 <h4>Pipelines</h4>
                 <ul class="list-group" :key="pipeline.pipeline_id" v-for="pipeline of pipelines">
                 <li class="list-group-item list-group-item-action mb-1">
-                    <p>{{ pipeline.name }}</p>
+                    <a :href="'#/Pipeline/#toggle' + pipeline.pipeline_id"><p>{{ pipeline.name }}</p></a>
                 </li>
                 </ul>
             </div>
@@ -71,6 +71,11 @@ export default {
             this.members = results[0].data
             this.pipelines = results[1].data
         })
+    },
+    computed: {
+        showAccordion() {
+            return window.location.href.split('#').pop()
+        }
     }
 }
 </script>

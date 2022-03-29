@@ -1,5 +1,5 @@
 <template>
-<div data-bs-parent="#pipelineAccordion" class="col-lg-12 overlay collapse in" :id="'toggle' + pipeline.pipeline_id">
+<div data-bs-parent="#pipelineAccordion" :class="{'show': showAccordion == 'toggle' + pipeline.pipeline_id }" class="col-lg-12 overlay collapse in" :id="'toggle' + pipeline.pipeline_id">
 <div class="accordion-content">
     <div class="row">
     <h3>Pipeline information</h3>
@@ -55,6 +55,11 @@ export default {
                 this.productPrices.push(product.price)
             }
         })
+    },
+    computed: {
+        showAccordion() {
+            return window.location.href.split('#').pop()
+        }
     }
 }
 </script>

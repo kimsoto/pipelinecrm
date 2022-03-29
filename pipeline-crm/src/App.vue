@@ -72,6 +72,10 @@ header {
 ul li {
   border-radius: 0!important;
 }
+a{
+  text-decoration: none;
+  color: #4d4e4d!important;
+}
 
 .list-group-item p {
   margin: 0!important;
