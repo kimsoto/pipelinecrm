@@ -1,6 +1,6 @@
 <template>
 <div class="col-4 accordion-grid">
-  <figure>
+  <figure class="yes">
   <a :href="'#toggle' + team.team_id"  data-bs-toggle="collapse" aria-expanded="false" :aria-controls="'toggle' + team.team_id">{{ team.name }}</a>
   </figure>
 </div>
@@ -15,12 +15,16 @@ export default {
   },
   props: ['team'],
   methods: {
-
   },
   mounted() {
+  },
+  created() {
+  },
+  computed: {
   }
 }
 </script>
 
 <style scoped>
+
 </style>

@@ -42,7 +42,7 @@ export default {
   },
   data() {
     return {
-      teams: [],
+      teams: []
     }
   },
   methods: {
@@ -54,6 +54,8 @@ export default {
       .then(response => {
         this.teams = response.data
       })
+  },
+  computed: {
   }
 }
 </script>

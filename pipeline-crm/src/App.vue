@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-      
     <router-view/>
   </div>
 </template>
@@ -75,6 +74,23 @@ ul li {
 a{
   text-decoration: none;
   color: #4d4e4d!important;
+}
+
+figure a {
+  position: relative;
+}
+figure a::after {
+  content: "\f0d8";
+  font: normal normal normal 40px/1 FontAwesome;
+  position: absolute;
+  bottom: -125px;
+  left: 50%;
+  margin: 0 auto;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+figure a[aria-expanded="false"]::after {
+  display: none;
 }
 
 .list-group-item p {

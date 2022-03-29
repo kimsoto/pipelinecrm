@@ -73,9 +73,6 @@ export default {
         })
     },
     computed: {
-        showAccordion() {
-            return window.location.href.split('#').pop()
-        }
     }
 }
 </script>
