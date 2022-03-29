@@ -33,6 +33,10 @@ export default {
     font-size: 14px;
 }
 
+figure a::after {
+    bottom: -145px;
+}
+
 @media only screen and (min-width: 768px) {
 .accordion-grid figure p {
     font-size: 16px;

@@ -207,4 +207,8 @@ h4 span {
     display: block;
     width: 100%;
 }
+
+figure a::after {
+    bottom: -165px;
+}
 </style>
