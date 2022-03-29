@@ -79,19 +79,29 @@ a{
 figure a {
   position: relative;
 }
-figure a::after {
+figure a[aria-expanded="true"]::after {
   content: "\f0d8";
   font: normal normal normal 40px/1 FontAwesome;
   position: absolute;
+  display: block;
   bottom: -125px;
   left: 50%;
   margin: 0 auto;
   transform: translate(-50%, -50%);
   color: #fff;
 }
-figure a[aria-expanded="false"]::after {
-  display: none;
-}
+
+/* figure a.showArrow[aria-expanded="false"]::after {
+  content: "\f0d8";
+  font: normal normal normal 40px/1 FontAwesome;
+  position: absolute;
+  display: block;
+  bottom: -145px;
+  left: 50%;
+  margin: 0 auto;
+  transform: translate(-50%, -50%);
+  color: #fff;
+} */
 
 .list-group-item p {
   margin: 0!important;
