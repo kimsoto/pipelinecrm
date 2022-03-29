@@ -49,8 +49,8 @@ export default {
   },
   mounted() {
     axios
-      // .get('/api/pipeline/')
-      .get('http://localhost:3000/api/pipeline/')
+      .get('/api/pipeline/')
+      // .get('http://localhost:3000/api/pipeline/')
       .then(response => {
         this.pipelines = response.data
       })
