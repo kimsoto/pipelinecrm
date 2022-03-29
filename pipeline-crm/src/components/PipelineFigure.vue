@@ -18,6 +18,11 @@ export default {
     methods: {
     },
     mounted() {
+    },
+    computed: {
+        showAccordion() {
+            return window.location.href.split('#').pop()
+        }
     }
 }
 </script>
@@ -31,6 +36,10 @@ export default {
 .accordion-grid figure p {
     text-align: center;
     font-size: 14px;
+}
+
+figure a::after {
+    bottom: -145px;
 }
 
 @media only screen and (min-width: 768px) {
