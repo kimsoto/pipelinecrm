@@ -11,8 +11,8 @@
               <h1>Pipeline CRM</h1>
             </header>
             <div class="container">
-            <div class="row" :key="rowIndex" v-for="rowIndex in Math.ceil(pipelines.length / 3)">
-              <HomePipe class="col-4" :key="'homePipeline' + pipeline.pipeline_id" :pipeline="pipeline" v-for="pipeline in pipelines.slice(3 * (rowIndex - 1), 3 * rowIndex)" />
+            <div class="row">
+              <HomePipe class="col-12 col-md-6 col-lg-4" :key="'homePipeline' + pipeline.pipeline_id" :pipeline="pipeline" v-for="pipeline in pipelines" />
             </div>
             </div>
           </div>

@@ -48,7 +48,7 @@ header {
   color: #000;
   text-decoration: none;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .accordion-content {
@@ -81,10 +81,10 @@ figure a {
 }
 figure a[aria-expanded="true"]::after {
   content: "\f0d8";
-  font: normal normal normal 40px/1 FontAwesome;
+  font: normal normal normal 35px/1 FontAwesome;
   position: absolute;
   display: block;
-  bottom: -125px;
+  bottom: -129px;
   left: 50%;
   margin: 0 auto;
   transform: translate(-50%, -50%);
@@ -128,6 +128,10 @@ figure a[aria-expanded="true"]::after {
     margin: 0;
     height: 100%;
   }
+  figure a[aria-expanded="true"]::after {
+    bottom: -130px;  
+    font: normal normal normal 40px/1 FontAwesome;
+  }
 }
 
 /*
@@ -136,6 +140,9 @@ figure a[aria-expanded="true"]::after {
 @media only screen and (min-width: 1200px) {
   .accordion-grid a {
     font-size: 24px;
+  }
+  figure a[aria-expanded="true"]::after {
+    bottom: -125px; 
   }
 }
 </style>

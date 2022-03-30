@@ -44,17 +44,29 @@ export default {
 
 .accordion-grid figure p {
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
 }
 
-figure a::after {
-    bottom: -165px;
+figure a[aria-expanded="true"]::after {
+    bottom: -164px;
 }
 
 @media only screen and (min-width: 768px) {
-.accordion-grid figure p {
-    font-size: 16px;
+    .accordion-grid figure p {
+        font-size: 16px;
+    }
+    figure a[aria-expanded="true"]::after {
+        bottom: -170px;
+    }
 }
+
+/*
+*Screen and above
+*/
+@media only screen and (min-width: 1200px) {
+    figure a[aria-expanded="true"]::after {
+        bottom: -165px; 
+    }
 }
 
 </style>
