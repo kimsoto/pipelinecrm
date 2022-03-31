@@ -11,6 +11,7 @@
     "axios": "^0.26.0",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
+    "keycloak-js": "^17.0.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue2-datepicker": "^3.10.4"

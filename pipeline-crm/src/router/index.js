@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Client from '../views/Client.vue'
-import Contact from '../views/Contact.vue'
 import Item from '../views/Item.vue'
 import Pipeline from '../views/Pipeline.vue'
 import Team from '../views/Team.vue'
@@ -19,11 +18,6 @@ const routes = [
     path: '/Client/:id?',
     name: 'Client',
     component: Client
-  },
-  {
-    path: '/Contact/:id?',
-    name: 'Contact',
-    component: Contact
   },
   {
     path: '/Item/:id?',

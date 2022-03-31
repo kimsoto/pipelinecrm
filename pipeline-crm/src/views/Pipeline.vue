@@ -8,8 +8,16 @@
         <div class="col py-3">
           <div class="row">
             <header>
+              <div class="headings">
               <h1>Pipeline CRM</h1>
               <h2>Pipelines</h2>
+              </div>
+              <div class="user dropdown">
+              <a href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="btn user-btn dropdown-toggle"><i class="fa-solid fa-user me-1"></i>{{ firstName }} {{ lastName }}</a>
+              <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" @click="logout" href="#">Logout</a></li>
+              </ul>
+              </div>
             </header>
 <div class="container">
   <div id="pipelineAccordion">
@@ -28,6 +36,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import SideMenu from '../components/SideMenu.vue'
 import PipelineFigure from '../components/PipelineFigure.vue'
 import PipelineAccordion from '../components/PipelineAccordion.vue'
@@ -43,14 +52,23 @@ export default {
   data() {
     return {
       pipelines: [],
+      firstName: '',
+      lastName: ''
     }
   },
+  beforeMount() {
+    this.firstName = Vue.$keycloak.tokenParsed.given_name
+    this.lastName = Vue.$keycloak.tokenParsed.family_name
+  },
   methods: {
+    logout () {
+      Vue.$keycloak.logout({ redirectUri: window.location.origin })
+    },
   },
   mounted() {
     axios
-      .get('/api/pipeline/')
-      // .get('http://localhost:3000/api/pipeline/')
+      // .get('/api/pipeline/')
+      .get('http://localhost:3000/api/pipeline/')
       .then(response => {
         this.pipelines = response.data
       })

@@ -3,14 +3,14 @@
 <div class="accordion-content">
     <div class="row">
     <h3>Client information</h3>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-6">
         <div class="client">
             <div>
                 <h4 class="mb-4">Status: <span class="ms-2" :class="statusColor">{{ client.code }}</span></h4>
             </div>
         </div>
     </div>  
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-6">
         <div class="items" v-if="items.length > 0">
             <h4>Items</h4>
             <ul class="list-group" :key="item.item_id" v-for="item of items">
@@ -24,22 +24,6 @@
             <ul class="list-group">
                 <li class="list-group-item list-group-item-action mb-1">
                     <p>No items have been assigned to this client.</p>
-                </li>
-            </ul>
-        </div>
-    </div> 
-    <div class="col-12 col-md-4">
-        <div class="contacts">
-            <h4>Contacts</h4>
-            <ul class="list-group">
-                <li class="list-group-item list-group-item-action mb-1">
-                    <p>Contact 1</p>
-                </li>
-                <li class="list-group-item list-group-item-action mb-1">
-                    <p>Contact 2</p>
-                </li>
-                <li class="list-group-item list-group-item-action mb-1">
-                    <p>Contact 3</p>
                 </li>
             </ul>
         </div>
@@ -64,8 +48,8 @@ export default {
     },
     mounted() {
         axios
-        // .get(`http://localhost:3000/api/item/${this.client.client_id}/All`)
-        .get(`/api/item/${this.client.client_id}/All`)
+        .get(`http://localhost:3000/api/item/${this.client.client_id}/All`)
+        // .get(`/api/item/${this.client.client_id}/All`)
         .then(response => {
             this.items = response.data
         })

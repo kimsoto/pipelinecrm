@@ -31,6 +31,9 @@ header {
   padding-top: 15px;
   padding-bottom: 15px;
   margin-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
 }
 .py-3 {
   padding-top: 0!important;
