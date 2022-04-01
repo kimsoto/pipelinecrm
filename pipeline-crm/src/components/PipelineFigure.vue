@@ -38,13 +38,32 @@ export default {
     font-size: 14px;
 }
 
-figure a::after {
-    bottom: -145px;
+figure a[aria-expanded="true"]::after {
+    bottom: -148px;
 }
 
+/*
+*Tablet and above
+*/
 @media only screen and (min-width: 768px) {
-.accordion-grid figure p {
-    font-size: 16px;
+    .accordion-grid figure p {
+        font-size: 16px;
+    }
+    figure a[aria-expanded="true"]::after {
+        bottom: -150px;  
+        font: normal normal normal 40px/1 FontAwesome;
+    }
 }
+
+/*
+*Screen and above
+*/
+@media only screen and (min-width: 1200px) {
+    .accordion-grid a {
+        font-size: 24px;
+    }
+    figure a[aria-expanded="true"]::after {
+        bottom: -145px; 
+    }
 }
 </style>

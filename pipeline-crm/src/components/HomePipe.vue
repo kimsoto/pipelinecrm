@@ -47,13 +47,22 @@ export default {
 
 <style scoped>
 .pipe {
-  padding: 40px 20px;
-  background-color: #fff;
-  margin: 0px 40px;
+    padding: 40px 20px;
+    background-color: #fff;
+    margin: 0px 40px 20px 40px;
 }
 .pipe .completion, .pipe .revenue {
-  background-color: #eeeeee;
-  padding: 10px;
-  text-align: center;
+    background-color: #eeeeee;
+    padding: 10px;
+    text-align: center;
+}
+
+/*
+*Tablet and above
+*/
+@media only screen and (min-width: 768px) {
+    .pipe {
+        margin: 0px 20px 20px 20px;
+    }
 }
 </style>
