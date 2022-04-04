@@ -55,13 +55,20 @@ export default {
     this.lastName = Vue.$keycloak.tokenParsed.family_name
   },
   mounted() {
-    axios
-      // .get('/api/pipeline/')
-      .get('http://localhost:3000/api/pipeline/')
-      .then(response => {
-        console.log(response.data)
-        this.pipelines = response.data
-      })
+    let config = {
+      method: 'get',
+      // url: '/api/pipeline/'),
+      url: 'http://localhost:3000/api/pipeline/',
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+      }
+    }
+
+    axios(config)
+    .then(response => {
+      console.log(response.data)
+      this.pipelines = response.data
+    })
   },
   methods: {
     logout () {

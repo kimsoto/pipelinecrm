@@ -7,7 +7,10 @@ Vue.config.productionTip = false
 Vue.use(authentication)
 
 Vue.$keycloak
-  .init({ onLoad: 'login-required', checkLoginIframe: false })
+  .init({ onLoad: 'login-required', checkLoginIframe: false }).then(() => {
+    localStorage.setItem("vue-token", Vue.$keycloak.token)
+    localStorage.setItem("vue-refresh-token", Vue.$keycloak.refreshToken)
+  })
   .then(() => {
     new Vue({
       router,

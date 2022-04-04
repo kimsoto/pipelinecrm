@@ -91,9 +91,16 @@ export default {
       this.showForm = !this.showForm
     },
     getClient() {
-      axios
-      // .get('/api/client/')
-      .get('http://localhost:3000/api/client/')
+      let config = {
+      method: 'get',
+      // url: '/api/client/',
+      url: 'http://localhost:3000/api/client/',
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+      }
+    }
+
+      axios(config)
       .then(response => {
         this.clients = response.data
       })
@@ -104,6 +111,9 @@ export default {
         method: 'post',
         url: 'http://localhost:3000/api/client/',
         // url: '/api/client/',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+        },
         data: newClient
       }
       axios(config)
@@ -127,8 +137,14 @@ export default {
     // let getClientStatus = '/api/statusCompletion/clientStatus'
     let getClients = 'http://localhost:3000/api/client/'
     let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
-    const promiseClients = axios.get(getClients)
-    const promiseClientStatus = axios.get(getClientStatus)
+    const promiseClients = axios.get(getClients, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
+    const promiseClientStatus = axios.get(getClientStatus, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
 
     Promise.all([promiseClients, promiseClientStatus])
     .then(results => {

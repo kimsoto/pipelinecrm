@@ -141,9 +141,16 @@ export default {
       this.showForm = !this.showForm
     },
     getItems() {
-      axios
-      // .get('/api/item/')
-      .get('http://localhost:3000/api/item/')
+      let config = {
+        method: 'get',
+        // url: '/api/item/',
+        url: 'http://localhost:3000/api/item/',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+        }
+      }
+
+      axios(config)
       .then(response => {
         this.items = response.data
       })
@@ -154,6 +161,9 @@ export default {
         method: 'post',
         url: 'http://localhost:3000/api/item/',
         // url: '/api/item/',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+        },
         data: newItem
       }
       axios(config)
@@ -190,11 +200,26 @@ export default {
     let getProducts = 'http://localhost:3000/api/product/'
     let getStatus = 'http://localhost:3000/api/statusCompletion/status'
     let getCompletion = 'http://localhost:3000/api/statusCompletion/completion'
-    const promiseItems = axios.get(getItems)
-    const promiseClients = axios.get(getClients)
-    const promiseProducts = axios.get(getProducts)
-    const promiseStatus = axios.get(getStatus)
-    const promiseCompletion = axios.get(getCompletion)
+    const promiseItems = axios.get(getItems, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
+    const promiseClients = axios.get(getClients, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
+    const promiseProducts = axios.get(getProducts, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
+    const promiseStatus = axios.get(getStatus, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
+    const promiseCompletion = axios.get(getCompletion, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
 
     Promise.all([promiseItems, promiseClients, promiseProducts, promiseStatus, promiseCompletion])
     .then(results => {

@@ -47,9 +47,16 @@ export default {
     methods: {
     },
     mounted() {
-        axios
-        .get(`http://localhost:3000/api/item/${this.client.client_id}/All`)
-        // .get(`/api/item/${this.client.client_id}/All`)
+        let config = {
+            method: 'get',
+            // url: `/api/item/${this.client.client_id}/All`,
+            url: `http://localhost:3000/api/item/${this.client.client_id}/All`,
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+            }
+        }
+
+        axios(config)
         .then(response => {
             this.items = response.data
         })

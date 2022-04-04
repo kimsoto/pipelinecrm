@@ -66,12 +66,19 @@ export default {
     },
   },
   mounted() {
-    axios
-      // .get('/api/team/')
-      .get('http://localhost:3000/api/team/')
-      .then(response => {
-        this.teams = response.data
-      })
+    let config = {
+      method: 'get',
+      // url: '/api/team/',
+      url: 'http://localhost:3000/api/team/',
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+      }
+    }
+    
+    axios(config)
+    .then(response => {
+      this.teams = response.data
+    })
   },
   computed: {
   }

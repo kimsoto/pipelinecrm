@@ -1,18 +1,38 @@
 console.log('loading express server')
 const express = require('express')
+const Keycloak = require('keycloak-connect')
+const session = require('express-session')
 const cors = require('cors')
 const path = __dirname + '/app/views/'
 const app = express()
 const PORT = 3000
+
 let corsOptions = {
     // origin: 'http://localhost:3001'
     origin: 'http://localhost:8080'
 }
+let memoryStore = new session.MemoryStore()
+let ckConfig = {
+    clientId: 'myclient',
+    bearerOnly: true,
+    serverUrl: 'http://localhost:8001',
+    realm: 'ads'
+}
+let keycloak = new Keycloak({store: memoryStore},ckConfig)
 
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.static(path))
 app.use(express.urlencoded({ extended: true }))
+app.use(session({
+    secret: 'secretkey',
+    resave: false,
+    saveUninitialized: true,
+    store: memoryStore
+}))
+app.use(keycloak.middleware())
+
+app.all('*', keycloak.protect())
 
 // app.get('/', (req, res) => {
 //     res.sendFile(path + 'index.html')
