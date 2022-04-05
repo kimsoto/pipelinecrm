@@ -93,8 +93,8 @@ export default {
     getClient() {
       let config = {
       method: 'get',
-      // url: '/api/client/',
-      url: 'http://localhost:3000/api/client/',
+      url: '/api/client/',
+      // url: 'http://localhost:3000/api/client/',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('vue-token')
       }
@@ -109,8 +109,8 @@ export default {
       let newClient = { status_id: this.statusSelect, name: this.name }
       let config = {
         method: 'post',
-        url: 'http://localhost:3000/api/client/',
-        // url: '/api/client/',
+        // url: 'http://localhost:3000/api/client/',
+        url: '/api/client/',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('vue-token')
         },
@@ -133,10 +133,10 @@ export default {
     }
   },
   mounted() {
-    // let getClients = '/api/client/'
-    // let getClientStatus = '/api/statusCompletion/clientStatus'
-    let getClients = 'http://localhost:3000/api/client/'
-    let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
+    let getClients = '/api/client/'
+    let getClientStatus = '/api/statusCompletion/clientStatus'
+    // let getClients = 'http://localhost:3000/api/client/'
+    // let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
     const promiseClients = axios.get(getClients, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('vue-token')

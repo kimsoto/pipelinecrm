@@ -57,8 +57,8 @@ export default {
   mounted() {
     let config = {
       method: 'get',
-      // url: '/api/pipeline/'),
-      url: 'http://localhost:3000/api/pipeline/',
+      url: '/api/pipeline/',
+      // url: 'http://localhost:3000/api/pipeline/',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('vue-token')
       }

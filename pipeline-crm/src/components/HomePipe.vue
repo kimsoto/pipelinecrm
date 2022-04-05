@@ -29,8 +29,8 @@ export default {
     mounted() {
         let config = {
             method: 'get',
-            // url: `/api/product/${this.pipeline.pipeline_id}/All`,
-            url: `http://localhost:3000/api/product/${this.pipeline.pipeline_id}/All`,
+            url: `/api/product/${this.pipeline.pipeline_id}/All`,
+            // url: `http://localhost:3000/api/product/${this.pipeline.pipeline_id}/All`,
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('vue-token')
             }
