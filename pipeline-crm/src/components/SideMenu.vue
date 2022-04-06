@@ -17,11 +17,6 @@
                           </router-link>
                       </li>
                       <li class="nav-item">
-                          <router-link to="/Contact" class="nav-link align-middle px-0">
-                              <i class="fs-4 fa-solid fa-address-card"></i> <span class="ms-1 d-none d-sm-inline">Contacts</span>
-                          </router-link>
-                      </li>
-                      <li class="nav-item">
                           <router-link to="/Pipeline" class="nav-link align-middle px-0">
                               <i class="fs-4 fa-solid fa-chart-column"></i> <span class="ms-1 d-none d-sm-inline">Pipelines</span>
                           </router-link>
@@ -31,13 +26,24 @@
                             <i class="fs-4 fa-solid fa-book"></i> <span class="ms-1 d-none d-sm-inline">Items</span>
                         </router-link>
                       </li>
+                      <li class="nav-item">
+                        <a @click="logout" href="#" class="nav-link align-middle px-0">
+                            <i class="fs-4 fa-solid fa-right-from-bracket"></i> <span class="ms-1 d-none d-sm-inline">Logout</span>
+                        </a>
+                      </li>
                   </ul>
     </div>
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
-  name: 'SideMenu'
+  name: 'SideMenu',
+  methods: {
+    logout () {
+      Vue.$keycloak.logout({ redirectUri: window.location.origin })
+    }
+  }
 }
 </script>
 

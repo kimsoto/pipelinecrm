@@ -8,8 +8,16 @@
         <div class="col py-3">
           <div class="row">
             <header>
+              <div class="headings">
               <h1>Pipeline CRM</h1>
               <h2>Clients</h2>
+              </div>
+              <div class="user dropdown">
+              <a href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="btn user-btn dropdown-toggle"><i class="fa-solid fa-user me-1"></i>{{ firstName }} {{ lastName }}</a>
+              <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" @click="logout" href="#">Logout</a></li>
+              </ul>
+              </div>
             </header>
             <div class="container mb-4 mt-0">
             <button type="button" class="btn btn-dark" @click="addForm">Add Client <i class="fa-solid fa-square-plus"></i></button>
@@ -46,6 +54,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import SideMenu from '../components/SideMenu.vue'
 import ClientFigure from '../components/ClientFigure.vue'
 import ClientAccordion from '../components/ClientAccordion.vue'
@@ -65,17 +74,33 @@ export default {
       showForm: false,
       name: '',
       statusSelect: 1,
-      dupeClient: false
+      dupeClient: false,
+      firstName: '',
+      lastName: ''
     }
   },
+  beforeMount() {
+    this.firstName = Vue.$keycloak.tokenParsed.given_name
+    this.lastName = Vue.$keycloak.tokenParsed.family_name
+  },
   methods: {
+    logout () {
+      Vue.$keycloak.logout({ redirectUri: window.location.origin })
+    },
     addForm() {
       this.showForm = !this.showForm
     },
     getClient() {
-      axios
-      .get('/api/client/')
-      // .get('http://localhost:3000/api/client/')
+      let config = {
+      method: 'get',
+      url: '/api/client/',
+      // url: 'http://localhost:3000/api/client/',
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+      }
+    }
+
+      axios(config)
       .then(response => {
         this.clients = response.data
       })
@@ -86,6 +111,9 @@ export default {
         method: 'post',
         // url: 'http://localhost:3000/api/client/',
         url: '/api/client/',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+        },
         data: newClient
       }
       axios(config)
@@ -109,8 +137,14 @@ export default {
     let getClientStatus = '/api/statusCompletion/clientStatus'
     // let getClients = 'http://localhost:3000/api/client/'
     // let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
-    const promiseClients = axios.get(getClients)
-    const promiseClientStatus = axios.get(getClientStatus)
+    const promiseClients = axios.get(getClients, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
+    const promiseClientStatus = axios.get(getClientStatus, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
 
     Promise.all([promiseClients, promiseClientStatus])
     .then(results => {

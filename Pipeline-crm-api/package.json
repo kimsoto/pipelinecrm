@@ -2,6 +2,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "keycloak-connect": "^17.0.1",
     "mysql": "^2.18.1"
   }
 }

@@ -133,6 +133,9 @@ export default {
             method: 'put',
             url: `/api/item/${this.item.item_id}`,
             // url: `http://localhost:3000/api/item/${this.item.item_id}`,
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+            },
             data: itemEdit
         }
         axios(config)

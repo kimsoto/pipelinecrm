@@ -8,8 +8,16 @@
         <div class="col py-3">
           <div class="row">
             <header>
+              <div class="headings">
               <h1>Pipeline CRM</h1>
               <h2>Items</h2>
+              </div>
+              <div class="user dropdown">
+              <a href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="btn user-btn dropdown-toggle"><i class="fa-solid fa-user me-1"></i>{{ firstName }} {{ lastName }}</a>
+              <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" @click="logout" href="#">Logout</a></li>
+              </ul>
+              </div>
             </header>
             <div class="container mb-4 mt-0">
             <button type="button" class="btn btn-dark" @click="addForm">Add Item <i class="fa-solid" :class="iconClass"></i></button>
@@ -83,6 +91,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import SideMenu from '../components/SideMenu.vue'
 import ItemFigure from '../components/ItemFigure.vue'
 import ItemAccordion from '../components/ItemAccordion.vue'
@@ -115,17 +124,33 @@ export default {
       statusSelect: 1,
       completionSelect: 1,
       clientSelect: '',
-      productSelect: ''
+      productSelect: '',
+      firstName: '',
+      lastName: ''
     }
   },
+  beforeMount() {
+    this.firstName = Vue.$keycloak.tokenParsed.given_name
+    this.lastName = Vue.$keycloak.tokenParsed.family_name
+  },
   methods: {
+    logout () {
+      Vue.$keycloak.logout({ redirectUri: window.location.origin })
+    },
     addForm() {
       this.showForm = !this.showForm
     },
     getItems() {
-      axios
-      .get('/api/item/')
-      // .get('http://localhost:3000/api/item/')
+      let config = {
+        method: 'get',
+        url: '/api/item/',
+        // url: 'http://localhost:3000/api/item/',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+        }
+      }
+
+      axios(config)
       .then(response => {
         this.items = response.data
       })
@@ -136,6 +161,9 @@ export default {
         method: 'post',
         // url: 'http://localhost:3000/api/item/',
         url: '/api/item/',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+        },
         data: newItem
       }
       axios(config)
@@ -172,11 +200,26 @@ export default {
     // let getProducts = 'http://localhost:3000/api/product/'
     // let getStatus = 'http://localhost:3000/api/statusCompletion/status'
     // let getCompletion = 'http://localhost:3000/api/statusCompletion/completion'
-    const promiseItems = axios.get(getItems)
-    const promiseClients = axios.get(getClients)
-    const promiseProducts = axios.get(getProducts)
-    const promiseStatus = axios.get(getStatus)
-    const promiseCompletion = axios.get(getCompletion)
+    const promiseItems = axios.get(getItems, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
+    const promiseClients = axios.get(getClients, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
+    const promiseProducts = axios.get(getProducts, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
+    const promiseStatus = axios.get(getStatus, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
+    const promiseCompletion = axios.get(getCompletion, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+    }})
 
     Promise.all([promiseItems, promiseClients, promiseProducts, promiseStatus, promiseCompletion])
     .then(results => {
