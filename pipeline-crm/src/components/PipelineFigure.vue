@@ -1,7 +1,7 @@
 <template>
 <div class="col-4 accordion-grid">
     <figure>
-        <a :href="'#toggle' + pipeline.pipeline_id" data-bs-toggle="collapse" aria-expanded="false" :aria-controls="'toggle' + pipeline.pipeline_id">{{ pipeline.name }}</a>
+        <a :href="'#toggle' + pipeline.pipeline_id" data-bs-toggle="collapse" :aria-expanded="showArrow ? true : false" :aria-controls="'toggle' + pipeline.pipeline_id">{{ pipeline.name }}</a>
         <p>{{pipeline.team_name}}</p>
     </figure>
 </div>
@@ -20,6 +20,9 @@ export default {
     mounted() {
     },
     computed: {
+        showArrow() {
+            return window.location.href.split('#').pop() === 'toggle' + this.pipeline.pipeline_id
+        },
         showAccordion() {
             return window.location.href.split('#').pop()
         }

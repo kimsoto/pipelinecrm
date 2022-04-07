@@ -1,7 +1,7 @@
 <template>
 <div class="col-4 accordion-grid">
     <figure>
-        <a class="mb-4" :href="'#toggle' + item.item_id" :id="'aFig' + item.item_id" data-bs-toggle="collapse" aria-expanded="false" :aria-controls="'toggle' + item.item_id">{{ item.title }}</a>
+        <a class="mb-4" :href="'#toggle' + item.item_id" :id="'aFig' + item.item_id" data-bs-toggle="collapse" :aria-expanded="showArrow ? true : false" :aria-controls="'toggle' + item.item_id">{{ item.title }}</a>
         <p class="mb-1">Status: {{ item.status_code }}</p>
         <p class="mb-1" :class="completionColor">Completion: {{ item.completion_value * 100 }}% </p>
     </figure>
@@ -22,6 +22,12 @@ export default {
     mounted() {
     },
     computed: {
+        showArrow() {
+            return window.location.href.split('#').pop() === 'toggle' + this.item.item_id
+        },
+        showAccordion() {
+            return window.location.href.split('#').pop()
+        },
         completionColor() {
             return {
                 'text-danger': this.item.completion_value === 0 || this.item.completion_value === 0.25,
