@@ -11,16 +11,7 @@
 
 export default {
     name: 'ClientFigure',
-    data() {
-        return {
-        }
-    },
     props: ['client'],
-    methods: {
-    },
-    mounted() {
-
-    },
     computed: {
         showArrow() {
             return window.location.href.split('#').pop() === 'toggle' + this.client.client_id

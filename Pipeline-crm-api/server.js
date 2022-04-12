@@ -1,4 +1,3 @@
-console.log('loading express server')
 const express = require('express')
 const Keycloak = require('keycloak-connect')
 const session = require('express-session')
@@ -8,15 +7,15 @@ const app = express()
 const PORT = 3000
 
 let corsOptions = {
-    origin: 'http://localhost:3001'
-    // origin: 'http://localhost:8080'
+    // origin: 'http://localhost:3001'
+    origin: 'http://localhost:8080'
 }
 let memoryStore = new session.MemoryStore()
 let ckConfig = {
     clientId: 'crmclient',
     bearerOnly: true,
-    // serverUrl: 'http://localhost:8001',
-    serverUrl: 'https://crm.alpinedatasolutions.com/auth/',
+    serverUrl: 'http://localhost:8001',
+    // serverUrl: 'https://crm.alpinedatasolutions.com/auth/',
     realm: 'ads'
 }
 let keycloak = new Keycloak({store: memoryStore},ckConfig)
@@ -35,12 +34,12 @@ app.use(keycloak.middleware())
 
 app.all('*', keycloak.protect())
 
-app.get('/', (req, res) => {
-    res.sendFile(path + 'index.html')
-})
 // app.get('/', (req, res) => {
-//     res.send("express api!")
+//     res.sendFile(path + 'index.html')
 // })
+app.get('/', (req, res) => {
+    res.send("express api!")
+})
 require("./app/routes/team.routes.js")(app)
 require("./app/routes/member.routes.js")(app)
 require("./app/routes/pipeline.routes.js")(app)

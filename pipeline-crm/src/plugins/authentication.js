@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Keycloak from 'keycloak-js'
 
 const options = {
-  // url: 'http://localhost:8001',
-  url: 'https://crm.alpinedatasolutions.com/auth/',
+  url: 'http://localhost:8001',
+  // url: 'https://crm.alpinedatasolutions.com/auth/',
   realm: 'ads',
   clientId: 'crmclient'
 }

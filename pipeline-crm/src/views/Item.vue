@@ -5,7 +5,7 @@
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-grey">
           <SideMenu></SideMenu>
         </div>
-        <div class="col py-3">
+        <div class="col pb-3 header-div">
           <div class="row">
             <header>
               <div class="headings">
@@ -159,8 +159,8 @@ export default {
       let newItem = { completion_id: this.completionSelect, status_id: this.statusSelect, client_id: this.clientSelect, product_id: this.productSelect, title: this.title, contracted_rev: this.contractedRev, planned_start: this.plannedStart, planned_end: this.plannedEnd, actual_start: this.actualStart, actual_end: this.actualEnd }
       let config = {
         method: 'post',
-        // url: 'http://localhost:3000/api/item/',
-        url: '/api/item/',
+        url: 'http://localhost:3000/api/item/',
+        // url: '/api/item/',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('vue-token')
         },
@@ -190,16 +190,16 @@ export default {
     }
   },
   mounted() {
-    let getItems = '/api/item/'
-    let getClients = '/api/client/'
-    let getProducts = '/api/product/'
-    let getStatus = '/api/statusCompletion/status'
-    let getCompletion = '/api/statusCompletion/completion'
-    // let getItems = 'http://localhost:3000/api/item/'
-    // let getClients = 'http://localhost:3000/api/client/'
-    // let getProducts = 'http://localhost:3000/api/product/'
-    // let getStatus = 'http://localhost:3000/api/statusCompletion/status'
-    // let getCompletion = 'http://localhost:3000/api/statusCompletion/completion'
+    // let getItems = '/api/item/'
+    // let getClients = '/api/client/'
+    // let getProducts = '/api/product/'
+    // let getStatus = '/api/statusCompletion/status'
+    // let getCompletion = '/api/statusCompletion/completion'
+    let getItems = 'http://localhost:3000/api/item/'
+    let getClients = 'http://localhost:3000/api/client/'
+    let getProducts = 'http://localhost:3000/api/product/'
+    let getStatus = 'http://localhost:3000/api/statusCompletion/status'
+    let getCompletion = 'http://localhost:3000/api/statusCompletion/completion'
     const promiseItems = axios.get(getItems, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('vue-token')

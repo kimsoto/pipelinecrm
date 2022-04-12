@@ -7,9 +7,7 @@
 <script>
 
 export default {
-  name: 'App',
-  components: {
-  }
+  name: 'App'
 }
 </script>
 
@@ -31,13 +29,10 @@ header {
   padding-top: 15px;
   padding-bottom: 15px;
   margin-bottom: 20px;
-
   display: flex;
   justify-content: space-between;
 }
-.py-3 {
-  padding-top: 0!important;
-}
+
 .accordion-grid figure {
   background-color: white;
   box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
@@ -93,18 +88,6 @@ figure a[aria-expanded="true"]::after {
   transform: translate(-50%, -50%);
   color: #fff;
 }
-
-/* figure a.showArrow[aria-expanded="false"]::after {
-  content: "\f0d8";
-  font: normal normal normal 40px/1 FontAwesome;
-  position: absolute;
-  display: block;
-  bottom: -145px;
-  left: 50%;
-  margin: 0 auto;
-  transform: translate(-50%, -50%);
-  color: #fff;
-} */
 
 .list-group-item p {
   margin: 0!important;

@@ -10,15 +10,7 @@
 <script>
 export default {
     name: 'PipelineFigure',
-    data() {
-        return {
-        }
-    },
     props: ['pipeline'],
-    methods: {
-    },
-    mounted() {
-    },
     computed: {
         showArrow() {
             return window.location.href.split('#').pop() === 'toggle' + this.pipeline.pipeline_id

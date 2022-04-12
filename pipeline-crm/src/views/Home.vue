@@ -5,7 +5,7 @@
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-grey">
           <SideMenu></SideMenu>
         </div>
-        <div class="col py-3">
+        <div class="col pb-3 header-div">
           <div class="row">
             <header>
               <div class="headings">
@@ -57,8 +57,8 @@ export default {
   mounted() {
     let config = {
       method: 'get',
-      url: '/api/pipeline/',
-      // url: 'http://localhost:3000/api/pipeline/',
+      // url: '/api/pipeline/',
+      url: 'http://localhost:3000/api/pipeline/',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('vue-token')
       }
@@ -66,7 +66,6 @@ export default {
 
     axios(config)
     .then(response => {
-      console.log(response.data)
       this.pipelines = response.data
     })
   },
@@ -77,7 +76,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

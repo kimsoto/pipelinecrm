@@ -127,26 +127,24 @@ export default {
             else return null
         },
         editItem() {
-        let newItemTitle = this.title
-        let itemEdit = { completion_id: this.completionSelect, status_id: this.statusSelect, title: newItemTitle, contracted_rev: this.contractedRev, planned_start: this.formatDate(this.plannedStart), planned_end: this.formatDate(this.plannedEnd), actual_start: this.formatDate(this.actualStart), actual_end: this.formatDate(this.actualEnd) }
-        let config = {
-            method: 'put',
-            url: `/api/item/${this.item.item_id}`,
-            // url: `http://localhost:3000/api/item/${this.item.item_id}`,
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('vue-token')
-            },
-            data: itemEdit
+            let newItemTitle = this.title
+            let itemEdit = { completion_id: this.completionSelect, status_id: this.statusSelect, title: newItemTitle, contracted_rev: this.contractedRev, planned_start: this.formatDate(this.plannedStart), planned_end: this.formatDate(this.plannedEnd), actual_start: this.formatDate(this.actualStart), actual_end: this.formatDate(this.actualEnd) }
+            let config = {
+                method: 'put',
+                // url: `/api/item/${this.item.item_id}`,
+                url: `http://localhost:3000/api/item/${this.item.item_id}`,
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('vue-token')
+                },
+                data: itemEdit
+            }
+            axios(config)
+            .then(response => {
+                console.log(response)
+                this.$parent.getItems()
+                this.showForm = false
+            })
         }
-        axios(config)
-        .then(response => {
-            console.log(response)
-            this.$parent.getItems()
-            this.showForm = false
-        })
-    }
-    },
-    mounted() {
     },
     computed: {
         iconClass() {

@@ -56,8 +56,6 @@ export default {
         }
     },
     props: ['team'],
-    methods: {
-    },
     mounted() {
         let getMembers = `/api/member/${this.team.team_id}/All`
         let getPipelines = `/api/pipeline/${this.team.team_id}/All`
@@ -77,12 +75,6 @@ export default {
             this.members = results[0].data
             this.pipelines = results[1].data
         })
-    },
-    computed: {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

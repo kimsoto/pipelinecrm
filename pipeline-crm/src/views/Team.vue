@@ -5,7 +5,7 @@
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-grey">
           <SideMenu></SideMenu>
         </div>
-        <div class="col py-3">
+        <div class="col pb-3 header-div">
           <div class="row">
             <header>
               <div class="headings">
@@ -68,8 +68,8 @@ export default {
   mounted() {
     let config = {
       method: 'get',
-      url: '/api/team/',
-      // url: 'http://localhost:3000/api/team/',
+      // url: '/api/team/',
+      url: 'http://localhost:3000/api/team/',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('vue-token')
       }
@@ -79,12 +79,6 @@ export default {
     .then(response => {
       this.teams = response.data
     })
-  },
-  computed: {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

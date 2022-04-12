@@ -9,22 +9,6 @@
 <script>
 export default {
   name: 'TeamFigure',
-  data() {
-    return {
-    }
-  },
-  props: ['team'],
-  methods: {
-  },
-  mounted() {
-  },
-  created() {
-  },
-  computed: {
-  }
+  props: ['team']
 }
 </script>
-
-<style scoped>
-
-</style>

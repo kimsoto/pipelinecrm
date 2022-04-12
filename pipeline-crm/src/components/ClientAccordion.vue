@@ -44,8 +44,6 @@ export default {
         }
     },
     props: ['client'],
-    methods: {
-    },
     mounted() {
         let config = {
             method: 'get',

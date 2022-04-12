@@ -12,15 +12,7 @@
 
 export default {
     name: 'ItemFigure',
-    data() {
-        return {
-        }
-    },
     props: ['item'],
-    methods: {
-    },
-    mounted() {
-    },
     computed: {
         showArrow() {
             return window.location.href.split('#').pop() === 'toggle' + this.item.item_id
@@ -42,10 +34,6 @@ export default {
 <style scoped>
 .accordion-grid figure {
     flex-direction: column;
-}
-
-.hidden {
-    display: none;
 }
 
 .accordion-grid figure p {

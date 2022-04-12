@@ -5,7 +5,7 @@
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-grey">
           <SideMenu></SideMenu>
         </div>
-        <div class="col py-3">
+        <div class="col pb-3 header-div">
           <div class="row">
             <header>
               <div class="headings">
@@ -93,8 +93,8 @@ export default {
     getClient() {
       let config = {
       method: 'get',
-      url: '/api/client/',
-      // url: 'http://localhost:3000/api/client/',
+      // url: '/api/client/',
+      url: 'http://localhost:3000/api/client/',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('vue-token')
       }
@@ -118,7 +118,6 @@ export default {
       }
       axios(config)
         .then(response => {
-          console.log(response)
           this.clients.push(response.data)
           this.showForm = false
           this.dupeClient = false
@@ -133,10 +132,10 @@ export default {
     }
   },
   mounted() {
-    let getClients = '/api/client/'
-    let getClientStatus = '/api/statusCompletion/clientStatus'
-    // let getClients = 'http://localhost:3000/api/client/'
-    // let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
+    // let getClients = '/api/client/'
+    // let getClientStatus = '/api/statusCompletion/clientStatus'
+    let getClients = 'http://localhost:3000/api/client/'
+    let getClientStatus = 'http://localhost:3000/api/statusCompletion/clientStatus'
     const promiseClients = axios.get(getClients, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('vue-token')
@@ -151,13 +150,6 @@ export default {
         this.clients = results[0].data
         this.clientStatus = results[1].data
     })
-  },
-  computed: {
-
   }
 }
 </script>
-
-<style scoped>
-
-</style>

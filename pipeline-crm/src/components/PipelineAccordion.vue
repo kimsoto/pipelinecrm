@@ -43,8 +43,6 @@ export default {
         }
     },
     props: ['pipeline'],
-    methods: {
-    },
     mounted() {
         let config = {
             method: 'get',
