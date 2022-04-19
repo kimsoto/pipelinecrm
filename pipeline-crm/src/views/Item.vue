@@ -99,6 +99,14 @@ import DatePicker from 'vue2-datepicker'
 import 'vue2-datepicker/index.css'
 const axios = require('axios')
 
+/**
+ * This is the Item page component
+ * 
+ * It holds the Item cards and the Item detail card components
+ * This component also has the Create New Item form that calls the Create Item API call
+ * Once the component is loaded it will call the List Items, List Products,
+ * List Status, and List Completion API calls
+ */
 export default {
   name: 'Item',
   components: {
@@ -134,12 +142,21 @@ export default {
     this.lastName = Vue.$keycloak.tokenParsed.family_name
   },
   methods: {
+    /**
+     * Logout method used in the Header of the page to redirect back to Keycloak login
+     */
     logout () {
       Vue.$keycloak.logout({ redirectUri: window.location.origin })
     },
+    /**
+     * Method that toggles the Create New Item form
+     */
     addForm() {
       this.showForm = !this.showForm
     },
+    /**
+     * Method that calls the List Items API call
+     */
     getItems() {
       let config = {
         method: 'get',
@@ -155,6 +172,12 @@ export default {
         this.items = response.data
       })
     },
+    /**
+     * Method that grabs the Create New Item form input to call the Create Item API call
+     * 
+     * After the api is called, it hides the Create New Item form and resets the form inputs 
+     * and calls getItems()
+     */
     createItem() {
       let newItem = { completion_id: this.completionSelect, status_id: this.statusSelect, client_id: this.clientSelect, product_id: this.productSelect, title: this.title, contracted_rev: this.contractedRev, planned_start: this.plannedStart, planned_end: this.plannedEnd, actual_start: this.actualStart, actual_end: this.actualEnd }
       let config = {

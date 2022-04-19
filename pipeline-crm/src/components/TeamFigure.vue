@@ -7,6 +7,12 @@
 </template>
 
 <script>
+
+/**
+ * This is the Team card component
+ * 
+ * It shows the Team Name
+ */
 export default {
   name: 'TeamFigure',
   props: ['team']

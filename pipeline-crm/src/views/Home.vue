@@ -37,6 +37,12 @@ import SideMenu from '../components/SideMenu.vue'
 import HomePipe from '../components/HomePipe.vue'
 const axios = require('axios')
 
+/**
+ * This is the Home page component
+ * 
+ * It holds the Home Pipe cards
+ * Once the component is loaded it will call the List Pipelines API calls
+ */
 export default {
   name: 'Home',
   components: {
@@ -70,6 +76,9 @@ export default {
     })
   },
   methods: {
+    /**
+     * Logout method used in the Header of the page to redirect back to Keycloak login
+     */
     logout () {
       Vue.$keycloak.logout({ redirectUri: window.location.origin })
     }

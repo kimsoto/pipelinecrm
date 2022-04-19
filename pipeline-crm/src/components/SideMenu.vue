@@ -37,9 +37,17 @@
 
 <script>
 import Vue from 'vue'
+
+/**
+ * This is the Side Menu component
+ * 
+ */
 export default {
   name: 'SideMenu',
   methods: {
+    /**
+     * Logout method used in the Header of the page to redirect back to Keycloak login
+     */
     logout () {
       Vue.$keycloak.logout({ redirectUri: window.location.origin })
     }

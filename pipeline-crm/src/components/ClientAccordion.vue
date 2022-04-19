@@ -36,6 +36,13 @@
 <script>
 const axios = require('axios')
 
+/**
+ * This is the Client detail accordion
+ * 
+ * It shows the Client Status, and the Item's assigned to the Client.
+ * If no Item's are assigned to the Client, it will show a message stating that no items have been assigned.
+ * Once the component is loaded it will call the List Client Items API calls
+ */
 export default {
     name: 'ClientAccordion',
     data() {

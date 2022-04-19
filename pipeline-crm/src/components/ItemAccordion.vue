@@ -97,6 +97,13 @@ const axios = require('axios')
 import DatePicker from 'vue2-datepicker'
 import 'vue2-datepicker/index.css'
 
+/**
+ * This is the Item detail accordion
+ * 
+ * It shows the the Planned Start, End, and Actual Start, End of each Item, as well as
+ * the Client, Product, and Contracted Revenue assigned to the Item.
+ * This component also has the Edit Item form that calls the Edit Item API call
+ */
 export default {
     name: 'ItemAccordion',
     components: {
@@ -117,15 +124,26 @@ export default {
     },
     props: ['item', 'completions', 'statuses'],
     methods: {
+        /**
+         * Method that toggles the Edit form
+         */
         editForm() {
             this.showForm = !this.showForm
         },
+        /**
+         * Method that formats the date from vue2-datepicker to enter to the database
+         */
         formatDate(date) {
             if(new Date(date).toISOString().split('T')[0] != '1970-01-01') {
                 return new Date(date).toISOString().split('T')[0]
             }
             else return null
         },
+        /**
+         * Method that grabs the Edit Item form inputs to call the Edit API call
+         * 
+         * After the api is called, it calls getItems() from the Item component
+         */
         editItem() {
             let newItemTitle = this.title
             let itemEdit = { completion_id: this.completionSelect, status_id: this.statusSelect, title: newItemTitle, contracted_rev: this.contractedRev, planned_start: this.formatDate(this.plannedStart), planned_end: this.formatDate(this.plannedEnd), actual_start: this.formatDate(this.actualStart), actual_end: this.formatDate(this.actualEnd) }

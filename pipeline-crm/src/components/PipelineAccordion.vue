@@ -34,6 +34,13 @@
 <script>
 const axios = require('axios')
 
+/**
+ * This is the Pipeline detail accordion
+ * 
+ * It shows the Total Product Prices, and the Products's assigned to the Pipeline.
+ * If no Products's are assigned to the Pipeline, it will show a message stating that no products have been assigned.
+ * Once the component is loaded it will call the List Pipeline Products API calls
+ */
 export default {
     name: 'PipelineAccordion',
     data() {

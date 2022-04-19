@@ -60,6 +60,13 @@ import ClientFigure from '../components/ClientFigure.vue'
 import ClientAccordion from '../components/ClientAccordion.vue'
 const axios = require('axios')
 
+/**
+ * This is the Client page component
+ * 
+ * It holds the Client cards and the Client detail card components
+ * This component also has the Create New Client form that calls the Create Client API call
+ * Once the component is loaded it will call the List Clients and List Client Status API calls
+ */
 export default {
   name: 'Client',
   components: {
@@ -84,12 +91,21 @@ export default {
     this.lastName = Vue.$keycloak.tokenParsed.family_name
   },
   methods: {
+    /**
+     * Logout method used in the Header of the page to redirect back to Keycloak login
+     */
     logout () {
       Vue.$keycloak.logout({ redirectUri: window.location.origin })
     },
+    /**
+     * Method that toggles the Create New Client form
+     */
     addForm() {
       this.showForm = !this.showForm
     },
+    /**
+     * Method that calls the List Clients API call
+     */
     getClient() {
       let config = {
       method: 'get',
@@ -99,12 +115,17 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('vue-token')
       }
     }
-
       axios(config)
       .then(response => {
         this.clients = response.data
       })
     },
+    /**
+     * Method that grabs the Create New Client form input to call the Create API call
+     * 
+     * After the api is called, it hides the Create New Client form and resets the form name input,
+     * resets the dupeClient variable, and calls getClient()
+     */
     createClient() {
       let newClient = { status_id: this.statusSelect, name: this.name }
       let config = {

@@ -8,6 +8,12 @@
 </template>
 
 <script>
+
+/**
+ * This is the Pipeline card component
+ * 
+ * It shows the Pipeline Name, and the Team name that the Pipeline belongs to
+ */
 export default {
     name: 'PipelineFigure',
     props: ['pipeline'],

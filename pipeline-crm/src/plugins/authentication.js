@@ -1,3 +1,9 @@
+/**
+ * Js file that connects the realm id and client id from Keycloak 
+ * and connects it to Vue
+ * 
+ * Used in main.js when initializing Vue
+ */
 import Vue from 'vue'
 import Keycloak from 'keycloak-js'
 

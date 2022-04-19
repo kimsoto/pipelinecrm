@@ -47,6 +47,14 @@
 <script>
 const axios = require('axios')
 
+/**
+ * This is the Team detail accordion
+ * 
+ * It shows the the Pipelines's and Members assigned to the Team.
+ * If no Pipelines's or Members are assigned to the Team, 
+ * it will show a message stating that no pipelines and members have been assigned.
+ * Once the component is loaded it will call the List Team Pipelines and List Members API calls
+ */
 export default {
     name: 'TeamAccordion',
     data() {

@@ -9,6 +9,11 @@
 
 <script>
 
+/**
+ * This is the Client card component
+ * 
+ * It shows the Client Name, and an icon that represents the Client Status
+ */
 export default {
     name: 'ClientFigure',
     props: ['client'],

@@ -6,6 +6,25 @@ const Member = function(member) {
     this.email = member.email
 }
 
+/**
+ * Add a new Member
+ * @param {*} newMember 
+ * @request-example: Json
+ * {
+    "name": "James Kennedy",
+    "email": "james.kennedy@alpinedatasolutions.com",
+    "team_id": 1
+  }
+ * 
+ * @success-example: 
+ * {
+    "member_id": 7,
+    "name": "James Kennedy",
+    "email": "james.kennedy@alpinedatasolutions.com",
+    "team_id": 1
+  }
+ * 
+ */
 Member.create = (newMember, result) => {
     sql.query('INSERT INTO pipeline_crm.member SET ?', newMember, (err, res) => {
         if (err) {
@@ -18,6 +37,21 @@ Member.create = (newMember, result) => {
     })
 }
 
+/**
+ * Finds an Member by Id
+ * @param {*} memberid 
+ * @request-example: Url
+ * https://crm.alpinedatasolutions.com/api/member/1
+ * 
+ * @success-example: 
+ * {
+    "member_id": 1,
+    "team_id": 1,
+    "name": "David Willson",
+    "email": "david.willson@alpinedatasolutions.com"
+  }
+ * 
+ */
 Member.findById = (memberid, result) => {
     sql.query(`SELECT * FROM pipeline_crm.member WHERE member_id = ${memberid}`, (err, res) => {
       if (err) {
@@ -35,6 +69,23 @@ Member.findById = (memberid, result) => {
     })
 }
 
+/**
+ * Lists all Members
+ * @request-example: Url
+ * https://crm.alpinedatasolutions.com/api/member/
+ * 
+ * @success-example: 
+ * [
+    {
+        "member_id": 1,
+        "team_id": 1,
+        "name": "David Willson",
+        "email": "david.willson@alpinedatasolutions.com"
+    }
+    ...
+  ]
+ * 
+ */
 Member.getAll = (result) => {
     sql.query('SELECT * FROM pipeline_crm.member', (err, res) => {
       if (err) {
@@ -47,6 +98,24 @@ Member.getAll = (result) => {
     })
 }
 
+/**
+ * Lists all Team Members
+ * @param {*} teamid 
+ * @request-example: Url
+ * https://crm.alpinedatasolutions.com/api/member/1/All
+ * 
+ * @success-example: 
+ * [
+    {
+        "member_id": 1,
+        "team_id": 1,
+        "name": "David Willson",
+        "email": "david.willson@alpinedatasolutions.com"
+    }
+    ...
+  ]
+ * 
+ */
 Member.getTeamMembers = (teamid, result) => {
   sql.query(`SELECT * FROM pipeline_crm.member WHERE team_id = ${teamid}`, (err, res) => {
     if (err) {

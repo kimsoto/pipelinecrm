@@ -42,6 +42,12 @@ import PipelineFigure from '../components/PipelineFigure.vue'
 import PipelineAccordion from '../components/PipelineAccordion.vue'
 const axios = require('axios')
 
+/**
+ * This is the Pipeline page component
+ * 
+ * It holds the Pipeline cards and the Pipeline detail card components
+ * Once the component is loaded it will call the List Pipelines API calls
+ */
 export default {
   name: 'Pipeline',
   components: {
@@ -61,6 +67,9 @@ export default {
     this.lastName = Vue.$keycloak.tokenParsed.family_name
   },
   methods: {
+    /**
+     * Logout method used in the Header of the page to redirect back to Keycloak login
+     */
     logout () {
       Vue.$keycloak.logout({ redirectUri: window.location.origin })
     },

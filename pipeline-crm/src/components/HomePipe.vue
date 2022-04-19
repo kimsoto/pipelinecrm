@@ -13,6 +13,12 @@
 <script>
 const axios = require('axios')
 
+/**
+ * This is the Home Pipe component
+ * 
+ * It shows the Pipeline Name, and the Pipeline Product's Contracted Revenue
+ * Once the component is loaded it will call the List Pipeline Products API calls
+ */
 export default {
     name: 'HomePipe',
     data() {

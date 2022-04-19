@@ -10,6 +10,11 @@
 
 <script>
 
+/**
+ * This is the Item card component
+ * 
+ * It shows the Item Title, the Item Status, and the Completion of the Item
+ */
 export default {
     name: 'ItemFigure',
     props: ['item'],

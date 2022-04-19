@@ -42,6 +42,11 @@ import TeamFigure from '../components/TeamFigure.vue'
 import TeamAccordion from '../components/TeamAccordion.vue'
 const axios = require('axios')
 
+/**
+ * This is the Team page component
+ * It holds the Team cards and the Team detail card components
+ * Once the component is loaded it will call the List Teams API calls
+ */
 export default {
   name: 'Team',
   components: {
@@ -61,6 +66,9 @@ export default {
     this.lastName = Vue.$keycloak.tokenParsed.family_name
   },
   methods: {
+    /**
+     * Logout method used in the Header of the page to redirect back to Keycloak login
+     */
     logout () {
       Vue.$keycloak.logout({ redirectUri: window.location.origin })
     },
