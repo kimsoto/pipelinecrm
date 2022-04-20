@@ -76,8 +76,7 @@ export default {
   mounted() {
     let config = {
       method: 'get',
-      // url: '/api/team/',
-      url: 'http://localhost:3000/api/team/',
+      url: '/api/team/',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('vue-token')
       }

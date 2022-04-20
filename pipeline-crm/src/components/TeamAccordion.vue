@@ -67,8 +67,6 @@ export default {
     mounted() {
         let getMembers = `/api/member/${this.team.team_id}/All`
         let getPipelines = `/api/pipeline/${this.team.team_id}/All`
-        // let getMembers = `http://localhost:3000/api/member/${this.team.team_id}/All`
-        // let getPipelines = `http://localhost:3000/api/pipeline/${this.team.team_id}/All`
         const promiseMembers = axios.get(getMembers, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('vue-token')
