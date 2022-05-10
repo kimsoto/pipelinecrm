@@ -7,20 +7,20 @@ Solution: While working with me throughout the project, we were able to create a
 
 
 Front End: 
-Uses Vue.js version 2 javascript framework as the front end
-Styled with Bootstrap version 5 as the CSS framework
-Routing using Vue Router
-Authentication handled by Keycloak, an open source software product to allow single sign-on with Identity and Access Management.
+--Uses Vue.js version 2 javascript framework as the front end--
+--Styled with Bootstrap version 5 as the CSS framework--
+--Routing using Vue Router--
+--Authentication handled by Keycloak, an open source software product to allow single sign-on with Identity and Access Management--
 
 
 Back End:
-Uses Node.js Express.js application framework
-Uses REST API principles
-Data is stored in a MySQL relational database
-Each Express route verifies access tokens using Keycloak
+--Uses Node.js Express.js application framework--
+--Uses REST API principles--
+--Data is stored in a MySQL relational database--
+--Each Express route verifies access tokens using Keycloak--
 
 
 Hosting: 
-NGINX web server installed on Ubuntu hosts both the Vue front end, and the Express back end
-Express backend is run as a reverse proxy
-Keycloak authentication is install on Ubuntu, also runs as a reverse proxy on NGINX
+--NGINX web server installed on Ubuntu hosts both the Vue front end, and the Express back end--
+--Express backend is run as a reverse proxy--
+--Keycloak authentication is install on Ubuntu, also runs as a reverse proxy on NGINX--
