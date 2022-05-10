@@ -117,8 +117,8 @@ export default {
             plannedEnd: this.item.planned_end,
             actualStart: this.item.actual_start,
             actualEnd: this.item.actual_end,
-            statusSelect: 1,
-            completionSelect: 1,
+            statusSelect: this.item.status_id,
+            completionSelect: this.item.completion_id,
             showForm: false
         }
     },
